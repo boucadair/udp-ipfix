@@ -96,8 +96,6 @@ Table of Contents
                    <------------------------------>
                               UDP Length
 
-                   Figure 3
-
                            Figure 1: Surplus Are
 
 2.  Conventions and Definitions
@@ -119,7 +117,10 @@ Table of Contents
 
 4.  IANA Considerations
 
-   This document requests IANA to XXX.
+   This document requests IANA to add a new IE to the IANA registry
+   entiteled "IP Flow Information Export (IPFIX) Entities" [IANA-IPFIX].
+
+   MORE DETAILS
 
 5.  References
 
@@ -158,6 +159,10 @@ Table of Contents
               tsvwg-udp-options-dplpmtud-04, 9 September 2022,
               <https://datatracker.ietf.org/doc/html/draft-ietf-tsvwg-
               udp-options-dplpmtud-04>.
+
+   [IANA-IPFIX]
+              "IP Flow Information Export (IPFIX) Entities", n.d.,
+              <https://www.iana.org/assignments/ipfix/ipfix.xhtml>.
 
 Acknowledgments
 
