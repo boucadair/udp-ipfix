@@ -68,6 +68,11 @@ This document uses the terms defined in Section 3 of {{!I-D.ietf-tsvwg-udp-optio
 
 UDP {{!RFC0768}}.
 
+
+
+
+
+
 # Security Considerations
 
 TODO Security
@@ -77,7 +82,14 @@ TODO Security
 
 This document requests IANA to add a new IE to the IANA registry entiteled "IP Flow Information Export (IPFIX) Entities" {{IANA-IPFIX}}.
 
-MORE DETAILS
+* Name:  udpOptions
+* ElementID:  TBD1
+* Description: xxx.
+* Abstract Data Type:  xxxx
+* Data Type Semantics:  flags
+* Additional Information:  {{!I-D.ietf-tsvwg-udp-options}}.  See the assignments in the "xxxx" IANA registry at URL_IANA_UDP_OPTIONS.
+* Reference:  [This-Document]
+
 
 --- back
 
