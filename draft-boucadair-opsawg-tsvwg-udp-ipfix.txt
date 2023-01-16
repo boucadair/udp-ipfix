@@ -1,0 +1,170 @@
+
+
+
+
+Operations and Management Area Working Group                M. Boucadair
+Internet-Draft                                                    Orange
+Intended status: Standards Track                         16 January 2023
+Expires: 20 July 2023
+
+
+                        IPFIX IE for UDP Options
+             draft-boucadair-opsawg-tsvwg-udp-ipfix-latest
+
+Abstract
+
+   XXX.
+
+   This document specifies IPFIX IE for UDP options.
+
+Discussion Venues
+
+   This note is to be removed before publishing as an RFC.
+
+   Discussion of this document takes place on the Operations and
+   Management Area Working Group Working Group mailing list
+   (opsawg@ietf.org), which is archived at
+   https://mailarchive.ietf.org/arch/browse/opsawg/.
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/boucadair/udp-ipfix.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 20 July 2023.
+
+Copyright Notice
+
+   Copyright (c) 2023 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction
+   2.  Conventions and Definitions
+   3.  Security Considerations
+   4.  IANA Considerations
+   5.  References
+     5.1.  Normative References
+     5.2.  Informative References
+   Acknowledgments
+   Author's Address
+
+1.  Introduction
+
+   TODO Introduction
+
+   [I-D.ietf-tsvwg-udp-options] uses the surplus area (that is, the area
+   of an IP payload that follows a UDP packet).  See Figure 1.
+
+   [I-D.ietf-tsvwg-udp-options] base spec +
+   [I-D.ietf-tsvwg-udp-options-dplpmtud] an example of UDP options.
+
+   Note that UDP options rely upon trailers, not headers to extend UDP
+   XXXX.  As such, more operational guidance may be elaborated in the
+   future for such extensions.  This document does not intend to
+   elaborate those, but focues exclusively on exporting observed UDP
+   options in datagrams.
+
+                                IP transport payload
+                   <------------------------------------------------->
+         +--------+---------+----------------------+------------------+
+         | IP Hdr | UDP Hdr |     UDP user data    |   surplus area   |
+         +--------+---------+----------------------+------------------+
+                   <------------------------------>
+                              UDP Length
+
+                   Figure 3
+
+                           Figure 1: Surplus Are
+
+2.  Conventions and Definitions
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in
+   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+   This document uses the terms defined in Section 3 of
+   [I-D.ietf-tsvwg-udp-options] and [RFC7011].
+
+   UDP [RFC0768].
+
+3.  Security Considerations
+
+   TODO Security
+
+4.  IANA Considerations
+
+   This document requests IANA to XXX.
+
+5.  References
+
+5.1.  Normative References
+
+   [I-D.ietf-tsvwg-udp-options]
+              Touch, J. D., "Transport Options for UDP", Work in
+              Progress, Internet-Draft, draft-ietf-tsvwg-udp-options-19,
+              27 December 2022, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-tsvwg-udp-options-19>.
+
+   [RFC0768]  Postel, J., "User Datagram Protocol", STD 6, RFC 768,
+              DOI 10.17487/RFC0768, August 1980,
+              <https://www.rfc-editor.org/rfc/rfc768>.
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC7011]  Claise, B., Ed., Trammell, B., Ed., and P. Aitken,
+              "Specification of the IP Flow Information Export (IPFIX)
+              Protocol for the Exchange of Flow Information", STD 77,
+              RFC 7011, DOI 10.17487/RFC7011, September 2013,
+              <https://www.rfc-editor.org/rfc/rfc7011>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
+5.2.  Informative References
+
+   [I-D.ietf-tsvwg-udp-options-dplpmtud]
+              Fairhurst, G. and T. Jones, "Datagram PLPMTUD for UDP
+              Options", Work in Progress, Internet-Draft, draft-ietf-
+              tsvwg-udp-options-dplpmtud-04, 9 September 2022,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-tsvwg-
+              udp-options-dplpmtud-04>.
+
+Acknowledgments
+
+   TODO acknowledge.
+
+Author's Address
+
+   Mohamed Boucadair
+   Orange
+   Email: mohamed.boucadair@orange.com
