@@ -9,8 +9,8 @@ number:
 date:
 consensus: true
 v: 3
-area: AREA
-workgroup: opsawg
+area: "Operations and Management"
+workgroup: "Operations and Management Area Working Group"
 keyword:
  - surplus area
  - UDP option
