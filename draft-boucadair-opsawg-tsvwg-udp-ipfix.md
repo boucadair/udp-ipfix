@@ -24,7 +24,9 @@ author:
 normative:
 
 informative:
-
+  IANA-IPFIX:
+     title: IP Flow Information Export (IPFIX) Entities
+     target: https://www.iana.org/assignments/ipfix/ipfix.xhtml
 
 --- abstract
 
@@ -53,8 +55,6 @@ Note that UDP options rely upon trailers, not headers to extend UDP XXXX. As suc
       +--------+---------+----------------------+------------------+
                 <------------------------------>
                            UDP Length
-
-                Figure 3
 ~~~~
 {: #spa title="Surplus Are" artwork-align="center"}
 
@@ -75,8 +75,9 @@ TODO Security
 
 # IANA Considerations
 
-This document requests IANA to XXX.
+This document requests IANA to add a new IE to the IANA registry entiteled "IP Flow Information Export (IPFIX) Entities" {{IANA-IPFIX}}.
 
+MORE DETAILS
 
 --- back
 
