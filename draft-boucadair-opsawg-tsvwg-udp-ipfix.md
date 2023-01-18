@@ -1,5 +1,5 @@
 ---
-title: "Export of UDP Options Inforamtion in IP Flow Information Export (IPFIX)"
+title: "Export of UDP Options Information in IP Flow Information Export (IPFIX)"
 abbrev: "IPFIX IE for UDP Options"
 category: std
 
