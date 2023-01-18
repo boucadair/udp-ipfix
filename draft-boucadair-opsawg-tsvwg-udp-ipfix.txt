@@ -8,7 +8,7 @@ Intended status: Standards Track                         18 January 2023
 Expires: 22 July 2023
 
 
-Export of UDP Options Inforamtion in IP Flow Information Export (IPFIX)
+Export of UDP Options Information in IP Flow Information Export (IPFIX)
              draft-boucadair-opsawg-tsvwg-udp-ipfix-latest
 
 Abstract
