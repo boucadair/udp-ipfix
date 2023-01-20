@@ -193,7 +193,7 @@ Table of Contents
 
    *  Description: Observed Expermients ID (ExIDs) in the Experimental
       option (EXP, Kind=127).  The information is encoded in a set of
-      16-bit fields.  Each 16-bit field carries an observed ExID in an
+      16-bit fields.  Each 16-bit field carries the observed ExID in an
       EXP option.
 
    *  Abstract Data Type: octetArray
@@ -213,7 +213,7 @@ Table of Contents
 
    *  Description: Observed Expermients ID (ExIDs) in the UNSAFE
       Experimental option (UEXP, Kind=254).  The information is encoded
-      in a set of 16-bit fields.  Each 16-bit field carries an observed
+      in a set of 16-bit fields.  Each 16-bit field carries the observed
       ExID in an UEXP option.
 
    *  Abstract Data Type: octetArray
