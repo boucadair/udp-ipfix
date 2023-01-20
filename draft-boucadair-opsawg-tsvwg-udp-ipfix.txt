@@ -64,15 +64,15 @@ Table of Contents
 
    1.  Introduction
    2.  Conventions and Definitions
-     2.1.  UDP Options at a Glance
-   3.  Security Considerations
-   4.  IANA Considerations
-     4.1.  udpOptions
-     4.2.  udpExID
-     4.3.  udpUnsafeExID
-   5.  References
-     5.1.  Normative References
-     5.2.  Informative References
+   3.  UDP Options at a Glance
+   4.  Security Considerations
+   5.  IANA Considerations
+     5.1.  udpOptions
+     5.2.  udpExID
+     5.3.  udpUnsafeExID
+   6.  References
+     6.1.  Normative References
+     6.2.  Informative References
    Acknowledgments
    Authors' Addresses
 
@@ -87,8 +87,8 @@ Table of Contents
    [IANA-IPFIX] for interoperability.
 
    This document specifies new IPFIX Information Elements for UDP
-   options (Section 4).  A brief overview of UDP option is provided in
-   Section 2.1.
+   options (Section 5).  A brief overview of UDP option is provided in
+   Section 3.
 
 2.  Conventions and Definitions
 
@@ -101,7 +101,7 @@ Table of Contents
    This document uses the terms defined in Section 3 of
    [I-D.ietf-tsvwg-udp-options] and [RFC7011].
 
-2.1.  UDP Options at a Glance
+3.  UDP Options at a Glance
 
    UDP [RFC0768] does not support an extension mechanism similar to the
    options supported by other transport protocols, such as TCP
@@ -126,7 +126,7 @@ Table of Contents
 
                            Figure 1: Surplus Area
 
-   Section 4.1 introduces a new IE to export the observed UDP options.
+   Section 5.1 introduces a new IE to export the observed UDP options.
 
    Options indicated by Kind values in the range 0-191 are called SAFE
    options because they do not alter the UDP data payload.  Such options
@@ -142,8 +142,8 @@ Table of Contents
    UNSAFE Experimental option (UEXP, Kind=254).  For both options,
    Experimental ID (ExIDs) are used to differentiate concurrent use of
    these options.  Known ExIDs are expected to be registered within
-   IANA.  Section 4.2 specifies a new IPFIX to export observed ExIDs in
-   the EXP options.  Also, Section 4.3 specifies a new IPFIX to export
+   IANA.  Section 5.2 specifies a new IPFIX to export observed ExIDs in
+   the EXP options.  Also, Section 5.3 specifies a new IPFIX to export
    observed ExIDs in the UEXP options.  Only 16-bits ExIDs are
    supported.
 
@@ -153,18 +153,18 @@ Table of Contents
    exporting such data is similar to the one for exporting TCP options
    (tcpOptions IE) or IPv6 Extension Headers (ipv6ExtensionHeaders).
 
-3.  Security Considerations
+4.  Security Considerations
 
    This document does not introduce new security considerations other
    than those already discussed in [RFC7012].
 
-4.  IANA Considerations
+5.  IANA Considerations
 
    This document requests IANA to add the following new IEs to the IANA
    registry entitled "IP Flow Information Export (IPFIX) Entities"
    [IANA-IPFIX].
 
-4.1.  udpOptions
+5.1.  udpOptions
 
    *  Name: udpOptions
 
@@ -185,7 +185,7 @@ Table of Contents
 
    *  Reference: [This-Document]
 
-4.2.  udpExID
+5.2.  udpExID
 
    *  Name: udpExID
 
@@ -205,7 +205,7 @@ Table of Contents
 
    *  Reference: [This-Document]
 
-4.3.  udpUnsafeExID
+5.3.  udpUnsafeExID
 
    *  Name: udpUnsafeExID
 
@@ -225,9 +225,9 @@ Table of Contents
 
    *  Reference: [This-Document]
 
-5.  References
+6.  References
 
-5.1.  Normative References
+6.1.  Normative References
 
    [I-D.ietf-tsvwg-udp-options]
               Touch, J. D., "Transport Options for UDP", Work in
@@ -259,7 +259,7 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
-5.2.  Informative References
+6.2.  Informative References
 
    [I-D.ietf-tsvwg-udp-options-dplpmtud]
               Fairhurst, G. and T. Jones, "Datagram PLPMTUD for UDP
