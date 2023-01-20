@@ -104,7 +104,7 @@ This document requests IANA to add the following new IEs to the IANA registry en
 
 * Name:  udpExID
 * ElementID:  TBD2
-* Description: Observed Expermients ID (ExIDs) in the Experimental option (EXP, Kind=127). The information is encoded in a set of 16-bit fields. Each 16-bit field carries an observed ExID in an EXP option.
+* Description: Observed Expermients ID (ExIDs) in the Experimental option (EXP, Kind=127). The information is encoded in a set of 16-bit fields. Each 16-bit field carries the observed ExID in an EXP option.
 * Abstract Data Type:  octetArray
 * Data Type Semantics:  identifier
 * Additional Information:  {{!I-D.ietf-tsvwg-udp-options}}.  See the assignments in the "xxxx" IANA registry at URL_IANA_UDP_ExIDs.
@@ -114,7 +114,7 @@ This document requests IANA to add the following new IEs to the IANA registry en
 
 * Name:  udpUnsafeExID
 * ElementID:  TBD3
-* Description: Observed Expermients ID (ExIDs) in the UNSAFE Experimental option (UEXP, Kind=254). The information is encoded in a set of 16-bit fields. Each 16-bit field carries an observed ExID in an UEXP option.
+* Description: Observed Expermients ID (ExIDs) in the UNSAFE Experimental option (UEXP, Kind=254). The information is encoded in a set of 16-bit fields. Each 16-bit field carries the observed ExID in an UEXP option.
 * Abstract Data Type:  octetArray
 * Data Type Semantics:  identifier
 * Additional Information:  {{!I-D.ietf-tsvwg-udp-options}}.  See the assignments in the "xxxx" IANA registry at URL_IANA_UDP_ExIDs.
