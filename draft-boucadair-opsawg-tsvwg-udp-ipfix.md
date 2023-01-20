@@ -55,7 +55,7 @@ This document specifies new IPFIX Information Elements for UDP options ({{IANA}}
 
 This document uses the terms defined in Section 3 of {{!I-D.ietf-tsvwg-udp-options}} and {{!RFC7011}}.
 
-## UDP Options at a Glance {#uo}
+# UDP Options at a Glance {#uo}
 
 UDP {{!RFC0768}} does not support an extension mechanism similar to the options supported by other transport protocols, such as TCP {{?RFC9293}}, SCTP {{?RFC9260}}, or DCCP {{?RFC4340}}. Such a mechanism can be useful for various applications, e.g., discover a path MTU or share timestamps. To fill that void, {{!I-D.ietf-tsvwg-udp-options}} extends UDP with a mechanism to insert extensions in datagrams. To do so, and unlike the conventional approach that relies upon transport headers, {{!I-D.ietf-tsvwg-udp-options}} uses trailers. Concretely, UDP options are placed in the surplus area (that is, the area of an IP payload that follows a UDP packet). See {{spa}}. An example of the use of UDP options is described in {{?I-D.ietf-tsvwg-udp-options-dplpmtud}}.
 
