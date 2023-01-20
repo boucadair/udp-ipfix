@@ -26,7 +26,7 @@ author:
 
  -
     fullname: Tirumaleswar Reddy.K
-    organization: Noka
+    organization: Nokia
     country: India
     email: kondtir@gmail.com
 
