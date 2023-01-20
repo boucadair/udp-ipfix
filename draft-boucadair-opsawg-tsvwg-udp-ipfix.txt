@@ -5,7 +5,7 @@
 OPSAWG                                                      M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              T. Reddy.K
-Expires: 24 July 2023                                               Noka
+Expires: 24 July 2023                                              Nokia
                                                          20 January 2023
 
 
@@ -299,6 +299,6 @@ Authors' Addresses
 
 
    Tirumaleswar Reddy.K
-   Noka
+   Nokia
    India
    Email: kondtir@gmail.com
