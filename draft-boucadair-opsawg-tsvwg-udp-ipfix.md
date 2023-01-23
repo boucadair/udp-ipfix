@@ -93,12 +93,21 @@ This document requests IANA to add the following new IEs to the IANA registry en
 
 * Name:  udpOptions
 * ElementID:  TBD1
-* Description: Observed UDP options of a Flow.  The information is encoded in a set of bit fields. Options are mapped to bits according to their option numbers.
-      Option number X is mapped to bit X. A bit is set to 1 (or 0) if the corresponding UDP option is observed (or not).
-* Abstract Data Type:  unsigned8
+* Description: Observed UDP options of a Flow.  The information is encoded in a set of bit fields. Multiple instances of the udpOptions IE are included to cover the 0-255 range ({{instances}}); each 64 values are mapped to an IE with th order preserved. Options are mapped to bits according to their option numbers. Option number X is mapped to bit X[64] of the IE instance determined by the order "[1+X/64]". A bit is set to 1 (or 0) if the corresponding UDP option is observed (or not). For example, (1) if only option kinds =<63 are observed, then only one udpOptions IE instance is included, (2) if only option kinds =<127 are observed, then two udpOptions IEs instances are included, (3) if some option kinds =<63 while others are >=192 are observed, then four udpOptions IE instances are included with the second and third IE instances are set to 0, etc.
+* Abstract Data Type:  unsigned64
 * Data Type Semantics:  flags
 * Additional Information:  {{!I-D.ietf-tsvwg-udp-options}}.  See the assignments in the "xxxx" IANA registry at URL_IANA_UDP_OPTIONS.
 * Reference:  [This-Document]
+
+~~~~
++----------+----------+----------+----------+
+|udpOptions|udpOptions|udpOptions|udpOptions|
+|Instance#1|Instance#2|Instance#3|Instance#4|
++----------+----------+----------+----------+
+    0-63      64-127    128-191    192-255
+    Range      Range     Range       Range
+~~~~
+{: #instances title="Mapping of the UDP Options to the udpOptions IEs" artwork-align="center"}
 
 ## udpExID {#udpExID}
 
