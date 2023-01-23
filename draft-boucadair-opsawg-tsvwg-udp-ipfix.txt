@@ -5,8 +5,8 @@
 OPSAWG                                                      M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              T. Reddy.K
-Expires: 24 July 2023                                              Nokia
-                                                         20 January 2023
+Expires: 27 July 2023                                              Nokia
+                                                         23 January 2023
 
 
 Export of UDP Options Information in IP Flow Information Export (IPFIX)
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 July 2023.
+   This Internet-Draft will expire on 27 July 2023.
 
 Copyright Notice
 
@@ -171,12 +171,21 @@ Table of Contents
    *  ElementID: TBD1
 
    *  Description: Observed UDP options of a Flow.  The information is
-      encoded in a set of bit fields.  Options are mapped to bits
-      according to their option numbers.  Option number X is mapped to
-      bit X.  A bit is set to 1 (or 0) if the corresponding UDP option
-      is observed (or not).
+      encoded in a set of bit fields.  Multiple instances of the
+      udpOptions IE are included to cover the 0-255 range (Figure 2);
+      each 64 values are mapped to an IE with th order preserved.
+      Options are mapped to bits according to their option numbers.
+      Option number X is mapped to bit X[64] of the IE instance
+      determined by the order "[1+X/64]".  A bit is set to 1 (or 0) if
+      the corresponding UDP option is observed (or not).  For example,
+      (1) if only option kinds =<63 are observed, then only one
+      udpOptions IE instance is included, (2) if only option kinds =<127
+      are observed, then two udpOptions IEs instances are included, (3)
+      if some option kinds =<63 while others are >=192 are observed,
+      then four udpOptions IE instances are included with the second and
+      third IE instances are set to 0, etc.
 
-   *  Abstract Data Type: unsigned8
+   *  Abstract Data Type: unsigned64
 
    *  Data Type Semantics: flags
 
@@ -184,6 +193,15 @@ Table of Contents
       assignments in the "xxxx" IANA registry at URL_IANA_UDP_OPTIONS.
 
    *  Reference: [This-Document]
+
+               +----------+----------+----------+----------+
+               |udpOptions|udpOptions|udpOptions|udpOptions|
+               |Instance#1|Instance#2|Instance#3|Instance#4|
+               +----------+----------+----------+----------+
+                   0-63      64-127    128-191    192-255
+                   Range      Range     Range       Range
+
+         Figure 2: Mapping of the UDP Options to the udpOptions IEs
 
 5.2.  udpExID
 
