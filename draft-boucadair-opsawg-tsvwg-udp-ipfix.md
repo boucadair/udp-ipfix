@@ -85,7 +85,7 @@ This document does not intend to elaborate operational guidance/implications of 
 
 This document does not introduce new security considerations other than those already discussed in {{!RFC7012}}.
 
-The reader may refer to Section 22 of {{!!I-D.ietf-tsvwg-udp-options}} for the security considerations related to UDP options.
+The reader may refer to Section 22 of {{!I-D.ietf-tsvwg-udp-options}} for the security considerations related to UDP options.
 
 # IANA Considerations {#IANA}
 
