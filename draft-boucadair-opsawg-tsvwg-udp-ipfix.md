@@ -76,7 +76,7 @@ Options indicated by Kind values in the range 0-191 are called SAFE options beca
 
 Options indicated by Kind values in the range 192-255 are called UNSAFE options. Such options are not safe to ignore (Section 10 of {{!I-D.ietf-tsvwg-udp-options}}).
 
-{{!I-D.ietf-tsvwg-udp-options}} reserves two options for experiements: the Experimental option (EXP, Kind=127) for SAFE options and the UNSAFE Experimental option (UEXP, Kind=254). For both options, Experimental ID (ExIDs) are used to differentiate concurrent use of these options. Known ExIDs are expected to be registered within IANA. {{udpExID}} specifies a new IPFIX to export observed ExIDs in the EXP options. Also, {{udpUExID}} specifies a new IPFIX to export observed ExIDs in the UEXP options. Only 16-bits ExIDs are supported.
+{{!I-D.ietf-tsvwg-udp-options}} reserves two options for experiements: the Experimental option (EXP, Kind=127) for SAFE options and the UNSAFE Experimental option (UEXP, Kind=254). For both options, Experimental ID (ExIDs) are used to differentiate concurrent use of these options. Known ExIDs are expected to be registered within IANA. {{udpExID}} specifies a new IPFIX IE to export observed ExIDs in the EXP options. Also, {{udpUExID}} specifies a new IPFIX to export observed ExIDs in the UEXP options. Only 16-bits ExIDs are supported.
 
 This document does not intend to elaborate operational guidance/implications of UDP options. The document focuses exclusively on exporting observed UDP options in datagrams. The motivation for exporting such data is similar to the one for exporting TCP options (tcpOptions IE) or IPv6 Extension Headers (ipv6ExtensionHeaders).
 
@@ -84,6 +84,8 @@ This document does not intend to elaborate operational guidance/implications of 
 # Security Considerations
 
 This document does not introduce new security considerations other than those already discussed in {{!RFC7012}}.
+
+The reader may refer to Section 22 of {{!!I-D.ietf-tsvwg-udp-options}} for the security considerations related to UDP options.
 
 # IANA Considerations {#IANA}
 
@@ -93,10 +95,10 @@ This document requests IANA to add the following new IEs to the IANA registry en
 
 * Name:  udpOptions
 * ElementID:  TBD1
-* Description: Observed UDP options of a Flow.  The information is encoded in a set of bit fields. Multiple instances of the udpOptions IE are included to cover the 0-255 range ({{instances}}); each 64 values are mapped to an IE with th order preserved. Options are mapped to bits according to their option numbers. Option number X is mapped to bit X[64] of the IE instance determined by the order "[1+X/64]". A bit is set to 1 (or 0) if the corresponding UDP option is observed (or not). For example, (1) if only option kinds =<63 are observed, then only one udpOptions IE instance is included, (2) if only option kinds =<127 are observed, then two udpOptions IEs instances are included, (3) if some option kinds =<63 while others are >=192 are observed, then four udpOptions IE instances are included with the second and third IE instances are set to 0, etc.
+* Description: Observed UDP options of a Flow.  The information is encoded in a set of bit fields. Multiple instances of the udpOptions IE are included to cover the 0-255 range ({{instances}}); each 64 values are mapped to an IE with th order preserved. Options are mapped to bits according to their option numbers. Option number X is mapped to bit X[64] of the IE instance determined by the order "1+1[X/64]". A bit is set to 1 (or 0) if the corresponding UDP option is observed (or not).  A udpOptions IE instance MAY be ommited if there is no ambiguity to determine the position of an observed UDP option. For example, (1) if only option kinds =<63 are observed, then only one udpOptions IE instance is included, (2) if only option kinds =<127 are observed, then two udpOptions IEs instances are included, (3) if some option kinds =<63 while others are >=192 are observed, then four udpOptions IE instances are included with the second and third IE instances are both set to 0, etc.
 * Abstract Data Type:  unsigned64
 * Data Type Semantics:  flags
-* Additional Information:  {{!I-D.ietf-tsvwg-udp-options}}.  See the assignments in the "xxxx" IANA registry at URL_IANA_UDP_OPTIONS.
+* Additional Information: See the assigned UDP options in the "UDP Option Kind Numbers" registry at URL_IANA_UDP_OPTIONS. See {{!I-D.ietf-tsvwg-udp-options}} for more details about UDP options.
 * Reference:  [This-Document]
 
 ~~~~
@@ -107,7 +109,7 @@ This document requests IANA to add the following new IEs to the IANA registry en
     0-63      64-127    128-191    192-255
     Range      Range     Range       Range
 ~~~~
-{: #instances title="Mapping of the UDP Options to the udpOptions IEs" artwork-align="center"}
+{: #instances title="Mapping UDP Options to udpOptions IE Instances" artwork-align="center"}
 
 ## udpExID {#udpExID}
 
@@ -116,7 +118,7 @@ This document requests IANA to add the following new IEs to the IANA registry en
 * Description: Observed Expermients ID (ExIDs) in the Experimental option (EXP, Kind=127). The information is encoded in a set of 16-bit fields. Each 16-bit field carries the observed ExID in an EXP option.
 * Abstract Data Type:  octetArray
 * Data Type Semantics:  identifier
-* Additional Information:  {{!I-D.ietf-tsvwg-udp-options}}.  See the assignments in the "xxxx" IANA registry at URL_IANA_UDP_ExIDs.
+* Additional Information:  See the assignments in the "UDP Experimental Option Experiment Identifiers (UDP ExIDs)" registry at URL_IANA_UDP_ExIDs. See {{!I-D.ietf-tsvwg-udp-options}} for more details about ExIDs.
 * Reference:  [This-Document]
 
 ## udpUnsafeExID {#udpUExID}
@@ -126,7 +128,7 @@ This document requests IANA to add the following new IEs to the IANA registry en
 * Description: Observed Expermients ID (ExIDs) in the UNSAFE Experimental option (UEXP, Kind=254). The information is encoded in a set of 16-bit fields. Each 16-bit field carries the observed ExID in an UEXP option.
 * Abstract Data Type:  octetArray
 * Data Type Semantics:  identifier
-* Additional Information:  {{!I-D.ietf-tsvwg-udp-options}}.  See the assignments in the "xxxx" IANA registry at URL_IANA_UDP_ExIDs.
+* Additional Information:  See the assignments in the "UDP Experimental Option Experiment Identifiers (UDP ExIDs)" registry at URL_IANA_UDP_ExIDs. See {{!I-D.ietf-tsvwg-udp-options}} for more details about ExIDs.
 * Reference:  [This-Document]
 --- back
 
