@@ -95,21 +95,12 @@ This document requests IANA to add the following new IEs to the IANA registry en
 
 * Name:  udpOptions
 * ElementID:  TBD1
-* Description: Observed UDP options of a Flow.  The information is encoded in a set of bit fields. Multiple instances of the udpOptions IE are included to cover the 0-255 range ({{instances}}); each 64 values are mapped to an IE with th order preserved. Options are mapped to bits according to their option numbers. Option number X is mapped to bit X[64] of the IE instance determined by the order "1+1[X/64]". A bit is set to 1 (or 0) if the corresponding UDP option is observed (or not).  A udpOptions IE instance MAY be ommited if there is no ambiguity to determine the position of an observed UDP option. For example, (1) if only option kinds =<63 are observed, then only one udpOptions IE instance is included, (2) if only option kinds =<127 are observed, then two udpOptions IEs instances are included, (3) if some option kinds =<63 while others are >=192 are observed, then four udpOptions IE instances are included with the second and third IE instances are both set to 0, etc.
-* Abstract Data Type:  unsigned64
+* Description: Observed UDP options of a Flow. The information is encoded in a set of bit fields. To cover the 0-255 kind range, up to 255 flags can be set in the value field. The encoding specified in Section 6.2 of {{!RFC7011}} is followed whenever fewer octets are needed to report observed UDP options. For example, if only option kinds =<32 are observed, then the value can be encoded as unsigned32, or if only option kinds =<63 are observed, then the value can be encoded as unsigned64.
+* Abstract Data Type:  unsigned
 * Data Type Semantics:  flags
 * Additional Information: See the assigned UDP options in the "UDP Option Kind Numbers" registry at URL_IANA_UDP_OPTIONS. See {{!I-D.ietf-tsvwg-udp-options}} for more details about UDP options.
 * Reference:  [This-Document]
 
-~~~~
-+----------+----------+----------+----------+
-|udpOptions|udpOptions|udpOptions|udpOptions|
-|Instance#1|Instance#2|Instance#3|Instance#4|
-+----------+----------+----------+----------+
-    0-63      64-127    128-191    192-255
-    Range      Range     Range       Range
-~~~~
-{: #instances title="Mapping UDP Options to udpOptions IE Instances" artwork-align="center"}
 
 ## udpExID {#udpExID}
 
@@ -135,4 +126,4 @@ This document requests IANA to add the following new IEs to the IANA registry en
 # Acknowledgments
 {:numbered="false"}
 
-TODO acknowledge.
+Thanks to Benoît Claise for the discussion on the ordering of IPFIX IEs.
