@@ -53,7 +53,7 @@ This document specifies new IPFIX Information Elements for UDP options ({{IANA}}
 
 {::boilerplate bcp14-tagged}
 
-This document uses the terms defined in Section 3 of {{!I-D.ietf-tsvwg-udp-options}} and {{!RFC7011}}.
+This document uses the terms defined in {{Section 3 of !I-D.ietf-tsvwg-udp-options}} and {{!RFC7011}}.
 
 # UDP Options at a Glance {#uo}
 
@@ -72,14 +72,91 @@ UDP {{!RFC0768}} does not support an extension mechanism similar to the options 
 
 {{udpOptions}} introduces a new IE to export the observed UDP options.
 
-Options indicated by Kind values in the range 0-191 are called SAFE options because they do not alter the UDP data payload. Such options can be silently ignored by receivers without affecting the meaning of the UDP user data (Section 9 of {{!I-D.ietf-tsvwg-udp-options}}).
+Options indicated by Kind values in the range 0-191 are called SAFE options because they do not alter the UDP data payload. Such options can be silently ignored by receivers without affecting the meaning of the UDP user data ({{Section 9 of !I-D.ietf-tsvwg-udp-options}}).
 
-Options indicated by Kind values in the range 192-255 are called UNSAFE options. Such options are not safe to ignore (Section 10 of {{!I-D.ietf-tsvwg-udp-options}}).
+Options indicated by Kind values in the range 192-255 are called UNSAFE options. Such options are not safe to ignore ({{Section 10 of !I-D.ietf-tsvwg-udp-options}}).
 
 {{!I-D.ietf-tsvwg-udp-options}} reserves two options for experiements: the Experimental option (EXP, Kind=127) for SAFE options and the UNSAFE Experimental option (UEXP, Kind=254). For both options, Experimental ID (ExIDs) are used to differentiate concurrent use of these options. Known ExIDs are expected to be registered within IANA. {{udpExID}} specifies a new IPFIX IE to export observed ExIDs in the EXP options. Also, {{udpUExID}} specifies a new IPFIX to export observed ExIDs in the UEXP options. Only 16-bits ExIDs are supported.
 
-This document does not intend to elaborate operational guidance/implications of UDP options. The document focuses exclusively on exporting observed UDP options in datagrams. The motivation for exporting such data is similar to the one for exporting TCP options (tcpOptions IE) or IPv6 Extension Headers (ipv6ExtensionHeaders).
+This document does not intend to elaborate operational guidance/implications of UDP options. The document focuses exclusively on exporting observed UDP options in datagrams. The motivation for exporting such data is similar to the one for exporting TCP options (tcpOptions) or IPv6 Extension Headers (ipv6ExtensionHeaders).
 
+# New UDP IPFIX Information Elements
+
+## udpOptions {#udpOptions}
+
+Name:
+: udpOptions
+
+ElementID:
+: TBD1
+
+Description:
+: Observed UDP options of a Flow. The information is encoded in a set of bit fields.
+: To cover the 0-255 kind range, up to 255 flags can be set in the value field. The encoding specified in Section 6.2 of {{!RFC7011}} is followed whenever fewer octets are needed to report observed UDP options. For example, if only option kinds =<32 are observed, then the value can be encoded as unsigned32, or if only option kinds =<63 are observed, then the value can be encoded as unsigned64.
+
+Abstract Data Type:
+:  unsigned
+
+Data Type Semantics:
+:  flags
+
+Additional Information:
+: See the assigned UDP options in the "UDP Option Kind Numbers" registry at URL_IANA_UDP_OPTIONS.
+: See {{!I-D.ietf-tsvwg-udp-options}} for more details about UDP options.
+
+Reference:
+: This-Document
+
+
+## udpExpOptionExID {#udpExID}
+
+Name:
+:  udpExpExID
+
+ElementID:
+:  TBD2
+
+Description:
+: Observed Expermients ID (ExIDs) in the Experimental option (EXP, Kind=127).
+: The information is encoded in a set of 16-bit fields. Each 16-bit field carries the observed ExID in an EXP option.
+
+Abstract Data Type:
+:  octetArray
+
+Data Type Semantics:
+:  identifier
+
+Additional Information:
+: See the assignments in the "UDP Experimental Option Experiment Identifiers (UDP ExIDs)" registry at URL_IANA_UDP_ExIDs.
+: See {{!I-D.ietf-tsvwg-udp-options}} for more details about ExIDs.
+
+Reference:
+: This-Document
+
+## udpUnsafeExpOptionExID {#udpUExID}
+
+Name:
+:  udpUnsafeExpOptionExID
+
+ElementID:
+:  TBD3
+
+Description:
+: Observed Expermients ID (ExIDs) in the UNSAFE Experimental option (UEXP, Kind=254).
+: The information is encoded in a set of 16-bit fields. Each 16-bit field carries the observed ExID in an UEXP option.
+
+Abstract Data Type:
+:  octetArray
+
+Data Type Semantics:
+:  identifier
+
+Additional Information:
+: See the assignments in the "UDP Experimental Option Experiment Identifiers (UDP ExIDs)" registry at URL_IANA_UDP_ExIDs.
+: See {{!I-D.ietf-tsvwg-udp-options}} for more details about ExIDs.
+
+Reference:
+: This-Document
 
 # Security Considerations
 
@@ -89,38 +166,14 @@ The reader may refer to Section 22 of {{!I-D.ietf-tsvwg-udp-options}} for the se
 
 # IANA Considerations {#IANA}
 
-This document requests IANA to add the following new IEs to the IANA registry entitled "IP Flow Information Export (IPFIX) Entities" {{IANA-IPFIX}}.
+This document requests IANA to add the following new IEs to the IANA registry entitled "IP Flow Information Export (IPFIX) Entities" {{IANA-IPFIX}}:
 
-## udpOptions {#udpOptions}
+|Value|	Name|	Reference|
+|TBD1| udpOptions|{{udpOptions}} of This-Document|
+|TBD2| udpExpOptionExID|{{udpExID}} of This-Document|
+|TBD3| udpUnsafeExpOptionExID|{{udpUExID}} of This-Document|
+{: title="New IPFIX Information Elements"}
 
-* Name:  udpOptions
-* ElementID:  TBD1
-* Description: Observed UDP options of a Flow. The information is encoded in a set of bit fields. To cover the 0-255 kind range, up to 255 flags can be set in the value field. The encoding specified in Section 6.2 of {{!RFC7011}} is followed whenever fewer octets are needed to report observed UDP options. For example, if only option kinds =<32 are observed, then the value can be encoded as unsigned32, or if only option kinds =<63 are observed, then the value can be encoded as unsigned64.
-* Abstract Data Type:  unsigned
-* Data Type Semantics:  flags
-* Additional Information: See the assigned UDP options in the "UDP Option Kind Numbers" registry at URL_IANA_UDP_OPTIONS. See {{!I-D.ietf-tsvwg-udp-options}} for more details about UDP options.
-* Reference:  [This-Document]
-
-
-## udpExID {#udpExID}
-
-* Name:  udpExID
-* ElementID:  TBD2
-* Description: Observed Expermients ID (ExIDs) in the Experimental option (EXP, Kind=127). The information is encoded in a set of 16-bit fields. Each 16-bit field carries the observed ExID in an EXP option.
-* Abstract Data Type:  octetArray
-* Data Type Semantics:  identifier
-* Additional Information:  See the assignments in the "UDP Experimental Option Experiment Identifiers (UDP ExIDs)" registry at URL_IANA_UDP_ExIDs. See {{!I-D.ietf-tsvwg-udp-options}} for more details about ExIDs.
-* Reference:  [This-Document]
-
-## udpUnsafeExID {#udpUExID}
-
-* Name:  udpUnsafeExID
-* ElementID:  TBD3
-* Description: Observed Expermients ID (ExIDs) in the UNSAFE Experimental option (UEXP, Kind=254). The information is encoded in a set of 16-bit fields. Each 16-bit field carries the observed ExID in an UEXP option.
-* Abstract Data Type:  octetArray
-* Data Type Semantics:  identifier
-* Additional Information:  See the assignments in the "UDP Experimental Option Experiment Identifiers (UDP ExIDs)" registry at URL_IANA_UDP_ExIDs. See {{!I-D.ietf-tsvwg-udp-options}} for more details about ExIDs.
-* Reference:  [This-Document]
 --- back
 
 # Acknowledgments
