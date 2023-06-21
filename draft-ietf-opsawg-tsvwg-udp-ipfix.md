@@ -3,7 +3,7 @@ title: "Export of UDP Options Information in IP Flow Information Export (IPFIX)"
 abbrev: "IPFIX IE for UDP Options"
 category: std
 
-docname: draft-boucadair-opsawg-tsvwg-udp-ipfix-latest
+docname: draft-ietf-opsawg-tsvwg-udp-ipfix-latest
 submissiontype: IETF
 number:
 date:
