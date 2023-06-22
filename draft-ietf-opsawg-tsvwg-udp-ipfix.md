@@ -183,4 +183,4 @@ This document requests IANA to add the following new IEs to the IANA registry en
 # Acknowledgments
 {:numbered="false"}
 
-Thanks to {{Benoît Claise}} for the discussion on the ordering of IPFIX IEs.
+Thanks to Benoît Claise for the discussion on the ordering of IPFIX IEs.
