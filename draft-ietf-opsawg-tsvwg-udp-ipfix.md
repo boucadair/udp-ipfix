@@ -53,7 +53,10 @@ This document specifies new IPFIX Information Elements for UDP options ({{IANA}}
 
 {::boilerplate bcp14-tagged}
 
-This document uses the terms defined in {{Section 3 of !I-D.ietf-tsvwg-udp-options}} and {{!RFC7011}}.
+This document uses the IPFIX-specific terminology (e.g., Flow) defined in {{Section 2 of !RFC7011}}.
+As in [RFC7011], these IPFIX-specific terms have the first letter of a word capitalized.
+   
+Also, this document uses the terms defined in {{Section 3 of !I-D.ietf-tsvwg-udp-options}}.
 
 # UDP Options at a Glance {#uo}
 
@@ -92,7 +95,8 @@ ElementID:
 
 Description:
 : Observed UDP options of a Flow. The information is encoded in a set of bit fields.
-: To cover the 0-255 kind range, up to 255 flags can be set in the value field. The encoding specified in Section 6.2 of {{!RFC7011}} is followed whenever fewer octets are needed to report observed UDP options. For example, if only option kinds =<32 are observed, then the value can be encoded as unsigned32, or if only option kinds =<63 are observed, then the value can be encoded as unsigned64.
+: Options are mapped to bits according to their option numbers. Option with a Kind value X is mapped to bit X. A bit is set to 1 if the corresponding UDP option is observed in a Flow. The bit is set to 0 if the option is not observed in a Flow.
+: To cover the 0-255 kind range, up to 255 flags can be set in the value field. The encoding specified in {{Section 6.2 of !RFC7011}} is followed whenever fewer octets are needed to report observed UDP options. For example, if only option kinds =<32 are observed, then the value can be encoded as unsigned32, or if only option kinds =<63 are observed, then the value can be encoded as unsigned64.
 
 Abstract Data Type:
 :  unsigned
@@ -162,7 +166,7 @@ Reference:
 
 This document does not introduce new security considerations other than those already discussed in {{!RFC7012}}.
 
-The reader may refer to Section 22 of {{!I-D.ietf-tsvwg-udp-options}} for the security considerations related to UDP options.
+The reader may refer to {{Section 22 of !I-D.ietf-tsvwg-udp-options}} for the security considerations related to UDP options.
 
 # IANA Considerations {#IANA}
 
@@ -179,4 +183,4 @@ This document requests IANA to add the following new IEs to the IANA registry en
 # Acknowledgments
 {:numbered="false"}
 
-Thanks to Benoît Claise for the discussion on the ordering of IPFIX IEs.
+Thanks to {{Benoît Claise}} for the discussion on the ordering of IPFIX IEs.
