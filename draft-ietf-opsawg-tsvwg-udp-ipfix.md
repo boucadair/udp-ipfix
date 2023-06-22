@@ -54,8 +54,8 @@ This document specifies new IPFIX Information Elements for UDP options ({{IANA}}
 {::boilerplate bcp14-tagged}
 
 This document uses the IPFIX-specific terminology (e.g., Flow) defined in {{Section 2 of !RFC7011}}.
-As in [RFC7011], these IPFIX-specific terms have the first letter of a word capitalized.
-   
+As in {{!RFC7011}}, these IPFIX-specific terms have the first letter of a word capitalized.
+
 Also, this document uses the terms defined in {{Section 3 of !I-D.ietf-tsvwg-udp-options}}.
 
 # UDP Options at a Glance {#uo}
