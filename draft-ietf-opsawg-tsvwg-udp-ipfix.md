@@ -47,7 +47,7 @@ This document specifies new IP Flow Information Export (IPFIX) Information Eleme
 
 IP Flow Information Export (IPFIX) {{!RFC7011}} is a protocol that is widely deployed in operators networks for traffic management purposes. The protocol specifies the encoding of a set of basic data types and how the various Information Elements (IEs) are transmitted. In order to support the export of new flow-related measurement data, new IEs can be defined and registered in a dedicated IANA registry {{IANA-IPFIX}} for interoperability.
 
-This document specifies new IPFIX Information Elements for UDP options ({{IANA}}). A brief overview of UDP option is provided in {{uo}}.
+This document specifies new IPFIX Information Elements for UDP options ({{sec-IE}}). A brief overview of UDP option is provided in {{uo}}.
 
 # Conventions and Definitions
 
@@ -83,7 +83,9 @@ Options indicated by Kind values in the range 192-255 are called UNSAFE options.
 
 This document does not intend to elaborate operational guidance/implications of UDP options. The document focuses exclusively on exporting observed UDP options in datagrams. The motivation for exporting such data is similar to the one for exporting TCP options (tcpOptions) or IPv6 Extension Headers (ipv6ExtensionHeaders).
 
-# New UDP IPFIX Information Elements
+# New UDP IPFIX Information Elements {#sec-IE}
+
+> Note: "URL_IANA_UDP_OPTIONS" is the URL of the "UDP Option Kind Numbers" registry group while "URL_IANA_UDP_ExIDs" is the URL of the "UDP Experimental Option Experiment Identifiers (UDP ExIDs)" registry that will be created by IANA as per {{Section 23 of !I-D.ietf-tsvwg-udp-options}}.
 
 ## udpOptions {#udpOptions}
 
@@ -105,7 +107,7 @@ Data Type Semantics:
 :  flags
 
 Additional Information:
-: See the assigned UDP options in the "UDP Option Kind Numbers" registry at URL_IANA_UDP_OPTIONS.
+: See the assigned UDP options in the "UDP Option Kind Numbers" registry at [URL_IANA_UDP_OPTIONS].
 : See {{!I-D.ietf-tsvwg-udp-options}} for more details about UDP options.
 
 Reference:
@@ -131,7 +133,7 @@ Data Type Semantics:
 :  identifier
 
 Additional Information:
-: See the assignments in the "UDP Experimental Option Experiment Identifiers (UDP ExIDs)" registry at URL_IANA_UDP_ExIDs.
+: See the assignments in the "UDP Experimental Option Experiment Identifiers (UDP ExIDs)" registry at [URL_IANA_UDP_ExIDs].
 : See {{!I-D.ietf-tsvwg-udp-options}} for more details about ExIDs.
 
 Reference:
@@ -156,7 +158,7 @@ Data Type Semantics:
 :  identifier
 
 Additional Information:
-: See the assignments in the "UDP Experimental Option Experiment Identifiers (UDP ExIDs)" registry at URL_IANA_UDP_ExIDs.
+: See the assignments in the "UDP Experimental Option Experiment Identifiers (UDP ExIDs)" registry at [URL_IANA_UDP_ExIDs].
 : See {{!I-D.ietf-tsvwg-udp-options}} for more details about ExIDs.
 
 Reference:
