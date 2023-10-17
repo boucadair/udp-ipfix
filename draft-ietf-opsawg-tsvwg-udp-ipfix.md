@@ -166,7 +166,7 @@ Reference:
 
 # An Example
 
-Given UDP kind allocation in {{Section 8 of !I-D.ietf-tsvwg-udp-options}} and the option mapping defined in {{sec-udpOptions}}, fewer octers are likely to be used for
+Given UDP kind allocation in {{Section 8 of !I-D.ietf-tsvwg-udp-options}} and the option mapping defined in {{udpOptions}}, fewer octers are likely to be used for
 Flows with mandatory UDP options.
 
 {{ex-udp}} shows an example of reported values in a udpOptions IE for a Flow in which End of Options List (EOL) and Alternate payload checksum (APC) options are observed. One octet is sufficient to report these observed options. Concretely, the udpOptions IE will be set to 5.
