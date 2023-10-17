@@ -97,8 +97,8 @@ ElementID:
 
 Description:
 : Observed UDP options of a Flow. The information is encoded in a set of bit fields.
-: Options are mapped to bits according to their option numbers. Option with a Kind value X is mapped to bit position "254-X" with bit 254 is less-signficant bit and bit 0 is the most-significant bit. A bit is set to 1 if the corresponding UDP option is observed in the Flow. The bit is set to 0 if the option is not observed in the Flow.
-: To cover the 0-255 kind range, up to 255 flags can be set in the value field. The encoding specified in {{Section 6.2 of !RFC7011}} is followed whenever fewer octets are needed to report observed UDP options. For example, if only option kinds =<32 are observed, then the value can be encoded as unsigned32, or if only option kinds =<63 are observed, then the value can be encoded as unsigned64.
+: Options are mapped to bits according to their option numbers. Option with a Kind value X is mapped to bit position "254-X" with bit 254 is the less-signficant bit of the IE and bit 0 is the most-significant bit. A bit is set to 1 if the corresponding UDP option is observed in the Flow. The bit is set to 0 if the option is not observed in the Flow.
+: To cover the 0-255 kind range, up to 255 flags can be set in the value field. The encoding specified in {{Section 6.2 of !RFC7011}} is followed whenever fewer octets are needed to report observed UDP options. For example, if only option kinds =< 32 are observed, then the value can be encoded as unsigned32, or if only option kinds =< 63 are observed, then the value can be encoded as unsigned64.
 
 Abstract Data Type:
 :  unsigned
