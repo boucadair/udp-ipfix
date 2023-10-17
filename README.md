@@ -1,11 +1,11 @@
 # IPFIX IE for UDP Options
 
-This is the working area for the individual Internet-Draft, "IPFIX IE for UDP Options".
+This is the working area for the IETF OPSAWG Internet-Draft, "IPFIX IEs for UDP Options".
 
-* [Editor's Copy](https://boucadair.github.io/udp-ipfix/#go.draft-boucadair-opsawg-tsvwg-udp-ipfix.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-boucadair-opsawg-tsvwg-udp-ipfix)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-boucadair-opsawg-tsvwg-udp-ipfix)
-* [Compare Editor's Copy to Individual Draft](https://boucadair.github.io/udp-ipfix/#go.draft-boucadair-opsawg-tsvwg-udp-ipfix.diff)
+* [Editor's Copy](https://boucadair.github.io/udp-ipfix/#go.draft-ietf-opsawg-tsvwg-udp-ipfix.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-opsawg-tsvwg-udp-ipfix)
+* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-tsvwg-udp-ipfix)
+* [Compare Editor's Copy to Individual Draft](https://boucadair.github.io/udp-ipfix/#go.draft-ietf-opsawg-tsvwg-udp-ipfix.diff)
 
 
 ## Contributing
