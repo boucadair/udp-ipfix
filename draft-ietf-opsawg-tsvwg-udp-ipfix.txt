@@ -5,8 +5,8 @@
 OPSAWG                                                      M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              T. Reddy.K
-Expires: 19 April 2024                                             Nokia
-                                                         17 October 2023
+Expires: 18 July 2024                                              Nokia
+                                                         15 January 2024
 
 
 Export of UDP Options Information in IP Flow Information Export (IPFIX)
@@ -44,11 +44,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 April 2024.
+   This Internet-Draft will expire on 18 July 2024.
 
 Copyright Notice
 
-   Copyright (c) 2023 IETF Trust and the persons identified as the
+   Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -136,12 +136,16 @@ Table of Contents
 
    Options indicated by Kind values in the range 0-191 are called SAFE
    options because they do not alter the UDP data payload.  Such options
-   can be silently ignored by receivers without affecting the meaning of
+   can be silently ignored by legacy receivers because they do not alter
    the UDP user data (Section 9 of [I-D.ietf-tsvwg-udp-options]).
 
    Options indicated by Kind values in the range 192-255 are called
-   UNSAFE options.  Such options are not safe to ignore (Section 10 of
+   UNSAFE options.  Such options are not safe for legacy receivers to
+   ignore because they alter the UDP user data (Section 10 of
    [I-D.ietf-tsvwg-udp-options]).
+
+   UDP options occur per-packet within a Flow and can be inserted at any
+   time in the Flow.
 
    [I-D.ietf-tsvwg-udp-options] reserves two options for experiements:
    the Experimental option (EXP, Kind=127) for SAFE options and the
@@ -305,9 +309,9 @@ Table of Contents
 
    [I-D.ietf-tsvwg-udp-options]
               Touch, J. D., "Transport Options for UDP", Work in
-              Progress, Internet-Draft, draft-ietf-tsvwg-udp-options-23,
-              15 September 2023, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-tsvwg-udp-options-23>.
+              Progress, Internet-Draft, draft-ietf-tsvwg-udp-options-28,
+              17 November 2023, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-tsvwg-udp-options-28>.
 
    [RFC0768]  Postel, J., "User Datagram Protocol", STD 6, RFC 768,
               DOI 10.17487/RFC0768, August 1980,
@@ -338,9 +342,9 @@ Table of Contents
    [I-D.ietf-tsvwg-udp-options-dplpmtud]
               Fairhurst, G. and T. Jones, "Datagram PLPMTUD for UDP
               Options", Work in Progress, Internet-Draft, draft-ietf-
-              tsvwg-udp-options-dplpmtud-10, 3 July 2023,
+              tsvwg-udp-options-dplpmtud-11, 4 January 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-tsvwg-
-              udp-options-dplpmtud-10>.
+              udp-options-dplpmtud-11>.
 
    [IANA-IPFIX]
               "IP Flow Information Export (IPFIX) Entities", n.d.,
@@ -363,6 +367,8 @@ Acknowledgments
 
    Thanks to Benoît Claise for the discussion on the ordering of IPFIX
    IEs.
+
+   Thanks to Joe Touch for the intdir review.
 
 Authors' Addresses
 
