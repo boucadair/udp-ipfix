@@ -101,7 +101,7 @@ Description:
 : To cover the 0-255 kind range, up to 255 flags can be set in the value field. The reduced-size encoding specified in {{Section 6.2 of !RFC7011}} is followed whenever fewer octets are needed to report observed UDP options. For example, if only option kinds =< 32 are observed, then the value can be encoded as unsigned32, or if only option kinds =< 63 are observed, then the value can be encoded as unsigned64.
 
 Abstract Data Type:
-:  unsigned
+:  unsigned256
 
 Data Type Semantics:
 :  flags
@@ -189,13 +189,26 @@ The reader may refer to {{Section 22 of !I-D.ietf-tsvwg-udp-options}} for the se
 
 # IANA Considerations {#IANA}
 
-This document requests IANA to add the following new IEs to the IANA registry entitled "IP Flow Information Export (IPFIX) Entities" {{IANA-IPFIX}}:
+## New IPFIX Information Elements
+
+This document requests IANA to add the following new IEs to the IANA "IPFIX Information Elements" registry under the "IP Flow Information Export (IPFIX) Entities" registry group {{IANA-IPFIX}}:
 
 |Value|	Name|	Reference|
 |TBD1| udpOptions|{{udpOptions}} of This-Document|
 |TBD2| udpExpOptionExID|{{udpExID}} of This-Document|
 |TBD3| udpUnsafeExpOptionExID|{{udpUExID}} of This-Document|
 {: title="New IPFIX Information Elements"}
+
+## New IPFIX Information Element Data Type
+
+This document requests IANA to add the following new type to the IANA registry "IPFIX Information Element Data Types" under the "IP Flow Information Export (IPFIX) Entities" registry group {{IANA-IPFIX}}:
+
+|Value|	Description|	Reference|
+|TBD4| unsigned256|This-Document|
+{: title="New IPFIX Information Element Data Type"}
+
+The type "unsigned256" represents a non-negative integer value in the
+range of '0' to '2^^256 - 1'.
 
 --- back
 
