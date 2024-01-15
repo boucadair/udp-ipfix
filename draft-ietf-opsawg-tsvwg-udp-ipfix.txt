@@ -368,7 +368,8 @@ Acknowledgments
    Thanks to Benoît Claise for the discussion on the ordering of IPFIX
    IEs.
 
-   Thanks to Joe Touch for the intdir review.
+   Thanks to Tommy Pauly for the tsvart review and Joe Touch for the
+   intdir review.
 
 Authors' Addresses
 
