@@ -75,9 +75,11 @@ UDP {{!RFC0768}} does not support an extension mechanism similar to the options 
 
 {{udpOptions}} introduces a new IE to export the observed UDP options.
 
-Options indicated by Kind values in the range 0-191 are called SAFE options because they do not alter the UDP data payload. Such options can be silently ignored by receivers without affecting the meaning of the UDP user data ({{Section 9 of !I-D.ietf-tsvwg-udp-options}}).
+Options indicated by Kind values in the range 0-191 are called SAFE options because they do not alter the UDP data payload. Such options can be silently ignored by legacy receivers because they do not alter the UDP user data ({{Section 9 of !I-D.ietf-tsvwg-udp-options}}).
 
-Options indicated by Kind values in the range 192-255 are called UNSAFE options. Such options are not safe to ignore ({{Section 10 of !I-D.ietf-tsvwg-udp-options}}).
+Options indicated by Kind values in the range 192-255 are called UNSAFE options. Such options are not safe for legacy receivers to ignore because they alter the UDP user data ({{Section 10 of !I-D.ietf-tsvwg-udp-options}}).
+
+UDP options occur per-packet within a Flow and can be inserted at any time in the Flow.
 
 {{!I-D.ietf-tsvwg-udp-options}} reserves two options for experiements: the Experimental option (EXP, Kind=127) for SAFE options and the UNSAFE Experimental option (UEXP, Kind=254). For both options, Experimental ID (ExIDs) are used to differentiate concurrent use of these options. Known ExIDs are expected to be registered within IANA. {{udpExID}} specifies a new IPFIX IE to export observed ExIDs in the EXP options. Also, {{udpUExID}} specifies a new IPFIX to export observed ExIDs in the UEXP options. Only 16-bits ExIDs are supported.
 
@@ -203,3 +205,5 @@ This document requests IANA to add the following new IEs to the IANA registry en
 {:numbered="false"}
 
 Thanks to Benoît Claise for the discussion on the ordering of IPFIX IEs.
+
+Thanks to Joe Touch for the intdir review.
