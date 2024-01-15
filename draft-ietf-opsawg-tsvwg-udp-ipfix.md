@@ -206,4 +206,4 @@ This document requests IANA to add the following new IEs to the IANA registry en
 
 Thanks to Benoît Claise for the discussion on the ordering of IPFIX IEs.
 
-Thanks to Joe Touch for the intdir review.
+Thanks to Tommy Pauly for the tsvart review and Joe Touch for the intdir review.
