@@ -73,7 +73,7 @@ UDP {{!RFC0768}} does not support an extension mechanism similar to the options 
 
 {{udpOptions}} introduces a new IE to export the observed UDP options.
 
-Options indicated by Kind values in the range 0-191 are called SAFE options because they do not alter the UDP data payload. Such options can be silently ignored by legacy receivers because they do not alter the UDP user data ({{Section 11 of !I-D.ietf-tsvwg-udp-options}}).
+Options indicated by Kind values in the range 0-191 are called SAFE options. Such options can be silently ignored by legacy receivers because they do not alter the UDP user data ({{Section 11 of !I-D.ietf-tsvwg-udp-options}}).
 
 Options indicated by Kind values in the range 192-255 are called UNSAFE options. Such options are not safe for legacy receivers to ignore because they alter the UDP user data ({{Section 12 of !I-D.ietf-tsvwg-udp-options}}).
 
@@ -101,7 +101,7 @@ Description:
 : To cover the 0-255 kind range, up to 255 flags can be set in the value field. The reduced-size encoding specified in {{Section 6.2 of !RFC7011}} is followed whenever fewer octets are needed to report observed UDP options. For example, if only option kinds =< 32 are observed, then the value can be encoded as unsigned32, or if only option kinds =< 63 are observed, then the value can be encoded as unsigned64.
 
 Abstract Data Type:
-:  unsigned
+:  unsigned256
 
 Data Type Semantics:
 :  flags
@@ -166,18 +166,18 @@ Reference:
 
 # An Example
 
-Given UDP kind allocation in {{Section 10 of !I-D.ietf-tsvwg-udp-options}} and the option mapping defined in {{udpOptions}}, fewer octers are likely to be used for
+Given UDP kind allocation in {{Section 10 of !I-D.ietf-tsvwg-udp-options}} and the option mapping defined in {{udpOptions}}, fewer octets are likely to be used for
 Flows with mandatory UDP options.
 
 {{ex-udp}} shows an example of reported values in a udpOptions IE for a Flow in which End of Options List (EOL) and Alternate payload checksum (APC) options are observed. One octet is sufficient to report these observed options. Concretely, the udpOptions IE will be set to 5.
 
 ~~~~
-MSB                                                       LSB
-                     1                   2     …  25
- 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 … 9 0 1 2 3 4
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+…+-+-+-+-+-+-+
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0| |0|0|0|1|0|1|
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+…+-+-+-+-+-+-+
+MSB                                                        LSB
+                     1                   2     ...25
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 ... 0 1 2 3 4 5
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+...+-+-+-+-+-+-+
+|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|   |0|0|0|1|0|1|
++-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-+-+-+-+-+-+-+...+-+-+-+-+-+-+
 ~~~~
 {: #ex-udp title="An Example of udpOptions IE" artwork-align="center"}
 
