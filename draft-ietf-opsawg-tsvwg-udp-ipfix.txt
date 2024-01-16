@@ -5,8 +5,8 @@
 OPSAWG                                                      M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              T. Reddy.K
-Expires: 18 July 2024                                              Nokia
-                                                         15 January 2024
+Expires: 19 July 2024                                              Nokia
+                                                         16 January 2024
 
 
 Export of UDP Options Information in IP Flow Information Export (IPFIX)
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 July 2024.
+   This Internet-Draft will expire on 19 July 2024.
 
 Copyright Notice
 
@@ -129,9 +129,9 @@ Table of Contents
    Section 4.1 introduces a new IE to export the observed UDP options.
 
    Options indicated by Kind values in the range 0-191 are called SAFE
-   options because they do not alter the UDP data payload.  Such options
-   can be silently ignored by legacy receivers because they do not alter
-   the UDP user data (Section 11 of [I-D.ietf-tsvwg-udp-options]).
+   options.  Such options can be silently ignored by legacy receivers
+   because they do not alter the UDP user data (Section 11 of
+   [I-D.ietf-tsvwg-udp-options]).
 
    Options indicated by Kind values in the range 192-255 are called
    UNSAFE options.  Such options are not safe for legacy receivers to
@@ -189,7 +189,7 @@ Table of Contents
       if only option kinds =< 63 are observed, then the value can be
       encoded as unsigned64.
 
-   Abstract Data Type:  unsigned
+   Abstract Data Type:  unsigned256
 
    Data Type Semantics:  flags
 
@@ -253,7 +253,7 @@ Table of Contents
 
    Given UDP kind allocation in Section 10 of
    [I-D.ietf-tsvwg-udp-options] and the option mapping defined in
-   Section 4.1, fewer octers are likely to be used for Flows with
+   Section 4.1, fewer octets are likely to be used for Flows with
    mandatory UDP options.
 
    Figure 2 shows an example of reported values in a udpOptions IE for a
@@ -262,12 +262,12 @@ Table of Contents
    report these observed options.  Concretely, the udpOptions IE will be
    set to 5.
 
-       MSB                                                       LSB
-                            1                   2     …  25
-        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 … 9 0 1 2 3 4
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+…+-+-+-+-+-+-+
-       |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0| |0|0|0|1|0|1|
-       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+…+-+-+-+-+-+-+
+      MSB                                                        LSB
+                           1                   2     ...25
+       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 ... 0 1 2 3 4 5
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+...+-+-+-+-+-+-+
+      |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|   |0|0|0|1|0|1|
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-+-+-+-+-+-+-+...+-+-+-+-+-+-+
 
                    Figure 2: An Example of udpOptions IE
 
