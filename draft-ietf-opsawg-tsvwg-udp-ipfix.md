@@ -49,6 +49,8 @@ IP Flow Information Export (IPFIX) {{!RFC7011}} is a protocol that is widely dep
 
 This document specifies new IPFIX Information Elements for UDP options ({{sec-IE}}). A brief overview of UDP option is provided in {{uo}}.
 
+The IE specified in {{udpOptions}} uses the new abstract data type defined in {{?I-D.ietf-opsawg-ipfix-tcpo-v6eh}}.
+
 # Conventions and Definitions
 
 This document uses the IPFIX-specific terminology (e.g., Flow) defined in {{Section 2 of !RFC7011}}.
