@@ -1187,6 +1187,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
       </h2>
 <p id="section-1-1">IP Flow Information Export (IPFIX) <span>[<a href="#RFC7011" class="cite xref">RFC7011</a>]</span> is a protocol that is widely deployed in operators networks for traffic management purposes. The protocol specifies the encoding of a set of basic data types and how the various Information Elements (IEs) are transmitted. In order to support the export of new flow-related measurement data, new IEs can be defined and registered in a dedicated IANA registry <span>[<a href="#IANA-IPFIX" class="cite xref">IANA-IPFIX</a>]</span> for interoperability.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">This document specifies new IPFIX Information Elements for UDP options (<a href="#sec-IE" class="auto internal xref">Section 4</a>). A brief overview of UDP option is provided in <a href="#uo" class="auto internal xref">Section 3</a>.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">The IE specified in <a href="#udpOptions" class="auto internal xref">Section 4.1</a> uses the new abstract data type defined in <span>[<a href="#I-D.ietf-opsawg-ipfix-tcpo-v6eh" class="cite xref">I-D.ietf-opsawg-ipfix-tcpo-v6eh</a>]</span>.<a href="#section-1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1520,6 +1521,10 @@ MSB                                                        LSB
 <a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
+<dt id="I-D.ietf-opsawg-ipfix-tcpo-v6eh">[I-D.ietf-opsawg-ipfix-tcpo-v6eh]</dt>
+        <dd>
+<span class="refAuthor">Boucadair, M.</span> and <span class="refAuthor">B. Claise</span>, <span class="refTitle">"Extended TCP Options and IPv6 Extension Headers IPFIX Information Elements"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ipfix-tcpo-v6eh-07</span>, <time datetime="2024-01-15" class="refDate">15 January 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ipfix-tcpo-v6eh-07">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ipfix-tcpo-v6eh-07</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="I-D.ietf-tsvwg-udp-options-dplpmtud">[I-D.ietf-tsvwg-udp-options-dplpmtud]</dt>
         <dd>
 <span class="refAuthor">Fairhurst, G.</span> and <span class="refAuthor">T. Jones</span>, <span class="refTitle">"Datagram PLPMTUD for UDP Options"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-tsvwg-udp-options-dplpmtud-11</span>, <time datetime="2024-01-04" class="refDate">4 January 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-tsvwg-udp-options-dplpmtud-11">https://datatracker.ietf.org/doc/html/draft-ietf-tsvwg-udp-options-dplpmtud-11</a>&gt;</span>. </dd>

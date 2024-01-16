@@ -92,6 +92,9 @@ Table of Contents
    options (Section 4).  A brief overview of UDP option is provided in
    Section 3.
 
+   The IE specified in Section 4.1 uses the new abstract data type
+   defined in [I-D.ietf-opsawg-ipfix-tcpo-v6eh].
+
 2.  Conventions and Definitions
 
    This document uses the IPFIX-specific terminology (e.g., Flow)
@@ -323,6 +326,14 @@ Table of Contents
               <https://www.rfc-editor.org/rfc/rfc7012>.
 
 8.2.  Informative References
+
+   [I-D.ietf-opsawg-ipfix-tcpo-v6eh]
+              Boucadair, M. and B. Claise, "Extended TCP Options and
+              IPv6 Extension Headers IPFIX Information Elements", Work
+              in Progress, Internet-Draft, draft-ietf-opsawg-ipfix-tcpo-
+              v6eh-07, 15 January 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
+              ipfix-tcpo-v6eh-07>.
 
    [I-D.ietf-tsvwg-udp-options-dplpmtud]
               Fairhurst, G. and T. Jones, "Datagram PLPMTUD for UDP
