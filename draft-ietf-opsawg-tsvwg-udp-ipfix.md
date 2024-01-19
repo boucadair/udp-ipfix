@@ -47,7 +47,7 @@ This document specifies new IP Flow Information Export (IPFIX) Information Eleme
 
 IP Flow Information Export (IPFIX) {{!RFC7011}} is a protocol that is widely deployed in operators networks for traffic management purposes. The protocol specifies the encoding of a set of basic data types and how the various Information Elements (IEs) are transmitted. In order to support the export of new flow-related measurement data, new IEs can be defined and registered in a dedicated IANA registry {{IANA-IPFIX}} for interoperability.
 
-This document specifies new IPFIX Information Elements for UDP options ({{sec-IE}}). A brief overview of UDP option is provided in {{uo}}.
+This document specifies new IPFIX Information Elements for UDP options ({{sec-IE}}). A brief overview of UDP options is provided in {{uo}}.
 
 The IE specified in {{udpOptions}} uses the new abstract data type defined in {{?I-D.ietf-opsawg-ipfix-tcpo-v6eh}}.
 
@@ -81,9 +81,9 @@ Options indicated by Kind values in the range 192-255 are called UNSAFE options.
 
 UDP options occur per-packet within a Flow and can be inserted at any time in the Flow.
 
-{{!I-D.ietf-tsvwg-udp-options}} reserves two options for experiments: the Experimental option (EXP, Kind=127) for SAFE options and the UNSAFE Experimental option (UEXP, Kind=254). For both options, Experimental ID (ExIDs) are used to differentiate concurrent use of these options. Known ExIDs are expected to be registered within IANA. {{udpExID}} specifies a new IPFIX IE to export observed ExIDs in the EXP options. Also, {{udpUExID}} specifies a new IPFIX to export observed ExIDs in the UEXP options. Only 16-bits ExIDs are supported.
+{{!I-D.ietf-tsvwg-udp-options}} reserves two options for experiments: the Experimental option (EXP, Kind=127) for SAFE options and the UNSAFE Experimental option (UEXP, Kind=254). For both options, Experimental ID (ExIDs) are used to differentiate concurrent use of these options. Known ExIDs are expected to be registered within IANA. {{udpExID}} specifies a new IPFIX IE to export observed ExIDs in the EXP options. Also, {{udpUExID}} specifies a new IPFIX IE to export observed ExIDs in the UEXP options. Only 16-bit ExIDs are supported in {{!I-D.ietf-tsvwg-udp-options}}.
 
-This document does not intend to elaborate operational guidance/implications of UDP options. The document focuses exclusively on exporting observed UDP options in datagrams. The motivation for exporting such data is similar to the one for exporting TCP options (tcpOptions) or IPv6 Extension Headers (ipv6ExtensionHeaders).
+This document does not intend to elaborate operational guidance/implications of UDP options. The document focuses exclusively on exporting observed UDP options in datagrams.
 
 # New UDP IPFIX Information Elements {#sec-IE}
 
@@ -102,7 +102,7 @@ Description:
 : Options are mapped to bits according to their option numbers. UDP
   option kind 0 corresponds to the least-significant bit in the
   udpOptions IE while kind 255 corresponds to the most-significant bit of the IE. A bit is set to 1 if the corresponding UDP option is observed in the Flow. The bit is set to 0 if the option is not observed in the Flow.
-: To cover the 0-255 kind range, up to 255 flags can be set in the value field. The reduced-size encoding specified in {{Section 6.2 of !RFC7011}} is followed whenever fewer octets are needed to report observed UDP options. For example, if only option kinds =< 32 are observed, then the value can be encoded as unsigned32, or if only option kinds =< 63 are observed, then the value can be encoded as unsigned64.
+: To cover the 0-255 kind range, up to 256 flags can be set in the value field. The reduced-size encoding specified in {{Section 6.2 of !RFC7011}} is followed whenever fewer octets are needed to report observed UDP options. For example, if only option kinds <= 32 are observed, then the value can be encoded as unsigned32, or if only option kinds <= 63 are observed, then the value can be encoded as unsigned64.
 
 Abstract Data Type:
 :  unsigned256
@@ -152,7 +152,7 @@ ElementID:
 :  TBD3
 
 Description:
-: Observed Expermients ID (ExIDs) in the UNSAFE Experimental option (UEXP, Kind=254).
+: Observed Experiments ID (ExIDs) in the UNSAFE Experimental option (UEXP, Kind=254).
 : The information is encoded in a set of 16-bit fields. Each 16-bit field carries the observed ExID in an UEXP option.
 
 Abstract Data Type:
@@ -206,7 +206,7 @@ This document requests IANA to add the following new IEs to the IANA registry en
 # Acknowledgments
 {:numbered="false"}
 
-Thanks to Benoît Claise for the discussion on the ordering of IPFIX IEs.
+Thanks to Benoît Claise for the discussion on the ordering of IPFIX IEs. Thanks to Paul Aitken for the review and comments.
 
 Thanks to Tommy Pauly for the tsvart review and Joe Touch for the intdir review.
 
