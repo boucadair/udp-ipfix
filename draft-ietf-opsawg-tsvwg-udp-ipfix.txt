@@ -5,8 +5,8 @@
 OPSAWG                                                      M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              T. Reddy.K
-Expires: 19 July 2024                                              Nokia
-                                                         16 January 2024
+Expires: 22 July 2024                                              Nokia
+                                                         19 January 2024
 
 
 Export of UDP Options Information in IP Flow Information Export (IPFIX)
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 July 2024.
+   This Internet-Draft will expire on 22 July 2024.
 
 Copyright Notice
 
@@ -89,7 +89,7 @@ Table of Contents
    [IANA-IPFIX] for interoperability.
 
    This document specifies new IPFIX Information Elements for UDP
-   options (Section 4).  A brief overview of UDP option is provided in
+   options (Section 4).  A brief overview of UDP options is provided in
    Section 3.
 
    The IE specified in Section 4.1 uses the new abstract data type
@@ -150,15 +150,13 @@ Table of Contents
    Experimental ID (ExIDs) are used to differentiate concurrent use of
    these options.  Known ExIDs are expected to be registered within
    IANA.  Section 4.2 specifies a new IPFIX IE to export observed ExIDs
-   in the EXP options.  Also, Section 4.3 specifies a new IPFIX to
-   export observed ExIDs in the UEXP options.  Only 16-bits ExIDs are
-   supported.
+   in the EXP options.  Also, Section 4.3 specifies a new IPFIX IE to
+   export observed ExIDs in the UEXP options.  Only 16-bit ExIDs are
+   supported in [I-D.ietf-tsvwg-udp-options].
 
    This document does not intend to elaborate operational guidance/
    implications of UDP options.  The document focuses exclusively on
-   exporting observed UDP options in datagrams.  The motivation for
-   exporting such data is similar to the one for exporting TCP options
-   (tcpOptions) or IPv6 Extension Headers (ipv6ExtensionHeaders).
+   exporting observed UDP options in datagrams.
 
 4.  New UDP IPFIX Information Elements
 
@@ -184,12 +182,12 @@ Table of Contents
       is observed in the Flow.  The bit is set to 0 if the option is not
       observed in the Flow.
 
-      To cover the 0-255 kind range, up to 255 flags can be set in the
+      To cover the 0-255 kind range, up to 256 flags can be set in the
       value field.  The reduced-size encoding specified in Section 6.2
       of [RFC7011] is followed whenever fewer octets are needed to
-      report observed UDP options.  For example, if only option kinds =<
+      report observed UDP options.  For example, if only option kinds <=
       32 are observed, then the value can be encoded as unsigned32, or
-      if only option kinds =< 63 are observed, then the value can be
+      if only option kinds <= 63 are observed, then the value can be
       encoded as unsigned64.
 
    Abstract Data Type:  unsigned256
@@ -234,7 +232,7 @@ Table of Contents
 
    ElementID:  TBD3
 
-   Description:  Observed Expermients ID (ExIDs) in the UNSAFE
+   Description:  Observed Experiments ID (ExIDs) in the UNSAFE
       Experimental option (UEXP, Kind=254).
 
       The information is encoded in a set of 16-bit fields.  Each 16-bit
@@ -331,9 +329,9 @@ Table of Contents
               Boucadair, M. and B. Claise, "Extended TCP Options and
               IPv6 Extension Headers IPFIX Information Elements", Work
               in Progress, Internet-Draft, draft-ietf-opsawg-ipfix-tcpo-
-              v6eh-07, 15 January 2024,
+              v6eh-08, 17 January 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ipfix-tcpo-v6eh-07>.
+              ipfix-tcpo-v6eh-08>.
 
    [I-D.ietf-tsvwg-udp-options-dplpmtud]
               Fairhurst, G. and T. Jones, "Datagram PLPMTUD for UDP
@@ -362,7 +360,7 @@ Table of Contents
 Acknowledgments
 
    Thanks to Benoît Claise for the discussion on the ordering of IPFIX
-   IEs.
+   IEs.  Thanks to Paul Aitken for the review and comments.
 
    Thanks to Tommy Pauly for the tsvart review and Joe Touch for the
    intdir review.
