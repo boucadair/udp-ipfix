@@ -5,8 +5,8 @@
 OPSAWG                                                      M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              T. Reddy.K
-Expires: 22 July 2024                                              Nokia
-                                                         19 January 2024
+Expires: 25 July 2024                                              Nokia
+                                                         22 January 2024
 
 
 Export of UDP Options Information in IP Flow Information Export (IPFIX)
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 July 2024.
+   This Internet-Draft will expire on 25 July 2024.
 
 Copyright Notice
 
@@ -67,8 +67,8 @@ Table of Contents
    3.  UDP Options at a Glance
    4.  New UDP IPFIX Information Elements
      4.1.  udpOptions
-     4.2.  udpExpOptionExID
-     4.3.  udpUnsafeExpOptionExID
+     4.2.  udpSafeExperimentalOptionExID
+     4.3.  udpUnsafeExperimentalOptionExID
    5.  An Example
    6.  Security Considerations
    7.  IANA Considerations
@@ -202,9 +202,9 @@ Table of Contents
 
    Reference:  This-Document
 
-4.2.  udpExpOptionExID
+4.2.  udpSafeExperimentalOptionExID
 
-   Name:  udpExpExID
+   Name:  udpSafeExperimentalOptionExID
 
    ElementID:  TBD2
 
@@ -226,9 +226,9 @@ Table of Contents
 
    Reference:  This-Document
 
-4.3.  udpUnsafeExpOptionExID
+4.3.  udpUnsafeExperimentalOptionExID
 
-   Name:  udpUnsafeExpOptionExID
+   Name:  udpUnsafeExperimentalOptionExID
 
    ElementID:  TBD3
 
@@ -286,17 +286,20 @@ Table of Contents
    registry entitled "IP Flow Information Export (IPFIX) Entities"
    [IANA-IPFIX]:
 
-     +=======+========================+==============================+
-     | Value | Name                   | Reference                    |
-     +=======+========================+==============================+
-     | TBD1  | udpOptions             | Section 4.1 of This-Document |
-     +-------+------------------------+------------------------------+
-     | TBD2  | udpExpOptionExID       | Section 4.2 of This-Document |
-     +-------+------------------------+------------------------------+
-     | TBD3  | udpUnsafeExpOptionExID | Section 4.3 of This-Document |
-     +-------+------------------------+------------------------------+
+       +=======+=================================+================+
+       | Value | Name                            | Reference      |
+       +=======+=================================+================+
+       | TBD1  | udpOptions                      | Section 4.1 of |
+       |       |                                 | This-Document  |
+       +-------+---------------------------------+----------------+
+       | TBD2  | udpSafeExperimentalOptionExID   | Section 4.2 of |
+       |       |                                 | This-Document  |
+       +-------+---------------------------------+----------------+
+       | TBD3  | udpUnsafeExperimentalOptionExID | Section 4.3 of |
+       |       |                                 | This-Document  |
+       +-------+---------------------------------+----------------+
 
-                  Table 1: New IPFIX Information Elements
+                 Table 1: New IPFIX Information Elements
 
 8.  References
 
