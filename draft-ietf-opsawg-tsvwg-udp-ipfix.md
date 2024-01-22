@@ -118,10 +118,10 @@ Reference:
 : This-Document
 
 
-## udpExpOptionExID {#udpExID}
+## udpSafeExperimentalOptionExID {#udpExID}
 
 Name:
-:  udpExpExID
+:  udpSafeExperimentalOptionExID
 
 ElementID:
 :  TBD2
@@ -143,10 +143,10 @@ Additional Information:
 Reference:
 : This-Document
 
-## udpUnsafeExpOptionExID {#udpUExID}
+## udpUnsafeExperimentalOptionExID {#udpUExID}
 
 Name:
-:  udpUnsafeExpOptionExID
+:  udpUnsafeExperimentalOptionExID
 
 ElementID:
 :  TBD3
@@ -197,8 +197,8 @@ This document requests IANA to add the following new IEs to the IANA registry en
 
 |Value|	Name|	Reference|
 |TBD1| udpOptions|{{udpOptions}} of This-Document|
-|TBD2| udpExpOptionExID|{{udpExID}} of This-Document|
-|TBD3| udpUnsafeExpOptionExID|{{udpUExID}} of This-Document|
+|TBD2| udpSafeExperimentalOptionExID|{{udpExID}} of This-Document|
+|TBD3| udpUnsafeExperimentalOptionExID|{{udpUExID}} of This-Document|
 {: title="New IPFIX Information Elements"}
 
 --- back
