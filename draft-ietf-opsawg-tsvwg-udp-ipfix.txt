@@ -254,8 +254,8 @@ Table of Contents
 
    Given UDP kind allocation in Section 10 of
    [I-D.ietf-tsvwg-udp-options] and the option mapping defined in
-   Section 4.1, fewer octets are likely to be used for Flows with
-   mandatory UDP options.
+   Section 4.1 of this document, fewer octets are likely to be used for
+   Flows with mandatory UDP options.
 
    Figure 2 shows an example of reported values in a udpOptions IE for a
    Flow in which End of Options List (EOL) and Alternate payload
