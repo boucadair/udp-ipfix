@@ -1031,7 +1031,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Boucadair &amp; Reddy.K</td>
-<td class="center">Expires 25 July 2024</td>
+<td class="center">Expires 26 July 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1044,12 +1044,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-opsawg-tsvwg-udp-ipfix-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-01-22" class="published">22 January 2024</time>
+<time datetime="2024-01-23" class="published">23 January 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-07-25">25 July 2024</time></dd>
+<dd class="expires"><time datetime="2024-07-26">26 July 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1098,7 +1098,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 25 July 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 26 July 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1151,7 +1151,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-an-example" class="internal xref">An Example</a></p>
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-examples" class="internal xref">Examples</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
@@ -1188,6 +1188,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-1-1">IP Flow Information Export (IPFIX) <span>[<a href="#RFC7011" class="cite xref">RFC7011</a>]</span> is a protocol that is widely deployed in operators networks for traffic management purposes. The protocol specifies the encoding of a set of basic data types and how the various Information Elements (IEs) are transmitted. In order to support the export of new flow-related measurement data, new IEs can be defined and registered in a dedicated IANA registry <span>[<a href="#IANA-IPFIX" class="cite xref">IANA-IPFIX</a>]</span> for interoperability.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">This document specifies new IPFIX Information Elements for UDP options (<a href="#sec-IE" class="auto internal xref">Section 4</a>). A brief overview of UDP options is provided in <a href="#uo" class="auto internal xref">Section 3</a>.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">The IE specified in <a href="#udpOptions" class="auto internal xref">Section 4.1</a> uses the new abstract data type defined in <span>[<a href="#I-D.ietf-opsawg-ipfix-tcpo-v6eh" class="cite xref">I-D.ietf-opsawg-ipfix-tcpo-v6eh</a>]</span>.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">Examples to illustrate the use of the new IPFIX Information Elements are provided in <a href="#sec-ex" class="auto internal xref">Section 5</a>.<a href="#section-1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1412,27 +1413,62 @@ udpOptions IE while kind 255 corresponds to the most-significant bit of the IE. 
 </div>
 </section>
 </div>
-<div id="an-example">
+<div id="sec-ex">
 <section id="section-5">
-      <h2 id="name-an-example">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-an-example" class="section-name selfRef">An Example</a>
+      <h2 id="name-examples">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-examples" class="section-name selfRef">Examples</a>
       </h2>
 <p id="section-5-1">Given UDP kind allocation in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-tsvwg-udp-options-28#section-10" class="relref">Section 10</a> of [<a href="#I-D.ietf-tsvwg-udp-options" class="cite xref">I-D.ietf-tsvwg-udp-options</a>]</span> and the option mapping defined in <a href="#udpOptions" class="auto internal xref">Section 4.1</a> of this document, fewer octets are likely to be used for Flows with mandatory UDP options.<a href="#section-5-1" class="pilcrow">¶</a></p>
-<p id="section-5-2"><a href="#ex-udp" class="auto internal xref">Figure 2</a> shows an example of reported values in a udpOptions IE for a Flow in which End of Options List (EOL) and Alternate payload checksum (APC) options are observed. One octet is sufficient to report these observed options. Concretely, the udpOptions IE will be set to 5.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-2"><a href="#ex-udp" class="auto internal xref">Figure 2</a> shows an example of reported values in a udpOptions IE for a Flow in which End of Options List (EOL) and Alternate payload checksum (APC) options are observed. One octet is sufficient to report these observed options. Concretely, the reported udpOptions IE will be set to 0x05.<a href="#section-5-2" class="pilcrow">¶</a></p>
 <span id="name-an-example-of-udpoptions-ie"></span><div id="ex-udp">
 <figure id="figure-2">
         <div class="alignCenter art-text artwork" id="section-5-3.1">
 <pre>
-MSB                                                        LSB
-                     1                   2     ...25
- 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 ... 0 1 2 3 4 5
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+...+-+-+-+-+-+-+
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|   |0|0|0|1|0|1|
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-+-+-+-+-+-+-+...+-+-+-+-+-+-+
+MSB                                                     LSB
+                     1                          25
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 ... 8 9 0 1 2 3 4 5
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+...+-+-+-+-+-+-+-+-+
+|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|   |0|0|0|0|0|1|0|1|
++-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-+-+-+-+...+-+-+-+-+-+-+-+-+
 </pre>
 </div>
 <figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
 <a href="#name-an-example-of-udpoptions-ie" class="selfRef">An Example of udpOptions IE</a>
+        </figcaption></figure>
+</div>
+<p id="section-5-4">Let us now consider a UDP Flow in which both SAFE and UNSAFE Experimental options are observed. Let us also consider that the observed SAFE Experimental options have  ExIDs set to 0x9858 and 0xE2D4, and UNSAFE Experimental options have ExIDs set to 0xC3D9 and 0x9858. As shown in <a href="#ex-sho" class="auto internal xref">Figure 3</a>, the following IEs are used to report these observed ExIDs:<a href="#section-5-4" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5-5">
+<li id="section-5-5.1">
+          <p id="section-5-5.1.1">udpSafeExperimentalOptionExID IE set to 0x9858E2D4 to report observed ExIDs of SAFE Experimental options.<a href="#section-5-5.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-5-5.2">
+          <p id="section-5-5.2.1">udpUnsafeExperimentalOptionExID IE set to 0xC3D99658 to report the ExIDs of the observed UNSAFE Experimental options.<a href="#section-5-5.2.1" class="pilcrow">¶</a></p>
+</li>
+      </ol>
+<span id="name-example-of-udp-experimental"></span><div id="ex-sho">
+<figure id="figure-3">
+        <div class="alignCenter art-text artwork" id="section-5-6.1">
+<pre>
+udpSafeExperimentalOptionExID IE:
+
+MSB                                                          LSB
+                     1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|              0x9858           |             0xE2D4            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+udpUnsafeExperimentalOptionExID IE:
+
+                     1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|              0xC3D9           |             0x9658            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</pre>
+</div>
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<a href="#name-example-of-udp-experimental" class="selfRef">Example of UDP Experimental option IEs</a>
         </figcaption></figure>
 </div>
 </section>
@@ -1442,7 +1478,7 @@ MSB                                                        LSB
       <h2 id="name-security-considerations">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-6-1">This document does not introduce new security considerations other than those already discussed in <span>[<a href="#RFC7012" class="cite xref">RFC7012</a>]</span>.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-1">This document does not introduce new security considerations other than those already discussed in <span><a href="https://rfc-editor.org/rfc/rfc7012#section-8" class="relref">Section 8</a> of [<a href="#RFC7012" class="cite xref">RFC7012</a>]</span>.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2">The reader may refer to <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-tsvwg-udp-options-28#section-22" class="relref">Section 22</a> of [<a href="#I-D.ietf-tsvwg-udp-options" class="cite xref">I-D.ietf-tsvwg-udp-options</a>]</span> for the security considerations related to UDP options.<a href="#section-6-2" class="pilcrow">¶</a></p>
 </section>
 </div>
