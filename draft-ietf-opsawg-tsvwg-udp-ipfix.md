@@ -51,6 +51,8 @@ This document specifies new IPFIX Information Elements for UDP options ({{sec-IE
 
 The IE specified in {{udpOptions}} uses the new abstract data type defined in {{?I-D.ietf-opsawg-ipfix-tcpo-v6eh}}.
 
+Examples to illustrate the use of the new IPFIX Information Elements are provided in {{sec-ex}}.
+
 # Conventions and Definitions
 
 This document uses the IPFIX-specific terminology (e.g., Flow) defined in {{Section 2 of !RFC7011}}.
@@ -168,25 +170,51 @@ Additional Information:
 Reference:
 : This-Document
 
-# An Example
+# Examples {#sec-ex}
 
 Given UDP kind allocation in {{Section 10 of !I-D.ietf-tsvwg-udp-options}} and the option mapping defined in {{udpOptions}} of this document, fewer octets are likely to be used for Flows with mandatory UDP options.
 
-{{ex-udp}} shows an example of reported values in a udpOptions IE for a Flow in which End of Options List (EOL) and Alternate payload checksum (APC) options are observed. One octet is sufficient to report these observed options. Concretely, the udpOptions IE will be set to 5.
+{{ex-udp}} shows an example of reported values in a udpOptions IE for a Flow in which End of Options List (EOL) and Alternate payload checksum (APC) options are observed. One octet is sufficient to report these observed options. Concretely, the reported udpOptions IE will be set to 0x05.
 
 ~~~~
-MSB                                                        LSB
-                     1                   2     ...25
- 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 ... 0 1 2 3 4 5
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+...+-+-+-+-+-+-+
-|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|   |0|0|0|1|0|1|
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-+-+-+-+-+-+-+...+-+-+-+-+-+-+
+MSB                                                     LSB
+                     1                          25
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 ... 8 9 0 1 2 3 4 5
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+...+-+-+-+-+-+-+-+-+
+|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|   |0|0|0|0|0|1|0|1|
++-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-+-+-+-+...+-+-+-+-+-+-+-+-+
 ~~~~
 {: #ex-udp title="An Example of udpOptions IE" artwork-align="center"}
 
+Let us now consider a UDP Flow in which both SAFE and UNSAFE Experimental options are observed. Let us also consider that the observed SAFE Experimental options have  ExIDs set to 0x9858 and 0xE2D4, and UNSAFE Experimental options have ExIDs set to 0xC3D9 and 0x9858. As shown in {{ex-sho}}, the following IEs are used to report these observed ExIDs:
+
+1. udpSafeExperimentalOptionExID IE set to 0x9858E2D4 to report observed ExIDs of SAFE Experimental options.
+2. udpUnsafeExperimentalOptionExID IE set to 0xC3D99658 to report the ExIDs of the observed UNSAFE Experimental options.
+
+~~~~
+udpSafeExperimentalOptionExID IE:
+
+MSB                                                          LSB
+                     1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|              0x9858           |             0xE2D4            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+udpUnsafeExperimentalOptionExID IE:
+
+                     1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|              0xC3D9           |             0x9658            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+~~~~
+{: #ex-sho title="Example of UDP Experimental option IEs" artwork-align="center"}
+
+
 # Security Considerations
 
-This document does not introduce new security considerations other than those already discussed in {{!RFC7012}}.
+This document does not introduce new security considerations other than those already discussed in {{Section 8 of !RFC7012}}.
 
 The reader may refer to {{Section 22 of !I-D.ietf-tsvwg-udp-options}} for the security considerations related to UDP options.
 
