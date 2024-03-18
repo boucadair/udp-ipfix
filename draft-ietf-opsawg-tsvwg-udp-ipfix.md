@@ -228,6 +228,8 @@ This document requests IANA to add the following new IEs to the IANA registry en
 |TBD3| udpUnsafeExperimentalOptionExID|{{udpUExID}} of This-Document|
 {: title="New IPFIX Information Elements"}
 
+> {{udpOptions}} uses the abstract data type ("unsigned256") defined in {{?I-D.ietf-opsawg-ipfix-tcpo-v6eh}}.
+
 --- back
 
 # Acknowledgments
