@@ -1,0 +1,130 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2024-04-02T00:45:59.844045+00:00",
+  "repo": "boucadair/udp-ipfix",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOIyL6pc5cUdg7",
+      "title": "UDP ExID",
+      "url": "https://github.com/boucadair/udp-ipfix/issues/1",
+      "state": "CLOSED",
+      "author": "tireddy2",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "I don't see how UDP Experimental ID (ExIDs) will be conveyed ?",
+      "createdAt": "2023-01-19T10:17:17Z",
+      "updatedAt": "2023-01-20T13:32:20Z",
+      "closedAt": "2023-01-20T13:32:20Z",
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "Yes. This is one of the points I wanted to cover in the next revision. \r\n\r\nThis will require a new IE. What I had in mind is when 127 is set in the udpOptions, the new IE will also be included with the oserved ExIDs\r\n\r\n```\r\n+----------+----------+----------+----------+   +----------+----------+\r\n|      UDP ExID#1        |   UDP ExID#2           | ... .|   UDP ExID#i           | \r\n+----------+----------+----------+----------+   +----------+----------+\r\n```",
+          "createdAt": "2023-01-20T09:35:13Z",
+          "updatedAt": "2023-01-20T09:35:13Z"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "id": "I_kwDOIyL6pc5cVXPd",
+      "title": "Identifying UDP options in a flow",
+      "url": "https://github.com/boucadair/udp-ipfix/issues/2",
+      "state": "CLOSED",
+      "author": "tireddy2",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "How does the network device identify the UDP options belong to a single flow or multiple flows (unlike TCP where the network device can see TCP headers to identify start and end of the flow) ?",
+      "createdAt": "2023-01-19T12:59:01Z",
+      "updatedAt": "2023-01-20T13:32:28Z",
+      "closedAt": "2023-01-20T13:32:28Z",
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "This is not to be mixed with a transport session. The definition of Flow in IPFIX is generic enough:\r\n\r\n```\r\nTraffic Flow or Flow\r\n\r\n      There are several definitions of the term 'flow' being used by the\r\n      Internet community.  Within the context of IPFIX, we use the\r\n      following definition:\r\n\r\n      A Flow is defined as a set of packets or frames passing an\r\n      Observation Point in the network during a certain time interval.\r\n      All packets belonging to a particular Flow have a set of common\r\n      properties.  Each property is defined as the result of applying a\r\n      function to the values of:\r\n\r\n      1. one or more packet header fields (e.g., destination IP\r\n         address), transport header fields (e.g., destination port\r\n         number), or application header fields (e.g., RTP header fields\r\n         [[RFC3550](https://www.rfc-editor.org/rfc/rfc3550)]).\r\n\r\n      2. one or more characteristics of the packet itself (e.g., number\r\n         of MPLS labels, etc.).\r\n\r\n      3. one or more of the fields derived from Packet Treatment (e.g.,\r\n         next-hop IP address, the output interface, etc.).\r\n\r\n      A packet is defined as belonging to a Flow if it completely\r\n      satisfies all the defined properties of the Flow.\r\n\r\n      Note that the set of packets represented by a Flow may be empty;\r\n      that is, a Flow may represent zero or more packets.  As sampling\r\n      is a Packet Treatment, this definition includes packets selected\r\n      by a sampling mechanism.\r\n```",
+          "createdAt": "2023-01-20T08:39:24Z",
+          "updatedAt": "2023-01-20T08:39:24Z"
+        }
+      ]
+    }
+  ],
+  "pulls": [
+    {
+      "number": 3,
+      "id": "PR_kwDOIyL6pc5kGosK",
+      "title": "define unsigned256 abstract data type",
+      "url": "https://github.com/boucadair/udp-ipfix/pull/3",
+      "state": "CLOSED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-01-15T15:31:10Z",
+      "updatedAt": "2024-01-16T08:09:18Z",
+      "baseRepository": "boucadair/udp-ipfix",
+      "baseRefName": "main",
+      "baseRefOid": "857329db6a5ef5b2f3f5fea38ce35442a06f4cd8",
+      "headRepository": "boucadair/udp-ipfix",
+      "headRefName": "boucadair-patch-1",
+      "headRefOid": "f224a4993375e0ad5f752aa54b15b8398f04e778",
+      "closedAt": "2024-01-16T08:09:18Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}
