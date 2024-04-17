@@ -194,9 +194,9 @@ Let us now consider a UDP Flow in which both SAFE and UNSAFE Experimental option
 MSB                                                     LSB
                     12                          25
  0 1 2 3 ... 7 8 9 0 1 2 3 4 5 6 7 8 9 ... 8 9 0 1 2 3 4 5
-+-+-+-+-+...+-+-+-+-+-+-+-+-+-+-+-+-+-+-+...+-+-+-+-+-+-+-+-+
-|X|1|X|X|   |X|X|X|X|X|X|X|X|X|X|X|1|X|X|   |X|X|X|X|X|X|X|X|
-+-+-+-+-+...+-+-+-+-+-+-+-+-++-++-+-+-+-+...+-+-+-+-+-+-+-+-+
++-+-+-+-+...+-+-+-+-+-+-+-+-+-+-+-+-+-+-+...+-+-+-+-+-+-+-+
+|X|1|X|X|   |X|X|X|X|X|X|X|X|X|X|X|1|X|X|   |X|X|X|X|X|X|X|
++-+-+-+-+...+-+-+-+-+-+-+-+-++-++-+-+-+-+...+-+-+-+-+-+-+-+
 ~~~~
 {: #ex-udp-shared title="An Example of udpOptions with EXP and UEXPOptions" artwork-align="center"}
 
