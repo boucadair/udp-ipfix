@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-04-25T00:47:21.986372+00:00",
+  "timestamp": "2024-04-28T00:49:33.641069+00:00",
   "repo": "boucadair/udp-ipfix",
   "labels": [
     {
@@ -131,24 +131,26 @@
       "id": "PR_kwDOIyL6pc5s4bSl",
       "title": "AD Review",
       "url": "https://github.com/boucadair/udp-ipfix/pull/4",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-04-17T06:45:45Z",
-      "updatedAt": "2024-04-17T06:49:35Z",
+      "updatedAt": "2024-04-26T16:28:47Z",
       "baseRepository": "boucadair/udp-ipfix",
       "baseRefName": "main",
       "baseRefOid": "8fc60978e98ce05ee03f7f1c20438aa761668b62",
       "headRepository": "boucadair/udp-ipfix",
       "headRefName": "boucadair-patch-2",
       "headRefOid": "d0770f4ddfc2b0a1614caed1315e3899e5449ac0",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-04-26T16:28:47Z",
+      "mergedAt": "2024-04-26T16:28:47Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "866f83f4d3473e499e22b797c5f167b385f6e42d"
+      },
       "comments": [],
       "reviews": [
         {
