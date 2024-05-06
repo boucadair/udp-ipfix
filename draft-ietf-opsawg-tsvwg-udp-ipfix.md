@@ -106,7 +106,6 @@ Description:
 : Options are mapped to bits according to their option numbers. UDP
   option Kind 0 corresponds to the least-significant bit in the
   udpOptions IE while Kind 255 corresponds to the most-significant bit of the IE. A bit is set to 1 if the corresponding UDP option is observed in the Flow. The bit is set to 0 if the option is not observed in the Flow.
-: To cover the 0-255 Kind range, up to 256 flags can be set in the value field. The reduced-size encoding specified in {{Section 6.2 of !RFC7011}} is followed whenever fewer octets are needed to report observed UDP options. For example, if only option Kinds <= 32 are observed, then the value can be encoded as unsigned32, or if only option Kinds <= 63 are observed, then the value can be encoded as unsigned64.
 
 Abstract Data Type:
 :  unsigned256
@@ -172,6 +171,14 @@ Additional Information:
 Reference:
 : This-Document
 
+# Operational Considerations {#sec-ops}
+
+To cover the 0-255 Kind range, up to 256 flags can be set in the value field of udpOptions IE. The reduced-size encoding specified in {{Section 6.2 of !RFC7011}} is followed whenever fewer octets are needed to report observed UDP options. For example, if only option Kinds <= 32 are observed, then the value can be encoded as unsigned32, or if only option Kinds <= 63 are observed, then the value can be encoded as unsigned64.
+
+The presence of udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID) is an indication that the SAFE (or UNSAFE) Experimental option is observed in a Flow. The presence of udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID) takes precedence over setting the correspoding bits in the udpOptions IE for the same Flow. In order to make use of the reduced-size encoding in the presence of udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID) IE, the Exporter SHOULD NOT set to 1 the EXP (or UEXP) flags of the udpOptions IE that is reported for the same Flow.
+
+Transport (including MTU) considerations are discussed in {{Section 10 of !RFC7011}}.
+
 # Examples {#sec-ex}
 
 Given UDP Kind allocation in {{Section 10 of !I-D.ietf-tsvwg-udp-options}} and the option mapping defined in {{udpOptions}} of this document, fewer octets are likely to be used for Flows with mandatory UDP options.
@@ -188,7 +195,7 @@ MSB                                                     LSB
 ~~~~
 {: #ex-udp title="An Example of udpOptions with EOL and APC Options" artwork-align="center"}
 
-Let us now consider a UDP Flow in which both SAFE and UNSAFE Experimental options are observed. Let us also consider that the observed SAFE Experimental options have ExIDs set to 0x9858 and 0xE2D4, and UNSAFE Experimental options have ExIDs set to 0xC3D9 and 0x9858. If udpOptions IE is exported for this Flow, then that IE will have bits in positions 127 (EXP) and 254 (UEXP) set to 1 ({{ex-udp-shared}}). This example does not make any assumption about the presence of other UDP options.
+Let us now consider a UDP Flow in which both SAFE and UNSAFE Experimental options are observed. If udpOptions IE is exported for this Flow, then that IE will have bits in positions 127 (EXP) and 254 (UEXP) set to 1 ({{ex-udp-shared}}). This example does not make any assumption about the presence of other UDP options.
 
 ~~~~
 MSB                                                     LSB
@@ -200,7 +207,7 @@ MSB                                                     LSB
 ~~~~
 {: #ex-udp-shared title="An Example of udpOptions with EXP and UEXPOptions" artwork-align="center"}
 
-As shown in {{ex-sho}}, the following IEs are used to report observed ExIDs:
+Now assume that EOL, APC, EXP, and UEXP options are observed for a Flow. Let us also consider that the observed SAFE Experimental options have ExIDs set to 0x9858 and 0xE2D4, and UNSAFE Experimental options have ExIDs set to 0xC3D9 and 0x9858. As shown in {{ex-sho}}, the following IEs are used to report observed ExIDs:
 
 1. udpSafeExperimentalOptionExID IE set to 0x9858E2D4 to report observed ExIDs of SAFE Experimental options.
 2. udpUnsafeExperimentalOptionExID IE set to 0xC3D99658 to report the ExIDs of the observed UNSAFE Experimental options.
@@ -225,12 +232,13 @@ udpUnsafeExperimentalOptionExID IE:
 ~~~~
 {: #ex-sho title="Example of UDP Experimental option IEs" artwork-align="center"}
 
+Following the guidance in {{sec-ops}}, the udpOptions IE will be set to 0x05 (i.e., set the EXP/UEXP bits to 0 in the udpSafeExperimentalOptionExID and udpUnsafeExperimentalOptionExID IEs).
 
 # Security Considerations
 
-This document does not introduce new security considerations other than those already discussed in {{Section 8 of !RFC7012}}.
+This document does not introduce new security considerations other than those already discussed in {{Section 11 of !RFC7011}} and {{Section 8 of !RFC7012}}.
 
-The reader may refer to {{Section 22 of !I-D.ietf-tsvwg-udp-options}} for the security considerations related to UDP options.
+The reader may refer to {{Section 24 of !I-D.ietf-tsvwg-udp-options}} for the security considerations related to UDP options.
 
 # IANA Considerations {#IANA}
 
@@ -251,7 +259,7 @@ This document requests IANA to add the following new IEs to the IANA registry en
 
 Thanks to Benoît Claise for the discussion on the ordering of IPFIX IEs. Thanks to Paul Aitken for the review and comments.
 
-Thanks to Tommy Pauly for the tsvart review and Joe Touch for the intdir review.
+Thanks to Tommy Pauly for the tsvart review, Joe Touch for the intdir review, and Robert Sparks for the genart review.
 
 Thanks to Thomas Graf for the Shepherd review.
 
