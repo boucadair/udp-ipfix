@@ -77,7 +77,7 @@ UDP {{!RFC0768}} does not support an extension mechanism similar to the options 
 ~~~~
 {: #spa title="Surplus Area" artwork-align="center"}
 
-Sections {{>udpOptions}} and {{>udpUnsafeOptions}} introduce new IEs to export the observed UDP options.
+Sections {{<udpOptions}} and {{<udpUnsafeOptions}} introduce new IEs to export the observed UDP options.
 
 Options indicated by Kind values in the range 0-191 are called SAFE options. Such options can be silently ignored by legacy receivers because they do not alter the UDP user data ({{Section 11 of !I-D.ietf-tsvwg-udp-options}}). Safe options are exported using the IE defined in {{udpOptions}}.
 
