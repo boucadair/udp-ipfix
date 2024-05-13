@@ -118,7 +118,7 @@ Table of Contents
    UDP [RFC0768] does not support an extension mechanism similar to the
    options supported by other transport protocols, such as TCP
    [RFC9293], SCTP [RFC9260], or DCCP [RFC4340].  Such a mechanism can
-   be useful for various applications, e.g., discover a path MTU or
+   be useful for various applications, e.g., to discover a path MTU or
    share timestamps.  To fill that void, [I-D.ietf-tsvwg-udp-options]
    extends UDP with a mechanism to insert extensions in datagrams.  To
    do so, and unlike the conventional approach that relies upon
@@ -172,11 +172,11 @@ Table of Contents
 
 4.  New UDP IPFIX Information Elements
 
-      Note: "URL_IANA_UDP_OPTIONS" is the URL of the "UDP Option Kind
-      Numbers" registry group while "URL_IANA_UDP_ExIDs" is the URL of
-      the "UDP Experimental Option Experiment Identifiers (UDP ExIDs)"
-      registry that will be created by IANA as per Section 25 of
-      [I-D.ietf-tsvwg-udp-options].
+      RFC Editor Note: Please update "URL_IANA_UDP_OPTIONS" reference
+      with the URL of the "UDP Option Kind Numbers" registry group and
+      "URL_IANA_UDP_ExIDs" with the URL of the "UDP Experimental Option
+      Experiment Identifiers (UDP ExIDs)" registry that will be created
+      by IANA as per Section 25 of [I-D.ietf-tsvwg-udp-options].
 
 4.1.  udpSafeOptions
 
@@ -246,7 +246,7 @@ Table of Contents
       option (EXP, Kind=127).
 
       The information is encoded in a set of 16-bit fields.  Each 16-bit
-      field carries the observed ExID in an EXP option.
+      field carries the ExID observed in an EXP option.
 
    Abstract Data Type:  octetArray
 
@@ -270,7 +270,7 @@ Table of Contents
       Experimental option (UEXP, Kind=254).
 
       The information is encoded in a set of 16-bit fields.  Each 16-bit
-      field carries the observed ExID in an UEXP option.
+      field carries the ExID observed in an UEXP option.
 
    Abstract Data Type:  octetArray
 
@@ -331,10 +331,10 @@ Table of Contents
         Figure 2: An Example of udpOptions with EOL and APC Options
 
    Let us now consider a UDP Flow in which both SAFE and UNSAFE
-   Experimental options are observed.  If the udpSafeOptions IE is
-   exported for this Flow, then that IE will have the bit in position
-   127 (EXP) set to 1 (Figure 3).  This example does not make any
-   assumption about the presence of other UDP options.
+   Experimental options are observed.  If a udpSafeOptions IE is
+   exported for this Flow, then that IE will have the EXP bit set to 1
+   (Figure 3).  This example does not make any assumption about the
+   presence of other UDP options.
 
         MSB                                                     LSB
                             12                          25
@@ -371,7 +371,7 @@ Table of Contents
                           1                   2                   3
       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |              0xC3D9           |             0x9658            |
+     |              0xC3D9           |             0x9858            |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
               Figure 4: Example of UDP Experimental option IEs
@@ -478,6 +478,14 @@ Table of Contents
    [RFC9293]  Eddy, W., Ed., "Transmission Control Protocol (TCP)",
               STD 7, RFC 9293, DOI 10.17487/RFC9293, August 2022,
               <https://www.rfc-editor.org/rfc/rfc9293>.
+
+   [URL_IANA_UDP_ExIDs]
+              "UDP Experimental Option Experiment Identifiers (UDP
+              ExIDs)", n.d., <https://www.iana.org/assignments/url2>.
+
+   [URL_IANA_UDP_OPTIONS]
+              "UDP Option Kind Numbers", n.d.,
+              <https://www.iana.org/assignments/url1>.
 
 Acknowledgments
 
