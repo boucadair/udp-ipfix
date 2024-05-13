@@ -77,11 +77,11 @@ UDP {{!RFC0768}} does not support an extension mechanism similar to the options 
 ~~~~
 {: #spa title="Surplus Area" artwork-align="center"}
 
-{{udpOptions}} introduces a new IE to export the observed UDP options.
+Sections {{>udpOptions}} and {{>udpUnsafeOptions}} introduce new IEs to export the observed UDP options.
 
-Options indicated by Kind values in the range 0-191 are called SAFE options. Such options can be silently ignored by legacy receivers because they do not alter the UDP user data ({{Section 11 of !I-D.ietf-tsvwg-udp-options}}).
+Options indicated by Kind values in the range 0-191 are called SAFE options. Such options can be silently ignored by legacy receivers because they do not alter the UDP user data ({{Section 11 of !I-D.ietf-tsvwg-udp-options}}). Safe options are exported using the IE defined in {{udpOptions}}.
 
-Options indicated by Kind values in the range 192-255 are called UNSAFE options. Such options are not safe for legacy receivers to ignore because they alter the UDP user data ({{Section 12 of !I-D.ietf-tsvwg-udp-options}}).
+Options indicated by Kind values in the range 192-255 are called UNSAFE options. Such options are not safe for legacy receivers to ignore because they alter the UDP user data ({{Section 12 of !I-D.ietf-tsvwg-udp-options}}). Unsafe options are exported using the IE defined in {{udpUnsafeOptions}}.
 
 UDP options occur per-packet within a Flow and can be inserted at any time in the Flow.
 
@@ -93,19 +93,20 @@ This document does not intend to elaborate operational guidance/implications of 
 
 > Note: "URL_IANA_UDP_OPTIONS" is the URL of the "UDP Option Kind Numbers" registry group while "URL_IANA_UDP_ExIDs" is the URL of the "UDP Experimental Option Experiment Identifiers (UDP ExIDs)" registry that will be created by IANA as per {{Section 25 of !I-D.ietf-tsvwg-udp-options}}.
 
-## udpOptions {#udpOptions}
+## udpSafeOptions {#udpOptions}
 
 Name:
-: udpOptions
+: udpSafeOptions
 
 ElementID:
 : TBD1
 
 Description:
-: Observed UDP options in a Flow. The information is encoded in a set of bit fields.
+: Observed safe UDP options in a Flow. The information is encoded in a set of bit fields.
 : Options are mapped to bits according to their option numbers. UDP
   option Kind 0 corresponds to the least-significant bit in the
-  udpOptions IE while Kind 255 corresponds to the most-significant bit of the IE. A bit is set to 1 if the corresponding UDP option is observed in the Flow. The bit is set to 0 if the option is not observed in the Flow.
+  udpOptions IE while Kind 255 corresponds to the most-significant bit of the IE. A bit is set to 1 if the corresponding safe UDP option is observed in the Flow. The bit is set to 0 if the option is not observed in the Flow.
+ : Most-significant bit 192-255 MUST be set to 0.
 
 Abstract Data Type:
 :  unsigned256
@@ -120,6 +121,32 @@ Additional Information:
 Reference:
 : This-Document
 
+## udpUnsfaeOptions {#udpUnsafeOptions}
+
+Name:
+: udpUnsafeOptions
+
+ElementID:
+: TBD2
+
+Description:
+: Observed unsafe UDP options in a Flow. The information is encoded in a set of bit fields.
+: Options are mapped to bits according to their option numbers. UDP
+  option Kind 192 corresponds to the least-significant bit in the
+  udpOptions IE while Kind 255 corresponds to the most-significant bit of the IE. A bit is set to 1 if the corresponding unsafe UDP option is observed in the Flow. The bit is set to 0 if the option is not observed in the Flow.
+
+Abstract Data Type:
+:  unsigned64
+
+Data Type Semantics:
+:  flags
+
+Additional Information:
+: See the assigned UDP options in the "UDP Option Kind Numbers" registry at [URL_IANA_UDP_OPTIONS].
+: See {{!I-D.ietf-tsvwg-udp-options}} for more details about UDP options.
+
+Reference:
+: This-Document
 
 ## udpSafeExperimentalOptionExID {#udpExID}
 
@@ -173,9 +200,9 @@ Reference:
 
 # Operational Considerations {#sec-ops}
 
-To cover the 0-255 Kind range, up to 256 flags can be set in the value field of udpOptions IE. The reduced-size encoding specified in {{Section 6.2 of !RFC7011}} is followed whenever fewer octets are needed to report observed UDP options. For example, if only option Kinds <= 32 are observed, then the value can be encoded as unsigned32, or if only option Kinds <= 63 are observed, then the value can be encoded as unsigned64.
+The reduced-size encoding specified in {{Section 6.2 of !RFC7011}} is followed whenever fewer octets are needed to report observed safe and unsafe UDP options. For example, if only option Kinds <= 32 are observed, then the value of udpSafeOptions can be encoded as unsigned32, or if only option Kinds <= 63 are observed, then the value can be encoded as unsigned64.
 
-The presence of udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID) is an indication that the SAFE (or UNSAFE) Experimental option is observed in a Flow. The presence of udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID) takes precedence over setting the correspoding bits in the udpOptions IE for the same Flow. In order to make use of the reduced-size encoding in the presence of udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID) IE, the Exporter SHOULD NOT set to 1 the EXP (or UEXP) flags of the udpOptions IE that is reported for the same Flow.
+The presence of udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID) is an indication that the SAFE (or UNSAFE) Experimental option is observed in a Flow. The presence of udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID) takes precedence over setting the correspoding bits in the udpSafeOptions (or udpUnsafeOptions) IE for the same Flow. In order to make use of the reduced-size encoding in the presence of udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID) IE, the Exporter SHOULD NOT set to 1 the EXP (or UEXP) flags of the the udpSafeOptions (or udpUnsafeOptions) IE that is reported for the same Flow.
 
 Transport (including MTU) considerations are discussed in {{Section 10 of !RFC7011}}.
 
@@ -183,7 +210,7 @@ Transport (including MTU) considerations are discussed in {{Section 10 of !RFC70
 
 Given UDP Kind allocation in {{Section 10 of !I-D.ietf-tsvwg-udp-options}} and the option mapping defined in {{udpOptions}} of this document, fewer octets are likely to be used for Flows with mandatory UDP options.
 
-{{ex-udp}} shows an example of reported values in a udpOptions IE for a Flow in which End of Options List (EOL, Kind=0) and Alternate payload checksum (APC, Kind=2) options are observed. One octet is sufficient to report these observed options. Concretely, the reported udpOptions IE will be set to 0x05.
+{{ex-udp}} shows an example of reported values in a udpSafeOptions IE for a Flow in which End of Options List (EOL, Kind=0) and Alternate payload checksum (APC, Kind=2) options are observed. One octet is sufficient to report these observed options. Concretely, the reported udpOptions IE will be set to 0x05.
 
 ~~~~
 MSB                                                     LSB
@@ -195,17 +222,17 @@ MSB                                                     LSB
 ~~~~
 {: #ex-udp title="An Example of udpOptions with EOL and APC Options" artwork-align="center"}
 
-Let us now consider a UDP Flow in which both SAFE and UNSAFE Experimental options are observed. If udpOptions IE is exported for this Flow, then that IE will have bits in positions 127 (EXP) and 254 (UEXP) set to 1 ({{ex-udp-shared}}). This example does not make any assumption about the presence of other UDP options.
+Let us now consider a UDP Flow in which both SAFE and UNSAFE Experimental options are observed. If the udpSafeOptions IE is exported for this Flow, then that IE will have the bit in position 127 (EXP) set to 1 ({{ex-udp-shared}}). This example does not make any assumption about the presence of other UDP options.
 
 ~~~~
 MSB                                                     LSB
                     12                          25
  0 1 2 3 ... 7 8 9 0 1 2 3 4 5 6 7 8 9 ... 8 9 0 1 2 3 4 5
 +-+-+-+-+...+-+-+-+-+-+-+-+-+-+-+-+-+-+-+...+-+-+-+-+-+-+-+
-|X|1|X|X|   |X|X|X|X|X|X|X|X|X|X|X|1|X|X|   |X|X|X|X|X|X|X|
+|0|0|0|0|   |X|X|X|X|X|X|X|X|X|X|X|1|X|X|   |X|X|X|X|X|X|X|
 +-+-+-+-+...+-+-+-+-+-+-+-+-++-++-+-+-+-+...+-+-+-+-+-+-+-+
 ~~~~
-{: #ex-udp-shared title="An Example of udpOptions with EXP and UEXPOptions" artwork-align="center"}
+{: #ex-udp-shared title="An Example of udpSafeOptions with EXP Option" artwork-align="center"}
 
 Now assume that EOL, APC, EXP, and UEXP options are observed for a Flow. Let us also consider that the observed SAFE Experimental options have ExIDs set to 0x9858 and 0xE2D4, and UNSAFE Experimental options have ExIDs set to 0xC3D9 and 0x9858. As shown in {{ex-sho}}, the following IEs are used to report observed ExIDs:
 
@@ -232,7 +259,7 @@ udpUnsafeExperimentalOptionExID IE:
 ~~~~
 {: #ex-sho title="Example of UDP Experimental option IEs" artwork-align="center"}
 
-Following the guidance in {{sec-ops}}, the udpOptions IE will be set to 0x05 (i.e., set the EXP/UEXP bits to 0 in the udpSafeExperimentalOptionExID and udpUnsafeExperimentalOptionExID IEs).
+Following the guidance in {{sec-ops}}, the udpSafeOptions IE will be set to 0x05 (i.e., set the EXP bit to 0).
 
 # Security Considerations
 
@@ -245,9 +272,10 @@ The reader may refer to {{Section 24 of !I-D.ietf-tsvwg-udp-options}} for the se
 This document requests IANA to add the following new IEs to the IANA registry entitled "IP Flow Information Export (IPFIX) Entities" {{IANA-IPFIX}}:
 
 |Value|	Name|	Reference|
-|TBD1| udpOptions|{{udpOptions}} of This-Document|
-|TBD2| udpSafeExperimentalOptionExID|{{udpExID}} of This-Document|
-|TBD3| udpUnsafeExperimentalOptionExID|{{udpUExID}} of This-Document|
+|TBD1| udpSafeOptions|{{udpOptions}} of This-Document|
+|TBD2| udpUnsafeOptions|{{udpUnsafeOptions}} of This-Document|
+|TBD3| udpSafeExperimentalOptionExID|{{udpExID}} of This-Document|
+|TBD4| udpUnsafeExperimentalOptionExID|{{udpUExID}} of This-Document|
 {: title="New IPFIX Information Elements"}
 
 > {{udpOptions}} uses the abstract data type ("unsigned256") defined in {{?I-D.ietf-opsawg-ipfix-tcpo-v6eh}}.
