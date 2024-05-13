@@ -106,7 +106,7 @@ Description:
 : Options are mapped to bits according to their option numbers. UDP
   option Kind 0 corresponds to the least-significant bit in the
   udpOptions IE while Kind 255 corresponds to the most-significant bit of the IE. A bit is set to 1 if the corresponding safe UDP option is observed in the Flow. The bit is set to 0 if the option is not observed in the Flow.
- : Most-significant bit 192-255 MUST be set to 0.
+ : The first 64 most-significant bits MUST be set to 0.
 
 Abstract Data Type:
 :  unsigned256
@@ -154,7 +154,7 @@ Name:
 :  udpSafeExperimentalOptionExID
 
 ElementID:
-:  TBD2
+:  TBD3
 
 Description:
 : Observed Experiments ID (ExIDs) in the Experimental option (EXP, Kind=127).
@@ -179,7 +179,7 @@ Name:
 :  udpUnsafeExperimentalOptionExID
 
 ElementID:
-:  TBD3
+:  TBD4
 
 Description:
 : Observed Experiments ID (ExIDs) in the UNSAFE Experimental option (UEXP, Kind=254).
