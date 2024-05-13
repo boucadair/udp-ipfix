@@ -39,10 +39,11 @@ informative:
 
   URL_IANA_UDP_OPTIONS:
      title: UDP Option Kind Numbers
+     target: https://www.iana.org/assignments/url1
 
- URL_IANA_UDP_ExIDs:
+  URL_IANA_UDP_ExIDs:
     title: UDP Experimental Option Experiment Identifiers (UDP ExIDs)
-
+    target: https://www.iana.org/assignments/url2
 
 --- abstract
 
