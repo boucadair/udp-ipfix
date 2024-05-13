@@ -5,8 +5,8 @@
 OPSAWG                                                      M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              T. Reddy.K
-Expires: 28 October 2024                                           Nokia
-                                                           26 April 2024
+Expires: 14 November 2024                                          Nokia
+                                                             13 May 2024
 
 
 Export of UDP Options Information in IP Flow Information Export (IPFIX)
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 October 2024.
+   This Internet-Draft will expire on 14 November 2024.
 
 Copyright Notice
 
@@ -69,12 +69,13 @@ Table of Contents
      4.1.  udpOptions
      4.2.  udpSafeExperimentalOptionExID
      4.3.  udpUnsafeExperimentalOptionExID
-   5.  Examples
-   6.  Security Considerations
-   7.  IANA Considerations
-   8.  References
-     8.1.  Normative References
-     8.2.  Informative References
+   5.  Operational Considerations
+   6.  Examples
+   7.  Security Considerations
+   8.  IANA Considerations
+   9.  References
+     9.1.  Normative References
+     9.2.  Informative References
    Acknowledgments
    Authors' Addresses
 
@@ -96,7 +97,7 @@ Table of Contents
    defined in [I-D.ietf-opsawg-ipfix-tcpo-v6eh].
 
    Examples to illustrate the use of the new IPFIX Information Elements
-   are provided in Section 5.
+   are provided in Section 6.
 
 2.  Conventions and Definitions
 
@@ -189,14 +190,6 @@ Table of Contents
       is observed in the Flow.  The bit is set to 0 if the option is not
       observed in the Flow.
 
-      To cover the 0-255 Kind range, up to 256 flags can be set in the
-      value field.  The reduced-size encoding specified in Section 6.2
-      of [RFC7011] is followed whenever fewer octets are needed to
-      report observed UDP options.  For example, if only option Kinds <=
-      32 are observed, then the value can be encoded as unsigned32, or
-      if only option Kinds <= 63 are observed, then the value can be
-      encoded as unsigned64.
-
    Abstract Data Type:  unsigned256
 
    Data Type Semantics:  flags
@@ -257,7 +250,31 @@ Table of Contents
 
    Reference:  This-Document
 
-5.  Examples
+5.  Operational Considerations
+
+   To cover the 0-255 Kind range, up to 256 flags can be set in the
+   value field of udpOptions IE.  The reduced-size encoding specified in
+   Section 6.2 of [RFC7011] is followed whenever fewer octets are needed
+   to report observed UDP options.  For example, if only option Kinds <=
+   32 are observed, then the value can be encoded as unsigned32, or if
+   only option Kinds <= 63 are observed, then the value can be encoded
+   as unsigned64.
+
+   The presence of udpSafeExperimentalOptionExID (or
+   udpUnsafeExperimentalOptionExID) is an indication that the SAFE (or
+   UNSAFE) Experimental option is observed in a Flow.  The presence of
+   udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID)
+   takes precedence over setting the correspoding bits in the udpOptions
+   IE for the same Flow.  In order to make use of the reduced-size
+   encoding in the presence of udpSafeExperimentalOptionExID (or
+   udpUnsafeExperimentalOptionExID) IE, the Exporter SHOULD NOT set to 1
+   the EXP (or UEXP) flags of the udpOptions IE that is reported for the
+   same Flow.
+
+   Transport (including MTU) considerations are discussed in Section 10
+   of [RFC7011].
+
+6.  Examples
 
    Given UDP Kind allocation in Section 10 of
    [I-D.ietf-tsvwg-udp-options] and the option mapping defined in
@@ -280,13 +297,10 @@ Table of Contents
         Figure 2: An Example of udpOptions with EOL and APC Options
 
    Let us now consider a UDP Flow in which both SAFE and UNSAFE
-   Experimental options are observed.  Let us also consider that the
-   observed SAFE Experimental options have ExIDs set to 0x9858 and
-   0xE2D4, and UNSAFE Experimental options have ExIDs set to 0xC3D9 and
-   0x9858.  If udpOptions IE is exported for this Flow, then that IE
-   will have bits in positions 127 (EXP) and 254 (UEXP) set to 1
-   (Figure 3).  This example does not make any assumption about the
-   presence of other UDP options.
+   Experimental options are observed.  If udpOptions IE is exported for
+   this Flow, then that IE will have bits in positions 127 (EXP) and 254
+   (UEXP) set to 1 (Figure 3).  This example does not make any
+   assumption about the presence of other UDP options.
 
         MSB                                                     LSB
                             12                          25
@@ -297,8 +311,11 @@ Table of Contents
 
         Figure 3: An Example of udpOptions with EXP and UEXPOptions
 
-   As shown in Figure 4, the following IEs are used to report observed
-   ExIDs:
+   Now assume that EOL, APC, EXP, and UEXP options are observed for a
+   Flow.  Let us also consider that the observed SAFE Experimental
+   options have ExIDs set to 0x9858 and 0xE2D4, and UNSAFE Experimental
+   options have ExIDs set to 0xC3D9 and 0x9858.  As shown in Figure 4,
+   the following IEs are used to report observed ExIDs:
 
    1.  udpSafeExperimentalOptionExID IE set to 0x9858E2D4 to report
        observed ExIDs of SAFE Experimental options.
@@ -325,15 +342,21 @@ Table of Contents
 
               Figure 4: Example of UDP Experimental option IEs
 
-6.  Security Considerations
+   Following the guidance in Section 5, the udpOptions IE will be set to
+   0x05 (i.e., set the EXP/UEXP bits to 0 in the
+   udpSafeExperimentalOptionExID and udpUnsafeExperimentalOptionExID
+   IEs).
+
+7.  Security Considerations
 
    This document does not introduce new security considerations other
-   than those already discussed in Section 8 of [RFC7012].
+   than those already discussed in Section 11 of [RFC7011] and Section 8
+   of [RFC7012].
 
-   The reader may refer to Section 22 of [I-D.ietf-tsvwg-udp-options]
+   The reader may refer to Section 24 of [I-D.ietf-tsvwg-udp-options]
    for the security considerations related to UDP options.
 
-7.  IANA Considerations
+8.  IANA Considerations
 
    This document requests IANA to add the following new IEs to the IANA
    registry entitled "IP Flow Information Export (IPFIX) Entities"
@@ -357,9 +380,9 @@ Table of Contents
       Section 4.1 uses the abstract data type ("unsigned256") defined in
       [I-D.ietf-opsawg-ipfix-tcpo-v6eh].
 
-8.  References
+9.  References
 
-8.1.  Normative References
+9.1.  Normative References
 
    [I-D.ietf-tsvwg-udp-options]
               Touch, J. D., "Transport Options for UDP", Work in
@@ -382,7 +405,7 @@ Table of Contents
               DOI 10.17487/RFC7012, September 2013,
               <https://www.rfc-editor.org/rfc/rfc7012>.
 
-8.2.  Informative References
+9.2.  Informative References
 
    [I-D.ietf-opsawg-ipfix-tcpo-v6eh]
               Boucadair, M. and B. Claise, "Extended TCP Options and
@@ -395,9 +418,9 @@ Table of Contents
    [I-D.ietf-tsvwg-udp-options-dplpmtud]
               Fairhurst, G. and T. Jones, "Datagram PLPMTUD for UDP
               Options", Work in Progress, Internet-Draft, draft-ietf-
-              tsvwg-udp-options-dplpmtud-11, 4 January 2024,
+              tsvwg-udp-options-dplpmtud-12, 7 May 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-tsvwg-
-              udp-options-dplpmtud-11>.
+              udp-options-dplpmtud-12>.
 
    [IANA-IPFIX]
               "IP Flow Information Export (IPFIX) Entities", n.d.,
@@ -426,8 +449,9 @@ Acknowledgments
    Thanks to Benoît Claise for the discussion on the ordering of IPFIX
    IEs.  Thanks to Paul Aitken for the review and comments.
 
-   Thanks to Tommy Pauly for the tsvart review and Joe Touch for the
-   intdir review.
+   Thanks to Tommy Pauly for the tsvart review, Joe Touch for the intdir
+   review, Robert Sparks for the genart review, and Watson Ladd for the
+   secdir review.
 
    Thanks to Thomas Graf for the Shepherd review.
 
