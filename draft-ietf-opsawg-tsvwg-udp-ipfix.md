@@ -37,6 +37,14 @@ informative:
      title: IP Flow Information Export (IPFIX) Entities
      target: https://www.iana.org/assignments/ipfix/ipfix.xhtml
 
+  URL_IANA_UDP_OPTIONS:
+     title: UDP Option Kind Numbers
+     target: https://www.iana.org/assignments/url1
+
+  URL_IANA_UDP_ExIDs:
+    title: UDP Experimental Option Experiment Identifiers (UDP ExIDs)
+    target: https://www.iana.org/assignments/url2
+
 --- abstract
 
 This document specifies new IP Flow Information Export (IPFIX) Information Elements for UDP options.
@@ -64,7 +72,7 @@ Also, this document uses the terms defined in {{Section 3 of !I-D.ietf-tsvwg-udp
 
 # UDP Options at a Glance {#uo}
 
-UDP {{!RFC0768}} does not support an extension mechanism similar to the options supported by other transport protocols, such as TCP {{?RFC9293}}, SCTP {{?RFC9260}}, or DCCP {{?RFC4340}}. Such a mechanism can be useful for various applications, e.g., discover a path MTU or share timestamps. To fill that void, {{!I-D.ietf-tsvwg-udp-options}} extends UDP with a mechanism to insert extensions in datagrams. To do so, and unlike the conventional approach that relies upon transport headers, {{!I-D.ietf-tsvwg-udp-options}} uses trailers. Concretely, UDP options are placed in the surplus area (that is, the area of an IP payload that follows a UDP packet). See {{spa}}. An example of the use of UDP options is described in {{?I-D.ietf-tsvwg-udp-options-dplpmtud}}.
+UDP {{!RFC0768}} does not support an extension mechanism similar to the options supported by other transport protocols, such as TCP {{?RFC9293}}, SCTP {{?RFC9260}}, or DCCP {{?RFC4340}}. Such a mechanism can be useful for various applications, e.g., to discover a path MTU or share timestamps. To fill that void, {{!I-D.ietf-tsvwg-udp-options}} extends UDP with a mechanism to insert extensions in datagrams. To do so, and unlike the conventional approach that relies upon transport headers, {{!I-D.ietf-tsvwg-udp-options}} uses trailers. Concretely, UDP options are placed in the surplus area (that is, the area of an IP payload that follows a UDP packet). See {{spa}}. An example of the use of UDP options is described in {{?I-D.ietf-tsvwg-udp-options-dplpmtud}}.
 
 ~~~~
                        IP transport payload
@@ -91,7 +99,7 @@ This document does not intend to elaborate operational guidance/implications of 
 
 # New UDP IPFIX Information Elements {#sec-IE}
 
-> Note: "URL_IANA_UDP_OPTIONS" is the URL of the "UDP Option Kind Numbers" registry group while "URL_IANA_UDP_ExIDs" is the URL of the "UDP Experimental Option Experiment Identifiers (UDP ExIDs)" registry that will be created by IANA as per {{Section 25 of !I-D.ietf-tsvwg-udp-options}}.
+> RFC Editor Note: Please update "URL_IANA_UDP_OPTIONS" reference with the URL of the "UDP Option Kind Numbers" registry group and "URL_IANA_UDP_ExIDs" with the URL of the "UDP Experimental Option Experiment Identifiers (UDP ExIDs)" registry that will be created by IANA as per {{Section 25 of !I-D.ietf-tsvwg-udp-options}}.
 
 ## udpSafeOptions {#udpOptions}
 
@@ -158,7 +166,7 @@ ElementID:
 
 Description:
 : Observed Experiments ID (ExIDs) in the Experimental option (EXP, Kind=127).
-: The information is encoded in a set of 16-bit fields. Each 16-bit field carries the observed ExID in an EXP option.
+: The information is encoded in a set of 16-bit fields. Each 16-bit field carries the ExID observed in an EXP option.
 
 Abstract Data Type:
 :  octetArray
@@ -183,7 +191,7 @@ ElementID:
 
 Description:
 : Observed Experiments ID (ExIDs) in the UNSAFE Experimental option (UEXP, Kind=254).
-: The information is encoded in a set of 16-bit fields. Each 16-bit field carries the observed ExID in an UEXP option.
+: The information is encoded in a set of 16-bit fields. Each 16-bit field carries the ExID observed in an UEXP option.
 
 Abstract Data Type:
 :  octetArray
@@ -222,7 +230,7 @@ MSB                                                     LSB
 ~~~~
 {: #ex-udp title="An Example of udpOptions with EOL and APC Options" artwork-align="center"}
 
-Let us now consider a UDP Flow in which both SAFE and UNSAFE Experimental options are observed. If the udpSafeOptions IE is exported for this Flow, then that IE will have the bit in position 127 (EXP) set to 1 ({{ex-udp-shared}}). This example does not make any assumption about the presence of other UDP options.
+Let us now consider a UDP Flow in which both SAFE and UNSAFE Experimental options are observed. If a udpSafeOptions IE is exported for this Flow, then that IE will have the EXP bit set to 1 ({{ex-udp-shared}}). This example does not make any assumption about the presence of other UDP options.
 
 ~~~~
 MSB                                                     LSB
@@ -254,7 +262,7 @@ udpUnsafeExperimentalOptionExID IE:
                      1                   2                   3
  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|              0xC3D9           |             0x9658            |
+|              0xC3D9           |             0x9858            |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 ~~~~
 {: #ex-sho title="Example of UDP Experimental option IEs" artwork-align="center"}
