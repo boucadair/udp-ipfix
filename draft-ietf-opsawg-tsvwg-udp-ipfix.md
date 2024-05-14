@@ -207,7 +207,7 @@ Reference:
 
 # Operational Considerations {#sec-ops}
 
-The reduced-size encoding specified in {{Section 6.2 of !RFC7011}} is followed whenever fewer octets are needed to report observed safe and unsafe UDP options. For example, if only option Kinds <= 32 are observed, then the value of udpSafeOptions can be encoded as unsigned32, or if only option Kinds <= 63 are observed, then the value can be encoded as unsigned64.
+The reduced-size encoding specified in {{Section 6.2 of !RFC7011}} is followed whenever fewer octets are needed to report observed safe and unsafe UDP options. For example, if only option Kinds <= 32 are observed, then the value of the udpSafeOptions IE can be encoded as unsigned32, or if only option Kinds <= 63 are observed, then the value of the udpSafeOptions IE can be encoded as unsigned64.
 
 The presence of udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID) is an indication that the SAFE (or UNSAFE) Experimental option is observed in a Flow. The presence of udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID) takes precedence over setting the correspoding bit in the udpSafeOptions (or udpUnsafeOptions) IE for the same Flow. In order to make use of the reduced-size encoding in the presence of udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID) IE, the Exporter SHOULD NOT set to 1 the EXP (or UEXP) flags of the the udpSafeOptions (or udpUnsafeOptions) IE that is reported for the same Flow.
 
@@ -276,7 +276,7 @@ The reader may refer to {{Section 24 of !I-D.ietf-tsvwg-udp-options}} for the se
 
 ## IPFIX Information Elements
 
-This document requests IANA to add the following new IEs to the IANA registry entitled "IP Flow Information Export (IPFIX) Entities" under the "IP Flow Information Export (IPFIX) Entities" registry group {{IANA-IPFIX}}:
+This document requests IANA to add the following new IEs to the "IPFIX Information Elements" registry under the "IP Flow Information Export (IPFIX) Entities" registry group {{IANA-IPFIX}}:
 
 |Value|	Name|	Reference|
 |TBD1| udpSafeOptions|{{udpOptions}} of This-Document|
