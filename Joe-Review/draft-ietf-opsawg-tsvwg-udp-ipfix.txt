@@ -289,9 +289,9 @@ Table of Contents
    The reduced-size encoding specified in Section 6.2 of [RFC7011] is
    followed whenever fewer octets are needed to report observed safe and
    unsafe UDP options.  For example, if only option Kinds <= 32 are
-   observed, then the value of udpSafeOptions can be encoded as
+   observed, then the value of the udpSafeOptions IE can be encoded as
    unsigned32, or if only option Kinds <= 63 are observed, then the
-   value can be encoded as unsigned64.
+   value of the udpSafeOptions IE can be encoded as unsigned64.
 
    The presence of udpSafeExperimentalOptionExID (or
    udpUnsafeExperimentalOptionExID) is an indication that the SAFE (or
@@ -389,10 +389,9 @@ Table of Contents
 
 8.1.  IPFIX Information Elements
 
-   This document requests IANA to add the following new IEs to the IANA
-   registry entitled "IP Flow Information Export (IPFIX) Entities" under
-   the "IP Flow Information Export (IPFIX) Entities" registry group
-   [IANA-IPFIX]:
+   This document requests IANA to add the following new IEs to the
+   "IPFIX Information Elements" registry under the "IP Flow Information
+   Export (IPFIX) Entities" registry group [IANA-IPFIX]:
 
        +=======+=================================+================+
        | Value | Name                            | Reference      |
