@@ -113,9 +113,10 @@ Description:
 : Observed safe UDP options in a Flow. The information is encoded in a set of bit fields.
 : Options are mapped to bits according to their option numbers. UDP
   option Kind 0 corresponds to the least-significant bit in the
-  udpOptions IE while Kind 255 corresponds to the most-significant bit of the IE. A bit is set to 1 if the corresponding safe UDP option is observed in the Flow. The bit is set to 0 if the option is not observed in the Flow.
- : The first 64 most-significant bits MUST be set to 0.
+  udpSafeOptions IE, UDP option Kind 1 corresponds to the next bit, etc. The bit is set to 1 if the corresponding safe UDP option is observed in the Flow. The bit is set to 0 if the option is not observed in the Flow.
+: The first 64 most-significant bits MUST be set to 0. These leading zeroes will be dropped per the reduced-Size encoding.
 
+  
 Abstract Data Type:
 :  unsigned256
 
@@ -129,7 +130,7 @@ Additional Information:
 Reference:
 : This-Document
 
-## udpUnsfaeOptions {#udpUnsafeOptions}
+## udpUnsafeOptions {#udpUnsafeOptions}
 
 Name:
 : udpUnsafeOptions
@@ -141,7 +142,7 @@ Description:
 : Observed unsafe UDP options in a Flow. The information is encoded in a set of bit fields.
 : Options are mapped to bits according to their option numbers. UDP
   option Kind 192 corresponds to the least-significant bit in the
-  udpOptions IE while Kind 255 corresponds to the most-significant bit of the IE. A bit is set to 1 if the corresponding unsafe UDP option is observed in the Flow. The bit is set to 0 if the option is not observed in the Flow.
+  udpOptions IE while Kind 255 corresponds to the most-significant bit of the IE. The bit is set to 1 if the corresponding unsafe UDP option is observed in the Flow. The bit is set to 0 if the option is not observed in the Flow.
 
 Abstract Data Type:
 :  unsigned64
