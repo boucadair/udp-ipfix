@@ -329,7 +329,7 @@ Table of Contents
        |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|   |0|0|0|0|0|1|0|1|
        +-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-+-+-+-+...+-+-+-+-+-+-+-+-+
 
-        Figure 2: An Example of udpOptions with EOL and APC Options
+      Figure 2: An Example of udpSafeOptions with EOL and APC Options
 
    Let us now consider a UDP Flow in which SAFE Experimental options are
    observed.  If a udpSafeOptions IE is exported for this Flow, then

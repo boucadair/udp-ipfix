@@ -1496,7 +1496,7 @@ udpUnsafeOptions IE while Kind 255 corresponds to the most-significant bit of th
       </h2>
 <p id="section-6-1">Given UDP Kind allocation in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-tsvwg-udp-options-32#section-10" class="relref">Section 10</a> of [<a href="#I-D.ietf-tsvwg-udp-options" class="cite xref">I-D.ietf-tsvwg-udp-options</a>]</span> and the option mapping defined in <a href="#udpOptions" class="auto internal xref">Section 4.1</a> of this document, fewer octets are likely to be used for Flows with mandatory UDP options.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2"><a href="#ex-udp" class="auto internal xref">Figure 2</a> shows an example of reported values in a udpSafeOptions IE for a Flow in which End of Options List (EOL, Kind=0) and Alternate payload checksum (APC, Kind=2) options are observed. One octet is sufficient to report these observed options because the leading zeros are dropped per the reduced-size encoding guidance in <a href="#sec-ops" class="auto internal xref">Section 5</a>. Concretely, the reported udpSafeOptions IE will be set to 0x05.<a href="#section-6-2" class="pilcrow">¶</a></p>
-<span id="name-an-example-of-udpoptions-wi"></span><div id="ex-udp">
+<span id="name-an-example-of-udpsafeoption"></span><div id="ex-udp">
 <figure id="figure-2">
         <div class="alignCenter art-text artwork" id="section-6-3.1">
 <pre>
@@ -1509,11 +1509,11 @@ MSB                                                       LSB
 </pre>
 </div>
 <figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
-<a href="#name-an-example-of-udpoptions-wi" class="selfRef">An Example of udpOptions with EOL and APC Options</a>
+<a href="#name-an-example-of-udpsafeoption" class="selfRef">An Example of udpSafeOptions with EOL and APC Options</a>
         </figcaption></figure>
 </div>
 <p id="section-6-4">Let us now consider a UDP Flow in which SAFE Experimental options are observed. If a udpSafeOptions IE is exported for this Flow, then that IE will have the EXP bit set to 1 (<a href="#ex-udp-shared" class="auto internal xref">Figure 3</a>). This example does not make any assumption about the presence of other UDP options.<a href="#section-6-4" class="pilcrow">¶</a></p>
-<span id="name-an-example-of-udpsafeoption"></span><div id="ex-udp-shared">
+<span id="name-an-example-of-udpsafeoptions"></span><div id="ex-udp-shared">
 <figure id="figure-3">
         <div class="alignCenter art-text artwork" id="section-6-5.1">
 <pre>
@@ -1526,7 +1526,7 @@ MSB                                                     LSB
 </pre>
 </div>
 <figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
-<a href="#name-an-example-of-udpsafeoption" class="selfRef">An Example of udpSafeOptions with EXP Option</a>
+<a href="#name-an-example-of-udpsafeoptions" class="selfRef">An Example of udpSafeOptions with EXP Option</a>
         </figcaption></figure>
 </div>
 <p id="section-6-6">Now assume that EOL, APC, EXP, and UEXP options are observed in a Flow. Let us also consider that the observed SAFE Experimental options have ExIDs set to 0x9858 and 0xE2D4, and UNSAFE Experimental options have ExIDs set to 0xC3D9 and 0x1234. As shown in <a href="#ex-sho" class="auto internal xref">Figure 4</a>, the following IEs are used to report observed ExIDs:<a href="#section-6-6" class="pilcrow">¶</a></p>
