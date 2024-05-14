@@ -5,8 +5,8 @@
 OPSAWG                                                      M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              T. Reddy.K
-Expires: 14 November 2024                                          Nokia
-                                                             13 May 2024
+Expires: 15 November 2024                                          Nokia
+                                                             14 May 2024
 
 
 Export of UDP Options Information in IP Flow Information Export (IPFIX)
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 November 2024.
+   This Internet-Draft will expire on 15 November 2024.
 
 Copyright Notice
 
@@ -67,7 +67,7 @@ Table of Contents
    3.  UDP Options at a Glance
    4.  New UDP IPFIX Information Elements
      4.1.  udpSafeOptions
-     4.2.  udpUnsfaeOptions
+     4.2.  udpUnsafeOptions
      4.3.  udpSafeExperimentalOptionExID
      4.4.  udpUnsafeExperimentalOptionExID
    5.  Operational Considerations
@@ -189,12 +189,13 @@ Table of Contents
 
       Options are mapped to bits according to their option numbers.  UDP
       option Kind 0 corresponds to the least-significant bit in the
-      udpOptions IE while Kind 255 corresponds to the most-significant
-      bit of the IE.  A bit is set to 1 if the corresponding safe UDP
-      option is observed in the Flow.  The bit is set to 0 if the option
-      is not observed in the Flow.
+      udpSafeOptions IE, UDP option Kind 1 corresponds to the next bit,
+      etc.  The bit is set to 1 if the corresponding safe UDP option is
+      observed in the Flow.  The bit is set to 0 if the option is not
+      observed in the Flow.
 
-      The first 64 most-significant bits MUST be set to 0.
+      The first 64 most-significant bits MUST be set to 0.  These
+      leading zeroes will be dropped per the reduced-Size encoding.
 
    Abstract Data Type:  unsigned256
 
@@ -208,7 +209,7 @@ Table of Contents
 
    Reference:  This-Document
 
-4.2.  udpUnsfaeOptions
+4.2.  udpUnsafeOptions
 
    Name:  udpUnsafeOptions
 
@@ -220,9 +221,9 @@ Table of Contents
       Options are mapped to bits according to their option numbers.  UDP
       option Kind 192 corresponds to the least-significant bit in the
       udpOptions IE while Kind 255 corresponds to the most-significant
-      bit of the IE.  A bit is set to 1 if the corresponding unsafe UDP
-      option is observed in the Flow.  The bit is set to 0 if the option
-      is not observed in the Flow.
+      bit of the IE.  The bit is set to 1 if the corresponding unsafe
+      UDP option is observed in the Flow.  The bit is set to 0 if the
+      option is not observed in the Flow.
 
    Abstract Data Type:  unsigned64
 
@@ -348,13 +349,13 @@ Table of Contents
    Now assume that EOL, APC, EXP, and UEXP options are observed for a
    Flow.  Let us also consider that the observed SAFE Experimental
    options have ExIDs set to 0x9858 and 0xE2D4, and UNSAFE Experimental
-   options have ExIDs set to 0xC3D9 and 0x9858.  As shown in Figure 4,
+   options have ExIDs set to 0xC3D9 and 0x1234.  As shown in Figure 4,
    the following IEs are used to report observed ExIDs:
 
    1.  udpSafeExperimentalOptionExID IE set to 0x9858E2D4 to report
        observed ExIDs of SAFE Experimental options.
 
-   2.  udpUnsafeExperimentalOptionExID IE set to 0xC3D99658 to report
+   2.  udpUnsafeExperimentalOptionExID IE set to 0xC3D91234 to report
        the ExIDs of the observed UNSAFE Experimental options.
 
      udpSafeExperimentalOptionExID IE:
@@ -371,7 +372,7 @@ Table of Contents
                           1                   2                   3
       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     |              0xC3D9           |             0x9858            |
+     |              0xC3D9           |             0x1234            |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
               Figure 4: Example of UDP Experimental option IEs
@@ -446,9 +447,9 @@ Table of Contents
               Boucadair, M. and B. Claise, "Extended TCP Options and
               IPv6 Extension Headers IPFIX Information Elements", Work
               in Progress, Internet-Draft, draft-ietf-opsawg-ipfix-tcpo-
-              v6eh-11, 15 April 2024,
+              v6eh-12, 13 May 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ipfix-tcpo-v6eh-11>.
+              ipfix-tcpo-v6eh-12>.
 
    [I-D.ietf-tsvwg-udp-options-dplpmtud]
               Fairhurst, G. and T. Jones, "Datagram PLPMTUD for UDP
