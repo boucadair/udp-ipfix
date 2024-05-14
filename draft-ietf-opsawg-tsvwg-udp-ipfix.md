@@ -122,7 +122,7 @@ Data Type Semantics:
 :  flags
 
 Additional Information:
-: See the assigned UDP options in the "UDP Option Kind Numbers" registry at [URL_IANA_UDP_OPTIONS].
+: See the "UDP Option Kind Numbers" registry at [URL_IANA_UDP_OPTIONS].
 : See {{!I-D.ietf-tsvwg-udp-options}} for more details about UDP options.
 
 Reference:
@@ -149,7 +149,7 @@ Data Type Semantics:
 :  flags
 
 Additional Information:
-: See the assigned UDP options in the "UDP Option Kind Numbers" registry at [URL_IANA_UDP_OPTIONS].
+: See the "UDP Option Kind Numbers" registry at [URL_IANA_UDP_OPTIONS].
 : See {{!I-D.ietf-tsvwg-udp-options}} for more details about UDP options.
 
 Reference:
