@@ -374,7 +374,7 @@ Table of Contents
      |              0xC3D9           |             0x1234            |
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-              Figure 4: Example of UDP Experimental option IEs
+              Figure 4: Example of UDP Experimental Option IEs
 
 7.  Security Considerations
 
