@@ -264,7 +264,7 @@ udpUnsafeExperimentalOptionExID IE:
 |              0xC3D9           |             0x1234            |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 ~~~~
-{: #ex-sho title="Example of UDP Experimental option IEs" artwork-align="center"}
+{: #ex-sho title="Example of UDP Experimental Option IEs" artwork-align="center"}
 
 # Security Considerations
 
