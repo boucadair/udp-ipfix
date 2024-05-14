@@ -116,7 +116,6 @@ Description:
   udpSafeOptions IE, UDP option Kind 1 corresponds to the next bit, etc. The bit is set to 1 if the corresponding safe UDP option is observed in the Flow. The bit is set to 0 if the option is not observed in the Flow.
 : The first 64 most-significant bits MUST be set to 0. These leading zeroes will be dropped per the reduced-Size encoding.
 
-  
 Abstract Data Type:
 :  unsigned256
 
