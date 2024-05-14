@@ -243,10 +243,10 @@ MSB                                                     LSB
 ~~~~
 {: #ex-udp-shared title="An Example of udpSafeOptions with EXP Option" artwork-align="center"}
 
-Now assume that EOL, APC, EXP, and UEXP options are observed for a Flow. Let us also consider that the observed SAFE Experimental options have ExIDs set to 0x9858 and 0xE2D4, and UNSAFE Experimental options have ExIDs set to 0xC3D9 and 0x9858. As shown in {{ex-sho}}, the following IEs are used to report observed ExIDs:
+Now assume that EOL, APC, EXP, and UEXP options are observed for a Flow. Let us also consider that the observed SAFE Experimental options have ExIDs set to 0x9858 and 0xE2D4, and UNSAFE Experimental options have ExIDs set to 0xC3D9 and 0x1234. As shown in {{ex-sho}}, the following IEs are used to report observed ExIDs:
 
 1. udpSafeExperimentalOptionExID IE set to 0x9858E2D4 to report observed ExIDs of SAFE Experimental options.
-2. udpUnsafeExperimentalOptionExID IE set to 0xC3D99658 to report the ExIDs of the observed UNSAFE Experimental options.
+2. udpUnsafeExperimentalOptionExID IE set to 0xC3D91234 to report the ExIDs of the observed UNSAFE Experimental options.
 
 ~~~~
 udpSafeExperimentalOptionExID IE:
@@ -263,7 +263,7 @@ udpUnsafeExperimentalOptionExID IE:
                      1                   2                   3
  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|              0xC3D9           |             0x9858            |
+|              0xC3D9           |             0x1234            |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 ~~~~
 {: #ex-sho title="Example of UDP Experimental option IEs" artwork-align="center"}
