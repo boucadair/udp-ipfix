@@ -227,7 +227,7 @@ MSB                                                       LSB
 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|   |0|0|0|0|0|1|0|1|
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-+-+-+-+...+-+-+-+-+-+-+-+-+
 ~~~~
-{: #ex-udp title="An Example of udpOptions with EOL and APC Options" artwork-align="center"}
+{: #ex-udp title="An Example of udpSafeOptions with EOL and APC Options" artwork-align="center"}
 
 Let us now consider a UDP Flow in which SAFE Experimental options are observed. If a udpSafeOptions IE is exported for this Flow, then that IE will have the EXP bit set to 1 ({{ex-udp-shared}}). This example does not make any assumption about the presence of other UDP options.
 
