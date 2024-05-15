@@ -155,26 +155,50 @@ Additional Information:
 Reference:
 : This-Document
 
+## udpExID {#udpBasicExID}
+
+Name:
+: udpExID
+
+ElementID:
+:  TBD3
+
+Description:
+: Observed Experiments ID (ExID) in an Experimental option (EXP, Kind=127) or an UNSAFE Experimental option (UEXP, Kind=254).
+
+Abstract Data Type:
+:  unsigned16
+
+Data Type Semantics:
+:  identifier
+
+Additional Information:
+: See the "UDP Experimental Option Experiment Identifiers (UDP ExIDs)" registry at [URL_IANA_UDP_ExIDs].
+: See {{!I-D.ietf-tsvwg-udp-options}} for more details about ExIDs.
+
+Reference:
+: This-Document
+
 ## udpSafeExperimentalOptionExID {#udpExID}
 
 Name:
 :  udpSafeExperimentalOptionExID
 
 ElementID:
-:  TBD3
+:  TBD4
 
 Description:
 : Observed Experiments ID (ExIDs) in the Experimental option (EXP, Kind=127).
-: The information is encoded in a set of 16-bit fields. Each 16-bit field carries the ExID observed in an EXP option.
+: A basicList of udpExID Information Element, with each udpExID Information Element carries the ExID observed in an EXP option.
 
 Abstract Data Type:
-:  octetArray
+:  basicList
 
 Data Type Semantics:
-:  identifier
+:  list
 
 Additional Information:
-: See the assignments in the "UDP Experimental Option Experiment Identifiers (UDP ExIDs)" registry at [URL_IANA_UDP_ExIDs].
+: See the "UDP Experimental Option Experiment Identifiers (UDP ExIDs)" registry at [URL_IANA_UDP_ExIDs].
 : See {{!I-D.ietf-tsvwg-udp-options}} for more details about ExIDs.
 
 Reference:
@@ -186,20 +210,20 @@ Name:
 :  udpUnsafeExperimentalOptionExID
 
 ElementID:
-:  TBD4
+:  TBD5
 
 Description:
 : Observed Experiments ID (ExIDs) in the UNSAFE Experimental option (UEXP, Kind=254).
-: The information is encoded in a set of 16-bit fields. Each 16-bit field carries the ExID observed in an UEXP option.
+: A basicList of udpExID Information Element, with each udpExID Information Element carries the ExID observed in an UEXP option.
 
 Abstract Data Type:
-:  octetArray
+:  basicList
 
 Data Type Semantics:
-:  identifier
+:  list
 
 Additional Information:
-: See the assignments in the "UDP Experimental Option Experiment Identifiers (UDP ExIDs)" registry at [URL_IANA_UDP_ExIDs].
+: See the "UDP Experimental Option Experiment Identifiers (UDP ExIDs)" registry at [URL_IANA_UDP_ExIDs].
 : See {{!I-D.ietf-tsvwg-udp-options}} for more details about ExIDs.
 
 Reference:
@@ -209,11 +233,15 @@ Reference:
 
 The reduced-size encoding specified in {{Section 6.2 of !RFC7011}} is followed whenever fewer octets are needed to report observed safe and unsafe UDP options. For example, if only option Kinds <= 32 are observed, then the value of the udpSafeOptions IE can be encoded as unsigned32, or if only option Kinds <= 63 are observed, then the value of the udpSafeOptions IE can be encoded as unsigned64.
 
-The presence of udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID) is an indication that the SAFE (or UNSAFE) Experimental option is observed in a Flow. The presence of udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID) takes precedence over setting the correspoding bit in the udpSafeOptions (or udpUnsafeOptions) IE for the same Flow. In order to make use of the reduced-size encoding in the presence of udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID) IE, the Exporter SHOULD NOT set to 1 the EXP (or UEXP) flags of the the udpSafeOptions (or udpUnsafeOptions) IE that is reported for the same Flow.
+Given the Kind structure of safe and unsafe UDP options, distinct IEs are defined to report safe and unsafe UDP options rather using one single IE that would multiplex both types of option. The design in the document is compatible with the use of the reduced-size encoding.
+
+The presence of udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID) is an indication that the SAFE (or UNSAFE) Experimental option is observed in a Flow. The presence of udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID) takes precedence over setting the correspoding bit in the udpSafeOptions (or udpUnsafeOptions) IE for the same Flow. In order to make use of the reduced-size encoding in the presence of udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID) IE, the Exporter MUST NOT set to 1 the EXP (or UEXP) flags of the the udpSafeOptions (or udpUnsafeOptions) IE that is reported for the same Flow.
 
 Transport (including MTU) considerations are discussed in {{Section 10 of !RFC7011}}.
 
 # Examples {#sec-ex}
+
+## Reduced-size Encoding
 
 Given UDP Kind allocation in {{Section 10 of !I-D.ietf-tsvwg-udp-options}} and the option mapping defined in {{udpOptions}} of this document, fewer octets are likely to be used for Flows with mandatory UDP options.
 
@@ -229,6 +257,8 @@ MSB                                                       LSB
 ~~~~
 {: #ex-udp title="An Example of udpSafeOptions with EOL and APC Options" artwork-align="center"}
 
+## SAFE Experimental Option
+
 Let us now consider a UDP Flow in which SAFE Experimental options are observed. If a udpSafeOptions IE is exported for this Flow, then that IE will have the EXP bit set to 1 ({{ex-udp-shared}}). This example does not make any assumption about the presence of other UDP options.
 
 ~~~~
@@ -241,30 +271,30 @@ MSB                                                     LSB
 ~~~~
 {: #ex-udp-shared title="An Example of udpSafeOptions with EXP Option" artwork-align="center"}
 
-Now assume that EOL, APC, EXP, and UEXP options are observed in a Flow. Let us also consider that the observed SAFE Experimental options have ExIDs set to 0x9858 and 0xE2D4, and UNSAFE Experimental options have ExIDs set to 0xC3D9 and 0x1234. As shown in {{ex-sho}}, the following IEs are used to report observed ExIDs:
+## ExIDs
 
-1. udpSafeExperimentalOptionExID IE set to 0x9858E2D4 to report observed ExIDs of SAFE Experimental options.
-2. udpUnsafeExperimentalOptionExID IE set to 0xC3D91234 to report the ExIDs of the observed UNSAFE Experimental options.
+Now assume that EOL, APC, EXP, and UEXP options are observed in a Flow. Let us also consider that the observed SAFE Experimental options have ExIDs set to 0x9858 and 0xE2D4, and UNSAFE Experimental options have ExIDs set to 0xC3D9 and 0x1234. {{ex-sho}} shows an excerpt of the Data Set encoding with a focus on SAFE Experimental options have ExIDs. The meaning of the fields is defined in {{!RFC6313}}.
 
 ~~~~
-udpSafeExperimentalOptionExID IE:
-
-MSB                                                          LSB
-                     1                   2                   3
- 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|              0x9858           |             0xE2D4            |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-udpUnsafeExperimentalOptionExID IE:
-
-                     1                   2                   3
- 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|              0xC3D9           |             0x1234            |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |      255      |        List Length = 9        |semantic=allof |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |           udpExID = TBD3      |         Field Length = 2      |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   | SAFE ExID =  0x9858           | SAFE ExID = 0xE2D4            |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |      255      |        List Length = 9        |semantic=allof |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |           udpExID = TBD3      |         Field Length = 2      |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   | UNSAFE ExID =  0xC3D9         | UNSAFE ExID =  0x1234         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 ~~~~
-{: #ex-sho title="Example of UDP Experimental Option IEs" artwork-align="center"}
+{: #ex-sho title="Example of UDP Experimental Option ExID IEs" artwork-align="center"}
+
+Following the guidance in {{sec-ops}}, the reported udpSafeOptions IE will be set to 0x05 even in the presence of EXP options.
 
 # Security Considerations
 
@@ -281,8 +311,9 @@ This document requests IANA to add the following new IEs to the "IPFIX Informati
 |Value|	Name|	Reference|
 |TBD1| udpSafeOptions|{{udpOptions}} of This-Document|
 |TBD2| udpUnsafeOptions|{{udpUnsafeOptions}} of This-Document|
-|TBD3| udpSafeExperimentalOptionExID|{{udpExID}} of This-Document|
-|TBD4| udpUnsafeExperimentalOptionExID|{{udpUExID}} of This-Document|
+|TBD3| udpExID|{{udpBasicExID}} of This-Document|
+|TBD4| udpSafeExperimentalOptionExID|{{udpExID}} of This-Document|
+|TBD5| udpUnsafeExperimentalOptionExID|{{udpUExID}} of This-Document|
 {: title="New IPFIX Information Elements"}
 
 > udpSafeOptions uses the abstract data type ("unsigned192") defined in {{sec-iana-192}}.
@@ -292,11 +323,15 @@ This document requests IANA to add the following new IEs to the "IPFIX Informati
 This document requests IANA to add the following new abstract data type to the "IPFIX Information Element Data Types" registry under the "IP Flow Information Export (IPFIX) Entities" registry group {{IANA-IPFIX}}:
 
 |Value|	Description|	Reference|
-|TBD5| unsigned192|This-Document|
+|TBD6| unsigned192|This-Document|
 {: #iana-new-dt title="New IPFIX Information Element Data Type"}
 
+### unsigned192 Data Type
+
 The type "unsigned192" represents a non-negative integer value in the
-range of '0' to '2^192 - 1'. Similar to {{Section 6.1.1 of !RFC7011}}, this type MUST be encoded using the default canonical format in network byte order. Reduced-Size encoding ({{Section 6.2 of !RFC7011}}) applies to this data type.
+range of '0' to '2^192 - 1'. Similar to {{Section 6.1.1 of !RFC7011}}, this type MUST be encoded using the default canonical format in network byte order.
+
+Reduced-Size encoding ({{Section 6.2 of !RFC7011}}) applies to this data type. The reduction in size can be to any number of octets smaller than the unsigned192 type if the data value still fits, i.e., so that only leading zeroes are dropped.
 
 --- back
 
