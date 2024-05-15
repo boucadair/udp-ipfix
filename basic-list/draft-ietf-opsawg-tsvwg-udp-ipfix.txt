@@ -69,8 +69,8 @@ Table of Contents
      4.1.  udpSafeOptions
      4.2.  udpUnsafeOptions
      4.3.  udpExID
-     4.4.  udpSafeExperimentalOptionExID
-     4.5.  udpUnsafeExperimentalOptionExID
+     4.4.  udpSafeExIDList
+     4.5.  udpUnsafeExIDList
    5.  Operational Considerations
    6.  Examples
      6.1.  Reduced-size Encoding
@@ -262,9 +262,9 @@ Table of Contents
 
    Reference:  This-Document
 
-4.4.  udpSafeExperimentalOptionExID
+4.4.  udpSafeExIDList
 
-   Name:  udpSafeExperimentalOptionExID
+   Name:  udpSafeExIDList
 
    ElementID:  TBD4
 
@@ -285,9 +285,9 @@ Table of Contents
 
    Reference:  This-Document
 
-4.5.  udpUnsafeExperimentalOptionExID
+4.5.  udpUnsafeExIDList
 
-   Name:  udpUnsafeExperimentalOptionExID
+   Name:  udpUnsafeExIDList
 
    ElementID:  TBD5
 
@@ -322,17 +322,15 @@ Table of Contents
    single IE that would multiplex both types of option.  The design in
    the document is compatible with the use of the reduced-size encoding.
 
-   The presence of udpSafeExperimentalOptionExID (or
-   udpUnsafeExperimentalOptionExID) is an indication that the SAFE (or
-   UNSAFE) Experimental option is observed in a Flow.  The presence of
-   udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID)
+   The presence of udpSafeExIDList (or udpUnsafeExIDList) is an
+   indication that the SAFE (or UNSAFE) Experimental option is observed
+   in a Flow.  The presence of udpSafeExIDList (or udpUnsafeExIDList)
    takes precedence over setting the correspoding bit in the
    udpSafeOptions (or udpUnsafeOptions) IE for the same Flow.  In order
    to make use of the reduced-size encoding in the presence of
-   udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID)
-   IE, the Exporter MUST NOT set to 1 the EXP (or UEXP) flags of the the
-   udpSafeOptions (or udpUnsafeOptions) IE that is reported for the same
-   Flow.
+   udpSafeExIDList (or udpUnsafeExIDList) IE, the Exporter MUST NOT set
+   to 1 the EXP (or UEXP) flags of the the udpSafeOptions (or
+   udpUnsafeOptions) IE that is reported for the same Flow.
 
    Transport (including MTU) considerations are discussed in Section 10
    of [RFC7011].
@@ -426,24 +424,19 @@ Table of Contents
    "IPFIX Information Elements" registry under the "IP Flow Information
    Export (IPFIX) Entities" registry group [IANA-IPFIX]:
 
-       +=======+=================================+================+
-       | Value | Name                            | Reference      |
-       +=======+=================================+================+
-       | TBD1  | udpSafeOptions                  | Section 4.1 of |
-       |       |                                 | This-Document  |
-       +-------+---------------------------------+----------------+
-       | TBD2  | udpUnsafeOptions                | Section 4.2 of |
-       |       |                                 | This-Document  |
-       +-------+---------------------------------+----------------+
-       | TBD3  | udpExID                         | Section 4.3 of |
-       |       |                                 | This-Document  |
-       +-------+---------------------------------+----------------+
-       | TBD4  | udpSafeExperimentalOptionExID   | Section 4.4 of |
-       |       |                                 | This-Document  |
-       +-------+---------------------------------+----------------+
-       | TBD5  | udpUnsafeExperimentalOptionExID | Section 4.5 of |
-       |       |                                 | This-Document  |
-       +-------+---------------------------------+----------------+
+       +=======+===================+==============================+
+       | Value | Name              | Reference                    |
+       +=======+===================+==============================+
+       | TBD1  | udpSafeOptions    | Section 4.1 of This-Document |
+       +-------+-------------------+------------------------------+
+       | TBD2  | udpUnsafeOptions  | Section 4.2 of This-Document |
+       +-------+-------------------+------------------------------+
+       | TBD3  | udpExID           | Section 4.3 of This-Document |
+       +-------+-------------------+------------------------------+
+       | TBD4  | udpSafeExIDList   | Section 4.4 of This-Document |
+       +-------+-------------------+------------------------------+
+       | TBD5  | udpUnsafeExIDList | Section 4.5 of This-Document |
+       +-------+-------------------+------------------------------+
 
                  Table 1: New IPFIX Information Elements
 
