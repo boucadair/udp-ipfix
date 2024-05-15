@@ -328,7 +328,7 @@ Table of Contents
    udpSafeOptions (or udpUnsafeOptions) IE for the same Flow.  In order
    to make use of the reduced-size encoding in the presence of
    udpSafeExIDList (or udpUnsafeExIDList) IE, the Exporter MUST NOT set
-   to 1 the EXP (or UEXP) flags of the the udpSafeOptions (or
+   to 1 the EXP (or UEXP) flags of the udpSafeOptions (or
    udpUnsafeOptions) IE that is reported for the same Flow.
 
    Transport (including MTU) considerations are discussed in Section 10
