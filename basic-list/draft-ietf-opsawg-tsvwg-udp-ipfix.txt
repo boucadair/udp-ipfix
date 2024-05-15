@@ -271,7 +271,7 @@ Table of Contents
    Description:  Observed Experiments ID (ExIDs) in the Experimental
       option (EXP, Kind=127).
 
-      A basicList of udpExID Information Element, with each udpExID
+      A basicList of udpExID Information Elements, with each udpExID
       Information Element carries the ExID observed in an EXP option.
 
    Abstract Data Type:  basicList
@@ -294,7 +294,7 @@ Table of Contents
    Description:  Observed Experiments ID (ExIDs) in the UNSAFE
       Experimental option (UEXP, Kind=254).
 
-      A basicList of udpExID Information Element, with each udpExID
+      A basicList of udpExID Information Elements, with each udpExID
       Information Element carries the ExID observed in an UEXP option.
 
    Abstract Data Type:  basicList
