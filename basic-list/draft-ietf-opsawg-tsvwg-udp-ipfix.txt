@@ -75,7 +75,7 @@ Table of Contents
    6.  Examples
      6.1.  Reduced-size Encoding
      6.2.  SAFE Experimental Option
-     6.3.  ExIDs
+     6.3.  ExIDs and Reduced-size Encoding
    7.  Security Considerations
    8.  IANA Considerations
      8.1.  IPFIX Information Elements
@@ -166,11 +166,11 @@ Table of Contents
    [I-D.ietf-tsvwg-udp-options] reserves two options for experiments:
    the Experimental option (EXP, Kind=127) for SAFE options and the
    UNSAFE Experimental option (UEXP, Kind=254).  For both options,
-   Experimental ID (ExIDs) are used to differentiate concurrent use of
-   these options.  Known ExIDs are expected to be registered within
-   IANA.  Section 4.4 specifies a new IPFIX IE to export observed ExIDs
-   in the EXP options.  Also, Section 4.5 specifies a new IPFIX IE to
-   export observed ExIDs in the UEXP options.  Only 16-bit ExIDs are
+   Experiment Identifiers (ExIDs) are used to differentiate concurrent
+   use of these options.  Known ExIDs are expected to be registered
+   within IANA.  Section 4.4 specifies a new IPFIX IE to export observed
+   ExIDs in the EXP options.  Also, Section 4.5 specifies a new IPFIX IE
+   to export observed ExIDs in the UEXP options.  Only 16-bit ExIDs are
    supported in [I-D.ietf-tsvwg-udp-options].
 
    This document does not intend to elaborate operational guidance/
@@ -247,9 +247,8 @@ Table of Contents
 
    ElementID:  TBD3
 
-   Description:  Observed Experiments ID (ExID) in an Experimental
-      option (EXP, Kind=127) or an UNSAFE Experimental option (UEXP,
-      Kind=254).
+   Description:  Observed ExID in an Experimental option (EXP, Kind=127)
+      or an UNSAFE Experimental option (UEXP, Kind=254).
 
    Abstract Data Type:  unsigned16
 
@@ -268,8 +267,8 @@ Table of Contents
 
    ElementID:  TBD4
 
-   Description:  Observed Experiments ID (ExIDs) in the Experimental
-      option (EXP, Kind=127).
+   Description:  Observed ExIDs in the Experimental option (EXP,
+      Kind=127).
 
       A basicList of udpExID Information Elements, with each udpExID
       Information Element carries the ExID observed in an EXP option.
@@ -291,8 +290,8 @@ Table of Contents
 
    ElementID:  TBD5
 
-   Description:  Observed Experiments ID (ExIDs) in the UNSAFE
-      Experimental option (UEXP, Kind=254).
+   Description:  Observed ExIDs in the UNSAFE Experimental option (UEXP,
+      Kind=254).
 
       A basicList of udpExID Information Elements, with each udpExID
       Information Element carries the ExID observed in an UEXP option.
@@ -376,7 +375,7 @@ Table of Contents
 
            Figure 3: An Example of udpSafeOptions with EXP Option
 
-6.3.  ExIDs
+6.3.  ExIDs and Reduced-size Encoding
 
    Now assume that EOL, APC, EXP, and UEXP options are observed in a
    Flow.  Let us also consider that the observed SAFE Experimental

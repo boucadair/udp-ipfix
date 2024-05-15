@@ -1169,7 +1169,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-safe-experimental-option" class="internal xref">SAFE Experimental Option</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3">
-                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="auto internal xref">6.3</a>.  <a href="#name-exids" class="internal xref">ExIDs</a></p>
+                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="auto internal xref">6.3</a>.  <a href="#name-exids-and-reduced-size-enco" class="internal xref">ExIDs and Reduced-size Encoding</a></p>
 </li>
             </ul>
 </li>
@@ -1262,7 +1262,7 @@ As in <span>[<a href="#RFC7011" class="cite xref">RFC7011</a>]</span>, these IPF
 <p id="section-3-4">Options indicated by Kind values in the range 0-191 are called SAFE options. Such options can be silently ignored by legacy receivers because they do not alter the UDP user data (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-tsvwg-udp-options-32#section-11" class="relref">Section 11</a> of [<a href="#I-D.ietf-tsvwg-udp-options" class="cite xref">I-D.ietf-tsvwg-udp-options</a>]</span>). Safe options are exported using the IE defined in <a href="#udpOptions" class="auto internal xref">Section 4.1</a>.<a href="#section-3-4" class="pilcrow">¶</a></p>
 <p id="section-3-5">Options indicated by Kind values in the range 192-255 are called UNSAFE options. Such options are not safe for legacy receivers to ignore because they alter the UDP user data (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-tsvwg-udp-options-32#section-12" class="relref">Section 12</a> of [<a href="#I-D.ietf-tsvwg-udp-options" class="cite xref">I-D.ietf-tsvwg-udp-options</a>]</span>). Unsafe options are exported using the IE defined in <a href="#udpUnsafeOptions" class="auto internal xref">Section 4.2</a>.<a href="#section-3-5" class="pilcrow">¶</a></p>
 <p id="section-3-6">UDP options occur per-packet within a Flow and can be inserted at any time in the Flow.<a href="#section-3-6" class="pilcrow">¶</a></p>
-<p id="section-3-7"><span>[<a href="#I-D.ietf-tsvwg-udp-options" class="cite xref">I-D.ietf-tsvwg-udp-options</a>]</span> reserves two options for experiments: the Experimental option (EXP, Kind=127) for SAFE options and the UNSAFE Experimental option (UEXP, Kind=254). For both options, Experimental ID (ExIDs) are used to differentiate concurrent use of these options. Known ExIDs are expected to be registered within IANA. <a href="#udpExID" class="auto internal xref">Section 4.4</a> specifies a new IPFIX IE to export observed ExIDs in the EXP options. Also, <a href="#udpUExID" class="auto internal xref">Section 4.5</a> specifies a new IPFIX IE to export observed ExIDs in the UEXP options. Only 16-bit ExIDs are supported in <span>[<a href="#I-D.ietf-tsvwg-udp-options" class="cite xref">I-D.ietf-tsvwg-udp-options</a>]</span>.<a href="#section-3-7" class="pilcrow">¶</a></p>
+<p id="section-3-7"><span>[<a href="#I-D.ietf-tsvwg-udp-options" class="cite xref">I-D.ietf-tsvwg-udp-options</a>]</span> reserves two options for experiments: the Experimental option (EXP, Kind=127) for SAFE options and the UNSAFE Experimental option (UEXP, Kind=254). For both options, Experiment Identifiers (ExIDs) are used to differentiate concurrent use of these options. Known ExIDs are expected to be registered within IANA. <a href="#udpExID" class="auto internal xref">Section 4.4</a> specifies a new IPFIX IE to export observed ExIDs in the EXP options. Also, <a href="#udpUExID" class="auto internal xref">Section 4.5</a> specifies a new IPFIX IE to export observed ExIDs in the UEXP options. Only 16-bit ExIDs are supported in <span>[<a href="#I-D.ietf-tsvwg-udp-options" class="cite xref">I-D.ietf-tsvwg-udp-options</a>]</span>.<a href="#section-3-7" class="pilcrow">¶</a></p>
 <p id="section-3-8">This document does not intend to elaborate operational guidance/implications of UDP options. The document focuses exclusively on exporting observed UDP options in datagrams.<a href="#section-3-8" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1406,7 +1406,7 @@ udpUnsafeOptions IE while Kind 255 corresponds to the most-significant bit of th
           <dd class="break"></dd>
 <dt id="section-4.3-1.5">Description:</dt>
           <dd style="margin-left: 1.5em" id="section-4.3-1.6">
-            <p id="section-4.3-1.6.1">Observed Experiments ID (ExID) in an Experimental option (EXP, Kind=127) or an UNSAFE Experimental option (UEXP, Kind=254).<a href="#section-4.3-1.6.1" class="pilcrow">¶</a></p>
+            <p id="section-4.3-1.6.1">Observed ExID in an Experimental option (EXP, Kind=127) or an UNSAFE Experimental option (UEXP, Kind=254).<a href="#section-4.3-1.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.3-1.7">Abstract Data Type:</dt>
@@ -1455,7 +1455,7 @@ udpUnsafeOptions IE while Kind 255 corresponds to the most-significant bit of th
           <dd class="break"></dd>
 <dt id="section-4.4-1.5">Description:</dt>
           <dd style="margin-left: 1.5em" id="section-4.4-1.6">
-            <p id="section-4.4-1.6.1">Observed Experiments ID (ExIDs) in the Experimental option (EXP, Kind=127).<a href="#section-4.4-1.6.1" class="pilcrow">¶</a></p>
+            <p id="section-4.4-1.6.1">Observed ExIDs in the Experimental option (EXP, Kind=127).<a href="#section-4.4-1.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.4-1.7"></dt>
@@ -1509,7 +1509,7 @@ udpUnsafeOptions IE while Kind 255 corresponds to the most-significant bit of th
           <dd class="break"></dd>
 <dt id="section-4.5-1.5">Description:</dt>
           <dd style="margin-left: 1.5em" id="section-4.5-1.6">
-            <p id="section-4.5-1.6.1">Observed Experiments ID (ExIDs) in the UNSAFE Experimental option (UEXP, Kind=254).<a href="#section-4.5-1.6.1" class="pilcrow">¶</a></p>
+            <p id="section-4.5-1.6.1">Observed ExIDs in the UNSAFE Experimental option (UEXP, Kind=254).<a href="#section-4.5-1.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.5-1.7"></dt>
@@ -1612,10 +1612,10 @@ MSB                                                     LSB
 </div>
 </section>
 </div>
-<div id="exids">
+<div id="exids-and-reduced-size-encoding">
 <section id="section-6.3">
-        <h3 id="name-exids">
-<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-exids" class="section-name selfRef">ExIDs</a>
+        <h3 id="name-exids-and-reduced-size-enco">
+<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-exids-and-reduced-size-enco" class="section-name selfRef">ExIDs and Reduced-size Encoding</a>
         </h3>
 <p id="section-6.3-1">Now assume that EOL, APC, EXP, and UEXP options are observed in a Flow. Let us also consider that the observed SAFE Experimental options have ExIDs set to 0x9858 and 0xE2D4, and UNSAFE Experimental options have ExIDs set to 0xC3D9 and 0x1234. <a href="#ex-sho" class="auto internal xref">Figure 4</a> shows an excerpt of the Data Set encoding with a focus on SAFE Experimental options have ExIDs. The meaning of the fields is defined in <span>[<a href="#RFC6313" class="cite xref">RFC6313</a>]</span>.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
 <span id="name-example-of-udp-experimental"></span><div id="ex-sho">
