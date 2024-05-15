@@ -235,7 +235,7 @@ The reduced-size encoding specified in {{Section 6.2 of !RFC7011}} is followed w
 
 Given the Kind structure of safe and unsafe UDP options, distinct IEs are defined to report safe and unsafe UDP options rather using one single IE that would multiplex both types of option. The design in the document is compatible with the use of the reduced-size encoding.
 
-The presence of udpSafeExIDList (or udpUnsafeExIDList) is an indication that the SAFE (or UNSAFE) Experimental option is observed in a Flow. The presence of udpSafeExIDList (or udpUnsafeExIDList) takes precedence over setting the correspoding bit in the udpSafeOptions (or udpUnsafeOptions) IE for the same Flow. In order to make use of the reduced-size encoding in the presence of udpSafeExIDList (or udpUnsafeExIDList) IE, the Exporter MUST NOT set to 1 the EXP (or UEXP) flags of the the udpSafeOptions (or udpUnsafeOptions) IE that is reported for the same Flow.
+The presence of udpSafeExIDList (or udpUnsafeExIDList) is an indication that the SAFE (or UNSAFE) Experimental option is observed in a Flow. The presence of udpSafeExIDList (or udpUnsafeExIDList) takes precedence over setting the correspoding bit in the udpSafeOptions (or udpUnsafeOptions) IE for the same Flow. In order to make use of the reduced-size encoding in the presence of udpSafeExIDList (or udpUnsafeExIDList) IE, the Exporter MUST NOT set to 1 the EXP (or UEXP) flags of the udpSafeOptions (or udpUnsafeOptions) IE that is reported for the same Flow.
 
 Transport (including MTU) considerations are discussed in {{Section 10 of !RFC7011}}.
 
