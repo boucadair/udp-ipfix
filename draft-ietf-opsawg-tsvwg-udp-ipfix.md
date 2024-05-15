@@ -179,10 +179,10 @@ Additional Information:
 Reference:
 : This-Document
 
-## udpSafeExperimentalOptionExID {#udpExID}
+## udpSafeExIDList {#udpExID}
 
 Name:
-:  udpSafeExperimentalOptionExID
+:  udpSafeExIDList
 
 ElementID:
 :  TBD4
@@ -204,10 +204,10 @@ Additional Information:
 Reference:
 : This-Document
 
-## udpUnsafeExperimentalOptionExID {#udpUExID}
+## udpUnsafeExIDList {#udpUExID}
 
 Name:
-:  udpUnsafeExperimentalOptionExID
+:  udpUnsafeExIDList
 
 ElementID:
 :  TBD5
@@ -235,7 +235,7 @@ The reduced-size encoding specified in {{Section 6.2 of !RFC7011}} is followed w
 
 Given the Kind structure of safe and unsafe UDP options, distinct IEs are defined to report safe and unsafe UDP options rather using one single IE that would multiplex both types of option. The design in the document is compatible with the use of the reduced-size encoding.
 
-The presence of udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID) is an indication that the SAFE (or UNSAFE) Experimental option is observed in a Flow. The presence of udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID) takes precedence over setting the correspoding bit in the udpSafeOptions (or udpUnsafeOptions) IE for the same Flow. In order to make use of the reduced-size encoding in the presence of udpSafeExperimentalOptionExID (or udpUnsafeExperimentalOptionExID) IE, the Exporter MUST NOT set to 1 the EXP (or UEXP) flags of the the udpSafeOptions (or udpUnsafeOptions) IE that is reported for the same Flow.
+The presence of udpSafeExIDList (or udpUnsafeExIDList) is an indication that the SAFE (or UNSAFE) Experimental option is observed in a Flow. The presence of udpSafeExIDList (or udpUnsafeExIDList) takes precedence over setting the correspoding bit in the udpSafeOptions (or udpUnsafeOptions) IE for the same Flow. In order to make use of the reduced-size encoding in the presence of udpSafeExIDList (or udpUnsafeExIDList) IE, the Exporter MUST NOT set to 1 the EXP (or UEXP) flags of the the udpSafeOptions (or udpUnsafeOptions) IE that is reported for the same Flow.
 
 Transport (including MTU) considerations are discussed in {{Section 10 of !RFC7011}}.
 
@@ -312,8 +312,8 @@ This document requests IANA to add the following new IEs to the "IPFIX Informati
 |TBD1| udpSafeOptions|{{udpOptions}} of This-Document|
 |TBD2| udpUnsafeOptions|{{udpUnsafeOptions}} of This-Document|
 |TBD3| udpExID|{{udpBasicExID}} of This-Document|
-|TBD4| udpSafeExperimentalOptionExID|{{udpExID}} of This-Document|
-|TBD5| udpUnsafeExperimentalOptionExID|{{udpUExID}} of This-Document|
+|TBD4| udpSafeExIDList|{{udpExID}} of This-Document|
+|TBD5| udpUnsafeExIDList|{{udpUExID}} of This-Document|
 {: title="New IPFIX Information Elements"}
 
 > udpSafeOptions uses the abstract data type ("unsigned192") defined in {{sec-iana-192}}.
