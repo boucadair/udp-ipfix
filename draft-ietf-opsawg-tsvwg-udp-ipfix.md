@@ -93,7 +93,7 @@ Options indicated by Kind values in the range 192-255 are called UNSAFE options.
 
 UDP options occur per-packet within a Flow and can be inserted at any time in the Flow.
 
-{{!I-D.ietf-tsvwg-udp-options}} reserves two options for experiments: the Experimental option (EXP, Kind=127) for SAFE options and the UNSAFE Experimental option (UEXP, Kind=254). For both options, Experimental ID (ExIDs) are used to differentiate concurrent use of these options. Known ExIDs are expected to be registered within IANA. {{udpExID}} specifies a new IPFIX IE to export observed ExIDs in the EXP options. Also, {{udpUExID}} specifies a new IPFIX IE to export observed ExIDs in the UEXP options. Only 16-bit ExIDs are supported in {{!I-D.ietf-tsvwg-udp-options}}.
+{{!I-D.ietf-tsvwg-udp-options}} reserves two options for experiments: the Experimental option (EXP, Kind=127) for SAFE options and the UNSAFE Experimental option (UEXP, Kind=254). For both options, Experiment Identifiers (ExIDs) are used to differentiate concurrent use of these options. Known ExIDs are expected to be registered within IANA. {{udpExID}} specifies a new IPFIX IE to export observed ExIDs in the EXP options. Also, {{udpUExID}} specifies a new IPFIX IE to export observed ExIDs in the UEXP options. Only 16-bit ExIDs are supported in {{!I-D.ietf-tsvwg-udp-options}}.
 
 This document does not intend to elaborate operational guidance/implications of UDP options. The document focuses exclusively on exporting observed UDP options in datagrams.
 
@@ -164,7 +164,7 @@ ElementID:
 :  TBD3
 
 Description:
-: Observed Experiments ID (ExID) in an Experimental option (EXP, Kind=127) or an UNSAFE Experimental option (UEXP, Kind=254).
+: Observed ExID in an Experimental option (EXP, Kind=127) or an UNSAFE Experimental option (UEXP, Kind=254).
 
 Abstract Data Type:
 :  unsigned16
@@ -188,7 +188,7 @@ ElementID:
 :  TBD4
 
 Description:
-: Observed Experiments ID (ExIDs) in the Experimental option (EXP, Kind=127).
+: Observed ExIDs in the Experimental option (EXP, Kind=127).
 : A basicList of udpExID Information Elements, with each udpExID Information Element carries the ExID observed in an EXP option.
 
 Abstract Data Type:
@@ -213,7 +213,7 @@ ElementID:
 :  TBD5
 
 Description:
-: Observed Experiments ID (ExIDs) in the UNSAFE Experimental option (UEXP, Kind=254).
+: Observed ExIDs in the UNSAFE Experimental option (UEXP, Kind=254).
 : A basicList of udpExID Information Elements, with each udpExID Information Element carries the ExID observed in an UEXP option.
 
 Abstract Data Type:
@@ -271,7 +271,7 @@ MSB                                                     LSB
 ~~~~
 {: #ex-udp-shared title="An Example of udpSafeOptions with EXP Option" artwork-align="center"}
 
-## ExIDs
+## ExIDs and Reduced-size Encoding
 
 Now assume that EOL, APC, EXP, and UEXP options are observed in a Flow. Let us also consider that the observed SAFE Experimental options have ExIDs set to 0x9858 and 0xE2D4, and UNSAFE Experimental options have ExIDs set to 0xC3D9 and 0x1234. {{ex-sho}} shows an excerpt of the Data Set encoding with a focus on SAFE Experimental options have ExIDs. The meaning of the fields is defined in {{!RFC6313}}.
 
