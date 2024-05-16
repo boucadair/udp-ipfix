@@ -119,7 +119,7 @@ Description:
   option Kind 0 corresponds to the least-significant bit in the
   udpSafeOptions IE while Kind 191 corresponds to the most-significant bit of the IE. The bit is set to 1 if the corresponding safe UDP option is observed in the Flow. The bit is set to 0 if the option is not observed in the Flow.
 : The reduced-size encoding specified in {{Section 6.2 of !RFC7011}} is followed whenever fewer octets are needed to report observed safe UDP options. For example, if only option Kinds <= 32 are observed, then the value of the udpSafeOptions IE can be encoded as unsigned32, or if only option Kinds <= 63 are observed, then the value of the udpSafeOptions IE can be encoded as unsigned64.
-: The presence of udpSafeExIDList is an indication that the SAFE Experimental option is observed in a Flow. The presence of udpSafeExIDList takes precedence over setting the correspoding bit in the udpSafeOptions IE for the same Flow. In order to make use of the reduced-size encoding in the presence of udpSafeExIDList IE, the Exporter MUST NOT set to 1 the EXP flag of the udpSafeOptions IE that is reported for the same Flow.
+: The presence of udpSafeExIDList is an indication that the SAFE Experimental option is observed in a Flow. The presence of udpSafeExIDList takes precedence over setting the corresponding bit in the udpSafeOptions IE for the same Flow. In order to make use of the reduced-size encoding in the presence of udpSafeExIDList IE, the Exporter MUST NOT set to 1 the EXP flag of the udpSafeOptions IE that is reported for the same Flow.
 
 Abstract Data Type:
 :  unsigned192
@@ -197,7 +197,7 @@ ElementID:
 
 Description:
 : Observed ExIDs in the Experimental option (EXP, Kind=127).
-: A basicList of udpExID Information Elements, with each udpExID Information Element carries the ExID observed in an EXP option.
+: A basicList of udpExID Information Elements in which each udpExID Information Element carries the ExID observed in an EXP option.
 
 Abstract Data Type:
 :  basicList
@@ -222,7 +222,7 @@ ElementID:
 
 Description:
 : Observed ExIDs in the UNSAFE Experimental option (UEXP, Kind=254).
-: A basicList of udpExID Information Elements, with each udpExID Information Element carries the ExID observed in an UEXP option.
+: A basicList of udpExID Information Elements in which each udpExID Information Element carries the ExID observed in an UEXP option.
 
 Abstract Data Type:
 :  basicList
