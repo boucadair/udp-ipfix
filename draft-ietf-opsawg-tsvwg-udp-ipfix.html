@@ -1274,7 +1274,7 @@ As in <span>[<a href="#RFC7011" class="cite xref">RFC7011</a>]</span>, these IPF
           <p id="section-4-1.1.1">RFC Editor Note: Please update "URL_IANA_UDP_OPTIONS" reference with the URL of the "UDP Option Kind Numbers" registry group and "URL_IANA_UDP_ExIDs" with the URL of the "UDP Experimental Option Experiment Identifiers (UDP ExIDs)" registry that will be created by IANA as per <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-tsvwg-udp-options-32#section-25" class="relref">Section 25</a> of [<a href="#I-D.ietf-tsvwg-udp-options" class="cite xref">I-D.ietf-tsvwg-udp-options</a>]</span>.<a href="#section-4-1.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-4-2">Given the Kind structure of safe and unsafe UDP options, distinct IEs are defined to report safe (<a href="#udpOptions" class="auto internal xref">Section 4.1</a>) and unsafe (<a href="#udpUnsafeOptions" class="auto internal xref">Section 4.2</a>) UDP options rather using one single IE that would multiplex both types of option. The design in the document is compatible with the use of the reduced-size encoding (<span><a href="https://rfc-editor.org/rfc/rfc7011#section-6.2" class="relref">Section 6.2</a> of [<a href="#RFC7011" class="cite xref">RFC7011</a>]</span>).<a href="#section-4-2" class="pilcrow">¶</a></p>
+<p id="section-4-2">Given the Kind structure of safe and unsafe UDP options, distinct IEs are defined to report safe (<a href="#udpOptions" class="auto internal xref">Section 4.1</a>) and unsafe (<a href="#udpUnsafeOptions" class="auto internal xref">Section 4.2</a>) UDP options rather using one single IE that would multiplex both types of option. This design uses less bits to report observed UDP options in the presence of both safe and unsafe options.<a href="#section-4-2" class="pilcrow">¶</a></p>
 <div id="udpOptions">
 <section id="section-4.1">
         <h3 id="name-udpsafeoptions">
@@ -1305,7 +1305,7 @@ udpSafeOptions IE while Kind 191 corresponds to the most-significant bit of the 
           <dd class="break"></dd>
 <dt id="section-4.1-1.9"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-1.10">
-            <p id="section-4.1-1.10.1">The reduced-size encoding specified in <span><a href="https://rfc-editor.org/rfc/rfc7011#section-6.2" class="relref">Section 6.2</a> of [<a href="#RFC7011" class="cite xref">RFC7011</a>]</span> is followed whenever fewer octets are needed to report observed safe UDP options. For example, if only option Kinds &lt;= 32 are observed, then the value of the udpSafeOptions IE can be encoded as unsigned32, or if only option Kinds &lt;= 63 are observed, then the value of the udpSafeOptions IE can be encoded as unsigned64.<a href="#section-4.1-1.10.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-1.10.1">The reduced-size encoding per <span><a href="https://rfc-editor.org/rfc/rfc7011#section-6.2" class="relref">Section 6.2</a> of [<a href="#RFC7011" class="cite xref">RFC7011</a>]</span> is followed whenever fewer octets are needed to report observed safe UDP options. For example, if only option Kinds &lt;= 32 are observed, then the value of the udpSafeOptions IE can be encoded as unsigned32, or if only option Kinds &lt;= 63 are observed, then the value of the udpSafeOptions IE can be encoded as unsigned64.<a href="#section-4.1-1.10.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-1.11"></dt>
@@ -1371,12 +1371,12 @@ udpUnsafeOptions IE while Kind 255 corresponds to the most-significant bit of th
           <dd class="break"></dd>
 <dt id="section-4.2-1.9"></dt>
           <dd style="margin-left: 1.5em" id="section-4.2-1.10">
-            <p id="section-4.2-1.10.1">The reduced-size encoding specified in <span><a href="https://rfc-editor.org/rfc/rfc7011#section-6.2" class="relref">Section 6.2</a> of [<a href="#RFC7011" class="cite xref">RFC7011</a>]</span> is followed whenever fewer octets are needed to report observed unsafe UDP options.<a href="#section-4.2-1.10.1" class="pilcrow">¶</a></p>
+            <p id="section-4.2-1.10.1">The reduced-size encoding per <span><a href="https://rfc-editor.org/rfc/rfc7011#section-6.2" class="relref">Section 6.2</a> of [<a href="#RFC7011" class="cite xref">RFC7011</a>]</span> is followed whenever fewer octets are needed to report observed unsafe UDP options.<a href="#section-4.2-1.10.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.2-1.11"></dt>
           <dd style="margin-left: 1.5em" id="section-4.2-1.12">
-            <p id="section-4.2-1.12.1">The presence of udpUnsafeExIDList is an indication that the UNSAFE Experimental option is observed in a Flow. The presence of udpUnsafeExIDList takes precedence over setting the correspoding bit in the udpUnsafeOptions IE for the same Flow. In order to make use of the reduced-size encoding in the presence of udpUnsafeExIDList IE, the Exporter MUST NOT set to 1 the UEXP flag of the udpUnsafeOptions IE that is reported for the same Flow.<a href="#section-4.2-1.12.1" class="pilcrow">¶</a></p>
+            <p id="section-4.2-1.12.1">The presence of udpUnsafeExIDList is an indication that the UNSAFE Experimental option is observed in a Flow. The presence of udpUnsafeExIDList takes precedence over setting the corresponding bit in the udpUnsafeOptions IE for the same Flow. In order to make use of the reduced-size encoding in the presence of udpUnsafeExIDList IE, the Exporter MUST NOT set to 1 the UEXP flag of the udpUnsafeOptions IE that is reported for the same Flow.<a href="#section-4.2-1.12.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.2-1.13">Abstract Data Type:</dt>
