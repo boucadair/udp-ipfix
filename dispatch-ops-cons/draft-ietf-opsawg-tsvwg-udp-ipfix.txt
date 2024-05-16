@@ -5,8 +5,8 @@
 OPSAWG                                                      M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              T. Reddy.K
-Expires: 16 November 2024                                          Nokia
-                                                             15 May 2024
+Expires: 17 November 2024                                          Nokia
+                                                             16 May 2024
 
 
 Export of UDP Options Information in IP Flow Information Export (IPFIX)
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 November 2024.
+   This Internet-Draft will expire on 17 November 2024.
 
 Copyright Notice
 
@@ -218,11 +218,11 @@ Table of Contents
 
       The presence of udpSafeExIDList is an indication that the SAFE
       Experimental option is observed in a Flow.  The presence of
-      udpSafeExIDList takes precedence over setting the correspoding bit
-      in the udpSafeOptions IE for the same Flow.  In order to make use
-      of the reduced-size encoding in the presence of udpSafeExIDList
-      IE, the Exporter MUST NOT set to 1 the EXP flag of the
-      udpSafeOptions IE that is reported for the same Flow.
+      udpSafeExIDList takes precedence over setting the corresponding
+      bit in the udpSafeOptions IE for the same Flow.  In order to make
+      use of the reduced-size encoding in the presence of
+      udpSafeExIDList IE, the Exporter MUST NOT set to 1 the EXP flag of
+      the udpSafeOptions IE that is reported for the same Flow.
 
    Abstract Data Type:  unsigned192
 
@@ -305,7 +305,7 @@ Table of Contents
    Description:  Observed ExIDs in the Experimental option (EXP,
       Kind=127).
 
-      A basicList of udpExID Information Elements, with each udpExID
+      A basicList of udpExID Information Elements in which each udpExID
       Information Element carries the ExID observed in an EXP option.
 
    Abstract Data Type:  basicList
@@ -328,7 +328,7 @@ Table of Contents
    Description:  Observed ExIDs in the UNSAFE Experimental option (UEXP,
       Kind=254).
 
-      A basicList of udpExID Information Elements, with each udpExID
+      A basicList of udpExID Information Elements in which each udpExID
       Information Element carries the ExID observed in an UEXP option.
 
    Abstract Data Type:  basicList
