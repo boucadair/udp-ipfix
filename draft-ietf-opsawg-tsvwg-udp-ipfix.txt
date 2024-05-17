@@ -5,8 +5,8 @@
 OPSAWG                                                      M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              T. Reddy.K
-Expires: 17 November 2024                                          Nokia
-                                                             16 May 2024
+Expires: 18 November 2024                                          Nokia
+                                                             17 May 2024
 
 
 Export of UDP Options Information in IP Flow Information Export (IPFIX)
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 November 2024.
+   This Internet-Draft will expire on 18 November 2024.
 
 Copyright Notice
 
@@ -187,11 +187,12 @@ Table of Contents
       Experiment Identifiers (UDP ExIDs)" registry that will be created
       by IANA as per Section 25 of [I-D.ietf-tsvwg-udp-options].
 
-   Given the Kind structure of safe and unsafe UDP options, distinct IEs
-   are defined to report safe (Section 4.1) and unsafe (Section 4.2) UDP
-   options rather using one single IE that would multiplex both types of
-   option.  This design uses less bits to report observed UDP options in
-   the presence of both safe and unsafe options.
+   Given the Kind structure of safe and unsafe UDP options, using one
+   single IE that would multiplex both types of option will limit the
+   benefits of reduced-size encoding in the presence of unsafe options.
+   In order to use less bits to report observed UDP options, distinct
+   IEs are thus defined to report safe (Section 4.1) and unsafe
+   (Section 4.2) UDP options.
 
 4.1.  udpSafeOptions
 
@@ -219,8 +220,8 @@ Table of Contents
       The presence of udpSafeExIDList is an indication that the SAFE
       Experimental option is observed in a Flow.  The presence of
       udpSafeExIDList takes precedence over setting the corresponding
-      bit in the udpSafeOptions IE for the same Flow.  In order to make
-      use of the reduced-size encoding in the presence of
+      bit in the udpSafeOptions IE for the same Flow.  In order to
+      optimize the use of the reduced-size encoding in the presence of
       udpSafeExIDList IE, the Exporter MUST NOT set to 1 the EXP flag of
       the udpSafeOptions IE that is reported for the same Flow.
 
@@ -260,7 +261,7 @@ Table of Contents
       Experimental option is observed in a Flow.  The presence of
       udpUnsafeExIDList takes precedence over setting the corresponding
       bit in the udpUnsafeOptions IE for the same Flow.  In order to
-      make use of the reduced-size encoding in the presence of
+      optimize the use of the reduced-size encoding in the presence of
       udpUnsafeExIDList IE, the Exporter MUST NOT set to 1 the UEXP flag
       of the udpUnsafeOptions IE that is reported for the same Flow.
 
@@ -372,7 +373,8 @@ Table of Contents
    Let us now consider a UDP Flow in which SAFE Experimental options are
    observed.  If a udpSafeOptions IE is exported for this Flow, then
    that IE will have the EXP bit set to 1 (Figure 3).  This example does
-   not make any assumption about the presence of other UDP options.
+   not make any assumption about the presence of other UDP options ("X"
+   can be set to 0 or 1).
 
         MSB                                                     LSB
                           12                                  19
