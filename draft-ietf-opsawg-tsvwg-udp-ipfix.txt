@@ -347,17 +347,16 @@ Table of Contents
 
 5.1.  Reduced-size Encoding
 
-   Given UDP Kind allocation in Section 10 of
+   Given the UDP Kind allocation in Section 10 of
    [I-D.ietf-tsvwg-udp-options] and the option mapping defined in
    Section 4.1 of this document, fewer octets are likely to be used for
    Flows with mandatory UDP options.
 
-   Figure 2 shows an example of reported values in a udpSafeOptions IE
-   for a Flow in which End of Options List (EOL, Kind=0) and Alternate
-   payload checksum (APC, Kind=2) options are observed.  One octet is
-   sufficient to report these observed options because the leading zeros
-   are dropped per the reduced-size encoding guidance.  Concretely, the
-   reported udpSafeOptions IE will be set to 0x05.
+   Figure 2 shows an example of the Kind/bit mappings in the
+   udpSafeOptions IE for a Flow in which End of Options List (EOL,
+   Kind=0) and Alternate payload checksum (APC, Kind=2) options are
+   observed.  Only the bits that corresponds to EOL and APC options are
+   set to 1.
 
        MSB                                                       LSB
                             1                                  19
@@ -366,13 +365,27 @@ Table of Contents
        |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|   |0|0|0|0|0|1|0|1|
        +-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-+-+-+-+...+-+-+-+-+-+-+-+-+
 
-      Figure 2: An Example of udpSafeOptions with EOL and APC Options
+     Figure 2: An Example of udpSafeOptions IE with EOL and APC Options
+
+   One octet is sufficient to report these observed options because the
+   leading zeros are dropped per the reduced-size encoding guidance.
+   Concretely, the reported udpSafeOptions IE will be set to 0x05
+   (Figure 3).
+
+                             MSB           LSB
+                              0 1 2 3 4 5 6 7
+                             +-+-+-+-+-+-+-+-+
+                             |0|0|0|0|0|1|0|1|
+                             +-+-+-+-+-+-+-+-+
+
+     Figure 3: An Example of the Wire udpSafeOptions IE Value with EOL
+                              and APC Options
 
 5.2.  SAFE Experimental Option
 
    Let us now consider a UDP Flow in which SAFE Experimental options are
    observed.  If a udpSafeOptions IE is exported for this Flow, then
-   that IE will have the EXP bit set to 1 (Figure 3).  This example does
+   that IE will have the EXP bit set to 1 (Figure 4).  This example does
    not make any assumption about the presence of other UDP options ("X"
    can be set to 0 or 1).
 
@@ -383,14 +396,14 @@ Table of Contents
         |X|X|X|X|   |X|X|X|X|X|X|X|X|X|X|X|1|X|X|   |X|X|X|X|X|X|X|
         +-+-+-+-+...+-+-+-+-+-+-+-+-++-++-+-+-+-+...+-+-+-+-+-+-+-+
 
-           Figure 3: An Example of udpSafeOptions with EXP Option
+           Figure 4: An Example of udpSafeOptions with EXP Option
 
 5.3.  ExIDs and Reduced-size Encoding
 
    Now assume that EOL, APC, EXP, and UEXP options are observed in a
    Flow.  Let us also consider that the observed SAFE Experimental
    options have ExIDs set to 0x9858 and 0xE2D4, and UNSAFE Experimental
-   options have ExIDs set to 0xC3D9 and 0x1234.  Figure 4 shows an
+   options have ExIDs set to 0xC3D9 and 0x1234.  Figure 5 shows an
    excerpt of the Data Set encoding with a focus on SAFE Experimental
    options have ExIDs.  The meaning of the fields is defined in
    [RFC6313].
@@ -414,7 +427,7 @@ Table of Contents
      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
      :                           ...                                 :
 
-           Figure 4: Example of UDP Experimental Option ExID IEs
+           Figure 5: Example of UDP Experimental Option ExID IEs
 
    Following the guidance in Section 4.1, the reported udpSafeOptions IE
    will be set to 0x05 even in the presence of EXP options.
