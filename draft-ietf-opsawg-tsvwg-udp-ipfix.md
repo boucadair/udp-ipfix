@@ -241,9 +241,9 @@ Reference:
 
 ## Reduced-size Encoding
 
-Given UDP Kind allocation in {{Section 10 of !I-D.ietf-tsvwg-udp-options}} and the option mapping defined in {{udpOptions}} of this document, fewer octets are likely to be used for Flows with mandatory UDP options.
+Given the UDP Kind allocation in {{Section 10 of !I-D.ietf-tsvwg-udp-options}} and the option mapping defined in {{udpOptions}} of this document, fewer octets are likely to be used for Flows with mandatory UDP options.
 
-{{ex-udp}} shows an example of reported values in a udpSafeOptions IE for a Flow in which End of Options List (EOL, Kind=0) and Alternate payload checksum (APC, Kind=2) options are observed. One octet is sufficient to report these observed options because the leading zeros are dropped per the reduced-size encoding guidance. Concretely, the reported udpSafeOptions IE will be set to 0x05.
+{{ex-udp}} shows an example of the Kind/bit mappings in the udpSafeOptions IE for a Flow in which End of Options List (EOL, Kind=0) and Alternate payload checksum (APC, Kind=2) options are observed. Only the bits that corresponds to EOL and APC options are set to 1.
 
 ~~~~
 MSB                                                       LSB
@@ -253,7 +253,18 @@ MSB                                                       LSB
 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|   |0|0|0|0|0|1|0|1|
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-+-+-+-+...+-+-+-+-+-+-+-+-+
 ~~~~
-{: #ex-udp title="An Example of udpSafeOptions with EOL and APC Options" artwork-align="center"}
+{: #ex-udp title="An Example of udpSafeOptions IE with EOL and APC Options" artwork-align="center"}
+
+One octet is sufficient to report these observed options because the leading zeros are dropped per the reduced-size encoding guidance. Concretely, the reported udpSafeOptions IE will be set to 0x05 ({{ex-udp-wire}}).
+
+~~~~
+MSB           LSB
+ 0 1 2 3 4 5 6 7
++-+-+-+-+-+-+-+-+
+|0|0|0|0|0|1|0|1|
++-+-+-+-+-+-+-+-+
+~~~~
+{: #ex-udp-wire title="An Example of the Wire udpSafeOptions IE Value with EOL and APC Options" artwork-align="center"}
 
 ## SAFE Experimental Option
 
