@@ -66,7 +66,7 @@ Examples to illustrate the use of the new IPFIX Information Elements are provide
 # Conventions and Definitions
 
 This document uses the IPFIX-specific terminology (e.g., Flow) defined in {{Section 2 of !RFC7011}}.
-As in {{!RFC7011}}, these IPFIX-specific terms have the first letter of a word capitalized.
+As in the base IPFIX specification {{!RFC7011}}, these IPFIX-specific terms have the first letter of a word capitalized.
 
 The document adheres to the naming conventions for Information Elements per {{Section 2.3 of !RFC7012}}.
 
@@ -74,7 +74,7 @@ Also, this document uses the terms defined in {{Section 3 of !I-D.ietf-tsvwg-udp
 
 # UDP Options at a Glance {#uo}
 
-UDP {{!RFC0768}} does not support an extension mechanism similar to the options supported by other transport protocols, such as TCP {{?RFC9293}}, SCTP {{?RFC9260}}, or DCCP {{?RFC4340}}. Such a mechanism can be useful for various applications, e.g., to discover a path MTU or share timestamps. To fill that void, {{!I-D.ietf-tsvwg-udp-options}} extends UDP with a mechanism to insert extensions in datagrams. To do so, and unlike the conventional approach that relies upon transport headers, {{!I-D.ietf-tsvwg-udp-options}} uses trailers. Concretely, UDP options are placed in the surplus area (that is, the area of an IP payload that follows a UDP packet). See {{spa}}. An example of the use of UDP options is described in {{?I-D.ietf-tsvwg-udp-options-dplpmtud}}.
+UDP {{!RFC0768}} does not support an extension mechanism similar to the options supported by other transport protocols, such as TCP {{?RFC9293}}, SCTP {{?RFC9260}}, or DCCP {{?RFC4340}}. Such a mechanism can be useful for various applications, e.g., to discover a path MTU or share timestamps. To fill that void, {{!I-D.ietf-tsvwg-udp-options}} extends UDP with a mechanism to insert extensions in datagrams. To do so, and unlike the conventional approach that relies upon transport headers, {{!I-D.ietf-tsvwg-udp-options}} uses trailers. Concretely, UDP options are placed in the surplus area (that is, the area of an IP payload that follows a UDP packet). See {{spa}}. An example of the use of UDP options for Datagram Packetization Layer Path Maximum Transmission Unit Discovery (DPLPMTUD) is described in {{?I-D.ietf-tsvwg-udp-options-dplpmtud}}.
 
 ~~~~
                        IP transport payload
