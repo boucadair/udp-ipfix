@@ -118,7 +118,7 @@ Description:
 : Options are mapped to bits according to their option numbers. UDP
   option Kind 0 corresponds to the least-significant bit in the
   udpSafeOptions IE while Kind 191 corresponds to the most-significant bit of the IE. The bit is set to 1 if the corresponding safe UDP option is observed in the Flow. The bit is set to 0 if the option is not observed in the Flow.
-: The reduced-size encoding per {{Section 6.2 of !RFC7011}} is followed whenever fewer octets are needed to report observed safe UDP options. For example, if only option Kinds <= 32 are observed, then the value of the udpSafeOptions IE can be encoded as unsigned32, or if only option Kinds <= 63 are observed, then the value of the udpSafeOptions IE can be encoded as unsigned64.
+: The reduced-size encoding per {{Section 6.2 of !RFC7011}} is followed whenever fewer octets are needed to report observed safe UDP options. For example, if only option Kinds <= 31 are observed, then the value of the udpSafeOptions IE can be encoded as unsigned32, or if only option Kinds <= 63 are observed, then the value of the udpSafeOptions IE can be encoded as unsigned64.
 : The presence of udpSafeExIDList is an indication that the SAFE Experimental option is observed in a Flow. The presence of udpSafeExIDList takes precedence over setting the corresponding bit in the udpSafeOptions IE for the same Flow. In order to optimize the use of the reduced-size encoding in the presence of udpSafeExIDList IE, the Exporter MUST NOT set to 1 the EXP flag of the udpSafeOptions IE that is reported for the same Flow.
 
 Abstract Data Type:
@@ -352,7 +352,7 @@ Reduced-Size encoding ({{Section 6.2 of !RFC7011}}) applies to this data type. T
 
 Thanks to Benoît Claise for the discussion on the ordering of IPFIX IEs. Thanks to Paul Aitken for the review and comments.
 
-Thanks to Tommy Pauly for the tsvart review, Joe Touch for the intdir review, Robert Sparks for the genart review, and Watson Ladd for the secdir review.
+Thanks to Tommy Pauly for the tsvart review, Joe Touch for the intdir review, Robert Sparks for the genart review, Watson Ladd for the secdir review, and Jouni Korhonen for the opsdir review.
 
 Thanks to Thomas Graf for the Shepherd review.
 
