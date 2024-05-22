@@ -5,8 +5,8 @@
 OPSAWG                                                      M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              T. Reddy.K
-Expires: 18 November 2024                                          Nokia
-                                                             17 May 2024
+Expires: 23 November 2024                                          Nokia
+                                                             22 May 2024
 
 
 Export of UDP Options Information in IP Flow Information Export (IPFIX)
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 November 2024.
+   This Internet-Draft will expire on 23 November 2024.
 
 Copyright Notice
 
@@ -212,7 +212,7 @@ Table of Contents
 
       The reduced-size encoding per Section 6.2 of [RFC7011] is followed
       whenever fewer octets are needed to report observed safe UDP
-      options.  For example, if only option Kinds <= 32 are observed,
+      options.  For example, if only option Kinds <= 31 are observed,
       then the value of the udpSafeOptions IE can be encoded as
       unsigned32, or if only option Kinds <= 63 are observed, then the
       value of the udpSafeOptions IE can be encoded as unsigned64.
@@ -571,8 +571,8 @@ Acknowledgments
    IEs.  Thanks to Paul Aitken for the review and comments.
 
    Thanks to Tommy Pauly for the tsvart review, Joe Touch for the intdir
-   review, Robert Sparks for the genart review, and Watson Ladd for the
-   secdir review.
+   review, Robert Sparks for the genart review, Watson Ladd for the
+   secdir review, and Jouni Korhonen for the opsdir review.
 
    Thanks to Thomas Graf for the Shepherd review.
 
