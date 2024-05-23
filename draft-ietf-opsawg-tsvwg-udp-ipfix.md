@@ -57,7 +57,7 @@ IP Flow Information Export (IPFIX) {{!RFC7011}} is a protocol that is widely dep
 
 This document specifies new IPFIX Information Elements for UDP options ({{sec-IE}}). A brief overview of UDP options is provided in {{uo}}.
 
-The IE specified in {{udpOptions}} uses the new abstract data type defined in  {{sec-iana-192}}.
+The IE specified in {{udpOptions}} uses the new abstract data type defined in {{!I-D.ietf-opsawg-ipfix-tcpo-v6eh}}.
 
 Transport (including MTU) considerations are discussed in {{Section 10 of !RFC7011}}.
 
@@ -115,14 +115,14 @@ ElementID:
 
 Description:
 : Observed safe UDP options in a Flow. The information is encoded in a set of bit fields.
-: Options are mapped to bits according to their option numbers. UDP
+: Options are mapped to bits according to their option numbers. The first 64 most-significant bits MUST be set to 0. UDP
   option Kind 0 corresponds to the least-significant bit in the
-  udpSafeOptions IE while Kind 191 corresponds to the most-significant bit of the IE. The bit is set to 1 if the corresponding safe UDP option is observed in the Flow. The bit is set to 0 if the option is not observed in the Flow.
+  udpSafeOptions IE while Kind 191 corresponds to the 65 most-significant bit of the IE. The bit is set to 1 if the corresponding safe UDP option is observed in the Flow. The bit is set to 0 if the option is not observed in the Flow.
 : The reduced-size encoding per {{Section 6.2 of !RFC7011}} is followed whenever fewer octets are needed to report observed safe UDP options. For example, if only option Kinds <= 31 are observed, then the value of the udpSafeOptions IE can be encoded as unsigned32, or if only option Kinds <= 63 are observed, then the value of the udpSafeOptions IE can be encoded as unsigned64.
 : The presence of udpSafeExIDList is an indication that the SAFE Experimental option is observed in a Flow. The presence of udpSafeExIDList takes precedence over setting the corresponding bit in the udpSafeOptions IE for the same Flow. In order to optimize the use of the reduced-size encoding in the presence of udpSafeExIDList IE, the Exporter MUST NOT set to 1 the EXP flag of the udpSafeOptions IE that is reported for the same Flow.
 
 Abstract Data Type:
-:  unsigned192
+:  unsigned256
 
 Data Type Semantics:
 :  flags
@@ -247,8 +247,8 @@ Given the UDP Kind allocation in {{Section 10 of !I-D.ietf-tsvwg-udp-options}} a
 
 ~~~~
 MSB                                                       LSB
-                     1                                  19
- 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 ... 4 5 6 7 8 9 0 1
+                     1                          25
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 ... 8 9 0 1 2 3 4 5
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+...+-+-+-+-+-+-+-+-+
 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|   |0|0|0|0|0|1|0|1|
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-+-+-+-+...+-+-+-+-+-+-+-+-+
@@ -272,8 +272,8 @@ Let us now consider a UDP Flow in which SAFE Experimental options are observed. 
 
 ~~~~
 MSB                                                     LSB
-                  12                                  19
- 0 1 2 3 ... 7 8 9 0 1 2 3 4 5 6 7 8 9 ... 4 5 6 7 8 9 0 1
+                  12                          25
+ 0 1 2 3 ... 7 8 9 0 1 2 3 4 5 6 7 8 9 ... 8 9 0 1 2 3 4 5
 +-+-+-+-+...+-+-+-+-+-+-+-+-+-+-+-+-+-+-+...+-+-+-+-+-+-+-+
 |X|X|X|X|   |X|X|X|X|X|X|X|X|X|X|X|1|X|X|   |X|X|X|X|X|X|X|
 +-+-+-+-+...+-+-+-+-+-+-+-+-++-++-+-+-+-+...+-+-+-+-+-+-+-+
@@ -328,22 +328,7 @@ This document requests IANA to add the following new IEs to the "IPFIX Informati
 |TBD5| udpUnsafeExIDList|{{udpUExID}} of This-Document|
 {: title="New IPFIX Information Elements"}
 
-> udpSafeOptions uses the abstract data type ("unsigned192") defined in {{sec-iana-192}}.
-
-## IPFIX Information Element Data Type {#sec-iana-192}
-
-This document requests IANA to add the following new abstract data type to the "IPFIX Information Element Data Types" registry under the "IP Flow Information Export (IPFIX) Entities" registry group {{IANA-IPFIX}}:
-
-|Value|	Description|	Reference|
-|TBD6| unsigned192|This-Document|
-{: #iana-new-dt title="New IPFIX Information Element Data Type"}
-
-### unsigned192 Data Type
-
-The type "unsigned192" represents a non-negative integer value in the
-range of '0' to '2^192 - 1'. Similar to {{Section 6.1.1 of !RFC7011}}, this type MUST be encoded using the default canonical format in network byte order.
-
-Reduced-Size encoding ({{Section 6.2 of !RFC7011}}) applies to this data type. The reduction in size can be to any number of octets smaller than the unsigned192 type if the data value still fits, i.e., so that only leading zeroes are dropped.
+> udpSafeOptions uses the abstract data type ("unsigned256") defined in {{!I-D.ietf-opsawg-ipfix-tcpo-v6eh}}.
 
 --- back
 
