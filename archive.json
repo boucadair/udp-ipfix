@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-05-21T00:46:53.779401+00:00",
+  "timestamp": "2024-05-23T00:46:37.084453+00:00",
   "repo": "boucadair/udp-ipfix",
   "labels": [
     {
@@ -311,6 +311,34 @@
       "mergedBy": "boucadair",
       "mergeCommit": {
         "oid": "cd639373ebce2167d3a13dd08a4a4c244582cea9"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 10,
+      "id": "PR_kwDOIyL6pc5wKL-V",
+      "title": "Jouni's review",
+      "url": "https://github.com/boucadair/udp-ipfix/pull/10",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-05-22T06:46:51Z",
+      "updatedAt": "2024-05-22T06:47:42Z",
+      "baseRepository": "boucadair/udp-ipfix",
+      "baseRefName": "main",
+      "baseRefOid": "f3d5c0a2530d183c14051234758da8e6da5306f6",
+      "headRepository": "boucadair/udp-ipfix",
+      "headRefName": "boucadair-patch-3",
+      "headRefOid": "a06cc4526b8a55758535950dabc2d38744e81bfb",
+      "closedAt": "2024-05-22T06:47:42Z",
+      "mergedAt": "2024-05-22T06:47:42Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "aef1730672ad0e3868cf88596c33119dbb8cb336"
       },
       "comments": [],
       "reviews": []
