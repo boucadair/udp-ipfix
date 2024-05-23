@@ -205,7 +205,7 @@ Table of Contents
 
       Options are mapped to bits according to their option numbers.  UDP
       option Kind 0 corresponds to the least-significant bit in the
-      udpSafeOptions IE while Kind 191 corresponds to the 65 most-
+      udpSafeOptions IE while Kind 191 corresponds to the 65th most-
       significant bit of the IE.  The bit is set to 1 if the
       corresponding safe UDP option is observed in the Flow.  The bit is
       set to 0 if the option is not observed in the Flow.  The first 64
