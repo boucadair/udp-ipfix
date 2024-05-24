@@ -5,8 +5,8 @@
 OPSAWG                                                      M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              T. Reddy.K
-Expires: 24 November 2024                                          Nokia
-                                                             23 May 2024
+Expires: 25 November 2024                                          Nokia
+                                                             24 May 2024
 
 
 Export of UDP Options Information in IP Flow Information Export (IPFIX)
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 November 2024.
+   This Internet-Draft will expire on 25 November 2024.
 
 Copyright Notice
 
@@ -208,8 +208,8 @@ Table of Contents
       udpSafeOptions IE while Kind 191 corresponds to the 65th most-
       significant bit of the IE.  The bit is set to 1 if the
       corresponding safe UDP option is observed in the Flow.  The bit is
-      set to 0 if the option is not observed in the Flow.  The first 64
-      most-significant bits MUST be set to 0.
+      set to 0 if the option is not observed in the Flow.  The 64 most-
+      significant bits MUST be set to 0.
 
       The reduced-size encoding per Section 6.2 of [RFC7011] is followed
       whenever fewer octets are needed to report observed safe UDP
