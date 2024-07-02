@@ -177,6 +177,7 @@ ElementID:
 
 Description:
 : Observed ExID in an Experimental option (EXP, Kind=127) or an UNSAFE Experimental option (UEXP, Kind=254).
+: A basicList of udpExID is used to report udpSafeExIDList and udpUnsafeExIDList values.
 
 Abstract Data Type:
 :  unsigned16
