@@ -5,8 +5,8 @@
 OPSAWG                                                      M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              T. Reddy.K
-Expires: 25 November 2024                                          Nokia
-                                                             24 May 2024
+Expires: 6 January 2025                                            Nokia
+                                                             5 July 2024
 
 
 Export of UDP Options Information in IP Flow Information Export (IPFIX)
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 November 2024.
+   This Internet-Draft will expire on 6 January 2025.
 
 Copyright Notice
 
@@ -87,7 +87,7 @@ Table of Contents
 1.  Introduction
 
    IP Flow Information Export (IPFIX) [RFC7011] is a protocol that is
-   widely deployed in operators networks for traffic management purposes
+   widely deployed in networks for traffic management purposes
    (Section 2 of [RFC6632]).  The protocol specifies the encoding of a
    set of basic data types and how the various Information Elements
    (IEs) are transmitted.  In order to support the export of new flow-
@@ -99,7 +99,7 @@ Table of Contents
    Section 3.
 
    The IE specified in Section 4.1 uses the new abstract data type
-   defined in [I-D.ietf-opsawg-ipfix-tcpo-v6eh].
+   ("unsigned256") defined in [I-D.ietf-opsawg-ipfix-tcpo-v6eh].
 
    Transport (including MTU) considerations are discussed in Section 10
    of [RFC7011].
@@ -108,6 +108,12 @@ Table of Contents
    are provided in Section 5.
 
 2.  Conventions and Definitions
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in
+   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
 
    This document uses the IPFIX-specific terminology (e.g., Flow)
    defined in Section 2 of [RFC7011].  As in the base IPFIX
@@ -150,16 +156,19 @@ Table of Contents
    Sections 4.1 and 4.2 introduce new IEs to export the observed UDP
    options.
 
+   UDP options are unambiguously identified by means of a 1-byte field,
+   called "Kind".
+
    Options indicated by Kind values in the range 0-191 are called SAFE
    options.  Such options can be silently ignored by legacy receivers
    because they do not alter the UDP user data (Section 11 of
-   [I-D.ietf-tsvwg-udp-options]).  Safe options are exported using the
+   [I-D.ietf-tsvwg-udp-options]).  SAFE options are exported using the
    IE defined in Section 4.1.
 
    Options indicated by Kind values in the range 192-255 are called
    UNSAFE options.  Such options are not safe for legacy receivers to
    ignore because they alter the UDP user data (Section 12 of
-   [I-D.ietf-tsvwg-udp-options]).  Unsafe options are exported using the
+   [I-D.ietf-tsvwg-udp-options]).  UNSAFE options are exported using the
    IE defined in Section 4.2.
 
    UDP options occur per-packet within a Flow and can be inserted at any
@@ -187,11 +196,11 @@ Table of Contents
       Experiment Identifiers (UDP ExIDs)" registry that will be created
       by IANA as per Section 25 of [I-D.ietf-tsvwg-udp-options].
 
-   Given the Kind structure of safe and unsafe UDP options, using one
+   Given the Kind structure of SAFE and UNSAFE UDP options, using one
    single IE that would multiplex both types of option will limit the
-   benefits of reduced-size encoding in the presence of unsafe options.
+   benefits of reduced-size encoding in the presence of UNSAFE options.
    In order to use less bits to report observed UDP options, distinct
-   IEs are thus defined to report safe (Section 4.1) and unsafe
+   IEs are thus defined to report SAFE (Section 4.1) and UNSAFE
    (Section 4.2) UDP options.
 
 4.1.  udpSafeOptions
@@ -200,19 +209,19 @@ Table of Contents
 
    ElementID:  TBD1
 
-   Description:  Observed safe UDP options in a Flow.  The information
+   Description:  Observed SAFE UDP options in a Flow.  The information
       is encoded in a set of bit fields.
 
       Options are mapped to bits according to their option numbers.  UDP
       option Kind 0 corresponds to the least-significant bit in the
       udpSafeOptions IE while Kind 191 corresponds to the 65th most-
       significant bit of the IE.  The bit is set to 1 if the
-      corresponding safe UDP option is observed in the Flow.  The bit is
-      set to 0 if the option is not observed in the Flow.  The 64 most-
-      significant bits MUST be set to 0.
+      corresponding SAFE UDP option is observed at least once in the
+      Flow.  The bit is set to 0 if the option is never observed in the
+      Flow.  The 64 most-significant bits MUST be set to 0.
 
       The reduced-size encoding per Section 6.2 of [RFC7011] is followed
-      whenever fewer octets are needed to report observed safe UDP
+      whenever fewer octets are needed to report observed SAFE UDP
       options.  For example, if only option Kinds <= 31 are observed,
       then the value of the udpSafeOptions IE can be encoded as
       unsigned32, or if only option Kinds <= 63 are observed, then the
@@ -244,18 +253,19 @@ Table of Contents
 
    ElementID:  TBD2
 
-   Description:  Observed unsafe UDP options in a Flow.  The information
+   Description:  Observed UNSAFE UDP options in a Flow.  The information
       is encoded in a set of bit fields.
 
       Options are mapped to bits according to their option numbers.  UDP
       option Kind 192 corresponds to the least-significant bit in the
       udpUnsafeOptions IE while Kind 255 corresponds to the most-
       significant bit of the IE.  The bit is set to 1 if the
-      corresponding unsafe UDP option is observed in the Flow.  The bit
-      is set to 0 if the option is not observed in the Flow.
+      corresponding UNSAFE UDP option is observed at least once in the
+      Flow.  The bit is set to 0 if the option is never observed in the
+      Flow.
 
       The reduced-size encoding per Section 6.2 of [RFC7011] is followed
-      whenever fewer octets are needed to report observed unsafe UDP
+      whenever fewer octets are needed to report observed UNSAFE UDP
       options.
 
       The presence of udpUnsafeExIDList is an indication that the UNSAFE
@@ -286,6 +296,9 @@ Table of Contents
 
    Description:  Observed ExID in an Experimental option (EXP, Kind=127)
       or an UNSAFE Experimental option (UEXP, Kind=254).
+
+      A basicList of udpExID is used to report udpSafeExIDList and
+      udpUnsafeExIDList values.
 
    Abstract Data Type:  unsigned16
 
@@ -477,9 +490,9 @@ Table of Contents
               Boucadair, M. and B. Claise, "Extended TCP Options and
               IPv6 Extension Headers IPFIX Information Elements", Work
               in Progress, Internet-Draft, draft-ietf-opsawg-ipfix-tcpo-
-              v6eh-15, 22 May 2024,
+              v6eh-16, 24 June 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ipfix-tcpo-v6eh-15>.
+              ipfix-tcpo-v6eh-16>.
 
    [I-D.ietf-tsvwg-udp-options]
               Touch, J. D., "Transport Options for UDP", Work in
@@ -490,6 +503,11 @@ Table of Contents
    [RFC0768]  Postel, J., "User Datagram Protocol", STD 6, RFC 768,
               DOI 10.17487/RFC0768, August 1980,
               <https://www.rfc-editor.org/rfc/rfc768>.
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/rfc/rfc2119>.
 
    [RFC6313]  Claise, B., Dhandapani, G., Aitken, P., and S. Yates,
               "Export of Structured Data in IP Flow Information Export
@@ -506,6 +524,10 @@ Table of Contents
               for IP Flow Information Export (IPFIX)", RFC 7012,
               DOI 10.17487/RFC7012, September 2013,
               <https://www.rfc-editor.org/rfc/rfc7012>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
 8.2.  Informative References
 
@@ -558,6 +580,8 @@ Acknowledgments
    Thanks to Thomas Graf for the Shepherd review.
 
    Thanks to Mahesh Jethanandani for the AD review.
+
+   Thanks to Éric Vyncke for the IESG review.
 
 Authors' Addresses
 
