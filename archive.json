@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-07-04T00:50:31.306090+00:00",
+  "timestamp": "2024-07-07T00:54:54.371753+00:00",
   "repo": "boucadair/udp-ipfix",
   "labels": [
     {
@@ -348,24 +348,26 @@
       "id": "PR_kwDOIyL6pc50LxDU",
       "title": "Eric's review (IESG Review)",
       "url": "https://github.com/boucadair/udp-ipfix/pull/11",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-07-02T11:08:40Z",
-      "updatedAt": "2024-07-02T12:16:59Z",
+      "updatedAt": "2024-07-05T11:31:04Z",
       "baseRepository": "boucadair/udp-ipfix",
       "baseRefName": "main",
       "baseRefOid": "5d7394f847d45619bd95527f44827fdc5537560c",
       "headRepository": "boucadair/udp-ipfix",
       "headRefName": "eric-vyncke-iesg-review",
       "headRefOid": "2e4902692ed7ca27d6d50bc8788f282d6d489b54",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-07-05T11:31:04Z",
+      "mergedAt": "2024-07-05T11:31:04Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "4767800436eb5a88c2bc3193d316d8eb0ced7cc2"
+      },
       "comments": [],
       "reviews": []
     }
