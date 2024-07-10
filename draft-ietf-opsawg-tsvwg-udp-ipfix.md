@@ -325,7 +325,7 @@ The reader may refer to {{Section 24 of !I-D.ietf-tsvwg-udp-options}} for the se
 
 This document requests IANA to add the following new IEs to the "IPFIX Information Elements" registry under the "IP Flow Information Export (IPFIX) Entities" registry group {{IANA-IPFIX}}:
 
-|Value|	Name|	Reference|
+|ElementID|	Name|	Specification|
 |TBD1| udpSafeOptions|{{udpOptions}} of This-Document|
 |TBD2| udpUnsafeOptions|{{udpUnsafeOptions}} of This-Document|
 |TBD3| udpExID|{{udpBasicExID}} of This-Document|
@@ -334,6 +334,12 @@ This document requests IANA to add the following new IEs to the "IPFIX Informati
 {: title="New IPFIX Information Elements"}
 
 > udpSafeOptions uses the abstract data type ("unsigned256") defined in {{!I-D.ietf-opsawg-ipfix-tcpo-v6eh}}.
+
+> Note to IANA:
+> : The "Specification" column points to the section with the required information to register each IE.
+>
+> Note to the RFC Editor:
+> : Please remove the IANA note once IANA actions are implemented.
 
 --- back
 
@@ -348,4 +354,4 @@ Thanks to Thomas Graf for the Shepherd review.
 
 Thanks to Mahesh Jethanandani for the AD review.
 
-Thanks to Éric Vyncke for the IESG review.
+Thanks to Éric Vyncke and Roman Danyliw for the IESG review.
