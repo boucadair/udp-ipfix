@@ -5,8 +5,8 @@
 OPSAWG                                                      M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              T. Reddy.K
-Expires: 6 January 2025                                            Nokia
-                                                             5 July 2024
+Expires: 11 January 2025                                           Nokia
+                                                            10 July 2024
 
 
 Export of UDP Options Information in IP Flow Information Export (IPFIX)
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 January 2025.
+   This Internet-Draft will expire on 11 January 2025.
 
 Copyright Notice
 
@@ -463,24 +463,30 @@ Table of Contents
    "IPFIX Information Elements" registry under the "IP Flow Information
    Export (IPFIX) Entities" registry group [IANA-IPFIX]:
 
-       +=======+===================+==============================+
-       | Value | Name              | Reference                    |
-       +=======+===================+==============================+
-       | TBD1  | udpSafeOptions    | Section 4.1 of This-Document |
-       +-------+-------------------+------------------------------+
-       | TBD2  | udpUnsafeOptions  | Section 4.2 of This-Document |
-       +-------+-------------------+------------------------------+
-       | TBD3  | udpExID           | Section 4.3 of This-Document |
-       +-------+-------------------+------------------------------+
-       | TBD4  | udpSafeExIDList   | Section 4.4 of This-Document |
-       +-------+-------------------+------------------------------+
-       | TBD5  | udpUnsafeExIDList | Section 4.5 of This-Document |
-       +-------+-------------------+------------------------------+
+     +===========+===================+==============================+
+     | ElementID | Name              | Specification                |
+     +===========+===================+==============================+
+     | TBD1      | udpSafeOptions    | Section 4.1 of This-Document |
+     +-----------+-------------------+------------------------------+
+     | TBD2      | udpUnsafeOptions  | Section 4.2 of This-Document |
+     +-----------+-------------------+------------------------------+
+     | TBD3      | udpExID           | Section 4.3 of This-Document |
+     +-----------+-------------------+------------------------------+
+     | TBD4      | udpSafeExIDList   | Section 4.4 of This-Document |
+     +-----------+-------------------+------------------------------+
+     | TBD5      | udpUnsafeExIDList | Section 4.5 of This-Document |
+     +-----------+-------------------+------------------------------+
 
                  Table 1: New IPFIX Information Elements
 
       udpSafeOptions uses the abstract data type ("unsigned256") defined
       in [I-D.ietf-opsawg-ipfix-tcpo-v6eh].
+
+      Note to IANA:  The "Specification" column points to the section
+         with the required information to register each IE.
+
+      Note to the RFC Editor:  Please remove the IANA note once IANA
+         actions are implemented.
 
 8.  References
 
@@ -490,9 +496,9 @@ Table of Contents
               Boucadair, M. and B. Claise, "Extended TCP Options and
               IPv6 Extension Headers IPFIX Information Elements", Work
               in Progress, Internet-Draft, draft-ietf-opsawg-ipfix-tcpo-
-              v6eh-16, 24 June 2024,
+              v6eh-17, 5 July 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ipfix-tcpo-v6eh-16>.
+              ipfix-tcpo-v6eh-17>.
 
    [I-D.ietf-tsvwg-udp-options]
               Touch, J. D., "Transport Options for UDP", Work in
@@ -581,7 +587,7 @@ Acknowledgments
 
    Thanks to Mahesh Jethanandani for the AD review.
 
-   Thanks to Éric Vyncke for the IESG review.
+   Thanks to Éric Vyncke and Roman Danyliw for the IESG review.
 
 Authors' Addresses
 
