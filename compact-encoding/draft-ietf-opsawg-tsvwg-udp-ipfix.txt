@@ -204,7 +204,7 @@ Table of Contents
    to report observed UDP options, distinct IEs are thus defined to
    report SAFE (Section 4.1) and UNSAFE (Section 4.2) UDP options.  As
    further detailed in Section 5.1, only one octet is needed to report
-   mandatory SAFE option.
+   mandatory SAFE options.
 
 4.1.  udpSafeOptions
 
