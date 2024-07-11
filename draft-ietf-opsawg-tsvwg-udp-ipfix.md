@@ -115,7 +115,7 @@ Given the Kind structure of SAFE and UNSAFE UDP options, using one
    In order to use less bits to report observed UDP options, distinct
    IEs are thus defined to report SAFE ({{udpOptions}}) and UNSAFE
    ({{udpUnsafeOptions}}) UDP options. As further detailed in {{sec-ex-rs}}, only
-   one octet is needed to report mandatory SAFE option.
+   one octet is needed to report mandatory SAFE options.
 
 ## udpSafeOptions {#udpOptions}
 
