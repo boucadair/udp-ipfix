@@ -107,7 +107,15 @@ This document does not intend to elaborate operational guidance/implications of 
 
 > RFC Editor Note: Please update "URL_IANA_UDP_OPTIONS" reference with the URL of the "UDP Option Kind Numbers" registry group and "URL_IANA_UDP_ExIDs" with the URL of the "UDP Experimental Option Experiment Identifiers (UDP ExIDs)" registry that will be created by IANA as per {{Section 25 of !I-D.ietf-tsvwg-udp-options}}.
 
-Given the Kind structure of SAFE and UNSAFE UDP options, using one single IE that would multiplex both types of option will limit the benefits of reduced-size encoding in the presence of UNSAFE options. In order to use less bits to report observed UDP options, distinct IEs are thus defined to report SAFE ({{udpOptions}}) and UNSAFE ({{udpUnsafeOptions}}) UDP options.
+Given the Kind structure of SAFE and UNSAFE UDP options, using one
+   single IE that would multiplex both types of option will limit the
+   benefits of reduced-size encoding in the presence of UNSAFE options.
+   For example, at least 24 octets would be needed to report mandatory SAFE
+   options that are observed in a Flow.
+   In order to use less bits to report observed UDP options, distinct
+   IEs are thus defined to report SAFE ({{udpOptions}}) and UNSAFE
+   ({{udpUnsafeOptions}}) UDP options. As further detailed in {{sec-ex-rs}}, only
+   one octet is needed to report mandatory SAFE options.
 
 ## udpSafeOptions {#udpOptions}
 
@@ -244,7 +252,7 @@ Reference:
 
 # Examples {#sec-ex}
 
-## Reduced-size Encoding
+## Reduced-size Encoding {#sec-ex-rs}
 
 Given the UDP Kind allocation in {{Section 10 of !I-D.ietf-tsvwg-udp-options}} and the option mapping defined in {{udpOptions}} of this document, fewer octets are likely to be used for Flows with mandatory UDP options.
 
