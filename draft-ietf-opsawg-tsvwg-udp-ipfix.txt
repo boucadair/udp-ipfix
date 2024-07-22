@@ -5,8 +5,8 @@
 OPSAWG                                                      M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              T. Reddy.K
-Expires: 11 January 2025                                           Nokia
-                                                            10 July 2024
+Expires: 23 January 2025                                           Nokia
+                                                            22 July 2024
 
 
 Export of UDP Options Information in IP Flow Information Export (IPFIX)
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 January 2025.
+   This Internet-Draft will expire on 23 January 2025.
 
 Copyright Notice
 
@@ -199,9 +199,12 @@ Table of Contents
    Given the Kind structure of SAFE and UNSAFE UDP options, using one
    single IE that would multiplex both types of option will limit the
    benefits of reduced-size encoding in the presence of UNSAFE options.
-   In order to use less bits to report observed UDP options, distinct
-   IEs are thus defined to report SAFE (Section 4.1) and UNSAFE
-   (Section 4.2) UDP options.
+   For example, at least 24 octets would be needed to report mandatory
+   SAFE options that are observed in a Flow.  In order to use less bits
+   to report observed UDP options, distinct IEs are thus defined to
+   report SAFE (Section 4.1) and UNSAFE (Section 4.2) UDP options.  As
+   further detailed in Section 5.1, only one octet is needed to report
+   mandatory SAFE options.
 
 4.1.  udpSafeOptions
 
