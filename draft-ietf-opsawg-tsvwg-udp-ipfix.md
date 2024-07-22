@@ -344,7 +344,7 @@ This document requests IANA to add the following new IEs to the "IPFIX Informati
 > udpSafeOptions uses the abstract data type ("unsigned256") defined in {{!I-D.ietf-opsawg-ipfix-tcpo-v6eh}}.
 
 > Note to IANA:
-> : The "Specification" column points to the section with the required information to register each IE.
+> : The "Specification" column points to the sections with the required information to register each IE.
 >
 > Note to the RFC Editor:
 > : Please remove the IANA note once IANA actions are implemented.
@@ -362,4 +362,4 @@ Thanks to Thomas Graf for the Shepherd review.
 
 Thanks to Mahesh Jethanandani for the AD review.
 
-Thanks to Éric Vyncke and Roman Danyliw for the IESG review.
+Thanks to Éric Vyncke, Roman Danyliw, and Zahed Sarker for the IESG review.
