@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-07-21T00:55:29.807794+00:00",
+  "timestamp": "2024-07-23T00:52:06.240498+00:00",
   "repo": "boucadair/udp-ipfix",
   "labels": [
     {
@@ -404,24 +404,26 @@
       "id": "PR_kwDOIyL6pc51Futd",
       "title": "compact encoding",
       "url": "https://github.com/boucadair/udp-ipfix/pull/13",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-07-11T12:27:55Z",
-      "updatedAt": "2024-07-11T12:30:44Z",
+      "updatedAt": "2024-07-22T08:26:34Z",
       "baseRepository": "boucadair/udp-ipfix",
       "baseRefName": "main",
       "baseRefOid": "be55fab1b60943e50041ad4a331504e9cefbde66",
       "headRepository": "boucadair/udp-ipfix",
       "headRefName": "compact-encoding",
       "headRefOid": "f92803f975994e1289811b74dd3370a0b85a2d04",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-07-22T08:26:34Z",
+      "mergedAt": "2024-07-22T08:26:34Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "23ee54d6d3d97388ae86bee3736a1d0110643d00"
+      },
       "comments": [],
       "reviews": []
     }
