@@ -5,8 +5,8 @@
 OPSAWG                                                      M. Boucadair
 Internet-Draft                                                    Orange
 Intended status: Standards Track                              T. Reddy.K
-Expires: 23 January 2025                                           Nokia
-                                                            22 July 2024
+Expires: 8 August 2025                                             Nokia
+                                                         4 February 2025
 
 
 Export of UDP Options Information in IP Flow Information Export (IPFIX)
@@ -44,11 +44,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 January 2025.
+   This Internet-Draft will expire on 8 August 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -499,15 +499,16 @@ Table of Contents
               Boucadair, M. and B. Claise, "Extended TCP Options and
               IPv6 Extension Headers IPFIX Information Elements", Work
               in Progress, Internet-Draft, draft-ietf-opsawg-ipfix-tcpo-
-              v6eh-17, 5 July 2024,
+              v6eh-18, 22 July 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ipfix-tcpo-v6eh-17>.
+              ipfix-tcpo-v6eh-18>.
 
    [I-D.ietf-tsvwg-udp-options]
-              Touch, J. D., "Transport Options for UDP", Work in
-              Progress, Internet-Draft, draft-ietf-tsvwg-udp-options-32,
-              21 March 2024, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-tsvwg-udp-options-32>.
+              Touch, J. D. and C. M. Heard, "Transport Options for UDP",
+              Work in Progress, Internet-Draft, draft-ietf-tsvwg-udp-
+              options-38, 3 November 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-tsvwg-
+              udp-options-38>.
 
    [RFC0768]  Postel, J., "User Datagram Protocol", STD 6, RFC 768,
               DOI 10.17487/RFC0768, August 1980,
@@ -543,9 +544,9 @@ Table of Contents
    [I-D.ietf-tsvwg-udp-options-dplpmtud]
               Fairhurst, G. and T. Jones, "Datagram PLPMTUD for UDP
               Options", Work in Progress, Internet-Draft, draft-ietf-
-              tsvwg-udp-options-dplpmtud-12, 7 May 2024,
+              tsvwg-udp-options-dplpmtud-13, 10 September 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-tsvwg-
-              udp-options-dplpmtud-12>.
+              udp-options-dplpmtud-13>.
 
    [IANA-IPFIX]
               "IP Flow Information Export (IPFIX) Entities", n.d.,
