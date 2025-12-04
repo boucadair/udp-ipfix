@@ -1,3 +1,8 @@
+# Published RFC  (October 2025)
+
+* [RFC 9870](https://datatracker.ietf.org/doc/rfc9870/): Export of UDP Options Information in IP Flow Information Export (IPFIX)
+
+
 # IPFIX IE for UDP Options
 
 This is the working area for the IETF OPSAWG Internet-Draft, "IPFIX IEs for UDP Options".
